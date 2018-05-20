@@ -6,6 +6,9 @@
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
+-- 308046B0AF4A39CB is Firefox as seen at 'SOFTWARE\RegisteredApplications'
+--
+--
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
@@ -15,11 +18,7 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
 	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 	   then json_extract(ActivityOperation.AppId, '$[0].application') 
 	   when json_extract(ActivityOperation.AppId, '$[1].application')  = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'	   
-	   
-	   
-
 	   else json_extract(ActivityOperation.AppId, '$[1].application') end AS Application,
-	   
        json_extract(ActivityOperation.Payload, '$.displayText') AS [File/title opened],
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
