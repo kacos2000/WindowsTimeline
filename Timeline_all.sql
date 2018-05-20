@@ -13,7 +13,9 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
        Activity_PackageId.Platform AS Platform_id,
        ActivityOperation.OperationType AS Status,
        CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
-       json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
+       ActivityOperation.PlatformDeviceId as 'Device ID', 
+	   -- The Platform DeviceID can be found in the user’s NTUSER.dat at Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+	   json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
        json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(ActivityOperation.OriginalPayload, '$.displayText') AS [Original File/title opened],
        json_extract(ActivityOperation.OriginalPayload, '$.description') AS [Original Full Path /Url],
@@ -44,6 +46,8 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Query
        Activity_PackageId.Platform AS Platform_id,
        Activity.ActivityStatus AS Status,
        CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
+       Activity.PlatformDeviceId as 'Device ID', 
+	   -- The Platform DeviceID can be found in the user’s NTUSER.dat at Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
        json_extract(Activity.OriginalPayload, '$.type') AS Type,
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(Activity.OriginalPayload, '$.displayText') AS [Original File/title opened],
