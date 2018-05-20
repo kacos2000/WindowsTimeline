@@ -1,7 +1,11 @@
 -- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime" in the field converts it to our TimeZone.
--- 
+-- The 'DeviceID' can be found in the user’s NTUSER.dat at
+-- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+-- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
+-- the Activity and ActivityOperation tables. 
+--
 -- © Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
@@ -13,8 +17,9 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
        Activity_PackageId.Platform AS Platform_id,
        ActivityOperation.OperationType AS Status,
        CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
-       ActivityOperation.PlatformDeviceId as 'Device ID', 
-	   -- The Platform DeviceID can be found in the user’s NTUSER.dat at Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+       case when cast((ActivityOperation.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
+	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
+	   ActivityOperation.PlatformDeviceId as 'Device ID', 
 	   json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
        json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(ActivityOperation.OriginalPayload, '$.displayText') AS [Original File/title opened],
@@ -34,7 +39,7 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
        '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [Timeline Entry unique GUID]
 	FROM Activity_PackageId
 	JOIN ActivityOperation ON Activity_PackageId.ActivityId = ActivityOperation.Id
-WHERE Platform_id = json_extract(ActivityOperation.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = ActivityOperation.Id
+WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = ActivityOperation.Id
 
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
@@ -46,7 +51,9 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Query
        Activity_PackageId.Platform AS Platform_id,
        Activity.ActivityStatus AS Status,
        CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
-       Activity.PlatformDeviceId as 'Device ID', 
+       case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
+	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
+	   Activity.PlatformDeviceId as 'Device ID', 
 	   -- The Platform DeviceID can be found in the user’s NTUSER.dat at Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
        json_extract(Activity.OriginalPayload, '$.type') AS Type,
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
@@ -67,7 +74,7 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Query
        '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [Timeline Entry unique GUID]
 	FROM Activity_PackageId
     JOIN        Activity ON Activity_PackageId.ActivityId = Activity.Id  
-	WHERE Platform_id = json_extract(Activity.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = Activity.Id
+	WHERE Activity_PackageId.Platform = json_extract(Activity.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = Activity.Id
  
  ORDER BY Etag DESC;  -- Edit this line to change the sorting 
  
