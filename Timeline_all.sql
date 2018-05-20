@@ -6,7 +6,7 @@
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
--- © Costas Katsavounidis (kacos2000 [at] gmail.com)
+-- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
 SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
