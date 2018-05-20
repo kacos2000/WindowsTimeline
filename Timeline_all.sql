@@ -8,6 +8,8 @@
 --
 -- 308046B0AF4A39CB is Firefox as seen at 'SOFTWARE\RegisteredApplications'
 --
+-- Known folder GUIDs 
+-- https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
@@ -17,7 +19,10 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
  	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 	   then json_extract(ActivityOperation.AppId, '$[0].application') 
 	   when json_extract(ActivityOperation.AppId, '$[1].application')  = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'	   
-	   else json_extract(ActivityOperation.AppId, '$[1].application') end AS Application,
+	   else  replace(replace(replace(replace(replace(json_extract(ActivityOperation.AppId, '$[1].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
+ '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
+ '{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '* Windows * '),
+ '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') end AS Application,
        json_extract(ActivityOperation.Payload, '$.displayText') AS [File/title opened],
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
@@ -57,7 +62,10 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
 	   length(json_extract(Activity.AppId, '$[0].application')) < 22 
 	   then json_extract(Activity.AppId, '$[1].application') 
 	   when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
-	   else json_extract(Activity.AppId, '$[0].application') end AS Application,
+	   else  replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[0].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
+ '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
+ '{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '* Windows * '),
+ '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') end AS Application,
        json_extract(Activity.Payload, '$.displayText') AS [File/title opened],
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
@@ -91,4 +99,4 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
  
  ORDER BY Etag DESC;  -- Edit this line to change the sorting 
  
- -- EOF
+-- EOF
