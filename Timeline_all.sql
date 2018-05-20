@@ -12,10 +12,9 @@
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
-SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
+SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
-       
-	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
+ 	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 	   then json_extract(ActivityOperation.AppId, '$[0].application') 
 	   when json_extract(ActivityOperation.AppId, '$[1].application')  = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'	   
 	   else json_extract(ActivityOperation.AppId, '$[1].application') end AS Application,
@@ -31,9 +30,11 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
        json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(ActivityOperation.OriginalPayload, '$.displayText') AS [Original File/title opened],
        json_extract(ActivityOperation.OriginalPayload, '$.description') AS [Original Full Path /Url],
-       json_extract(ActivityOperation.Payload, '$.activeDurationSeconds') AS [Active Duration Secs],
-       json_extract(ActivityOperation.Payload, '$.activeDurationSeconds') AS [Original Duration Secs],
-       CASE WHEN CAST ( (ActivityOperation.EndTime - ActivityOperation.StartTime) AS INTEGER) < 0 THEN '-' ELSE CAST ( (ActivityOperation.EndTime - ActivityOperation.StartTime) AS INTEGER) END AS [Calculated Duration],
+       time(json_extract(ActivityOperation.Payload, '$.activeDurationSeconds'),'unixepoch') AS [Active Duration],
+       time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') AS [Original Duration],
+       CASE WHEN CAST ((ActivityOperation.EndTime - ActivityOperation.StartTime) AS INTEGER) < 0 THEN '-' 
+	   ELSE time(CAST((ActivityOperation.EndTime - ActivityOperation.StartTime) AS INTEGER),'unixepoch') 
+	   END AS [Calculated Duration],
        datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') AS StartTime, 
        datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') AS LastModified,
        CASE WHEN ActivityOperation.OriginalLastModifiedOnClient > 0 THEN datetime(ActivityOperation.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') ELSE '  -  ' END AS LastModifiedOnClient,
@@ -50,7 +51,7 @@ WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].
 
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
-SELECT Activity.ETag AS Etag,  -- This the Activity Query
+SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
        case when length (json_extract(Activity.AppId, '$[0].application')) > 18 and 
 	   length(json_extract(Activity.AppId, '$[0].application')) < 22 
@@ -69,9 +70,11 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Query
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(Activity.OriginalPayload, '$.displayText') AS [Original File/title opened],
        json_extract(Activity.OriginalPayload, '$.description') AS [Original Full Path /Url],
-       json_extract(Activity.Payload, '$.activeDurationSeconds') AS [Active Duration Secs],
-       json_extract(Activity.OriginalPayload, '$.activeDurationSeconds') AS [Original Duration Secs],
-       CASE WHEN CAST ( (Activity.EndTime - Activity.StartTime) AS INTEGER) < 0 THEN '-' ELSE CAST ( (Activity.EndTime - Activity.StartTime) AS INTEGER) END AS [Calculated Duration],
+       time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch') AS [Active Duration],
+       time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) AS [Original Duration],       
+	   CASE WHEN CAST ((Activity.EndTime - Activity.StartTime) AS INTEGER) < 0 THEN '-' 
+	   ELSE time(CAST((Activity.EndTime - Activity.StartTime) AS INTEGER),'unixepoch') 
+	   END AS [Calculated Duration],
        datetime(Activity.StartTime, 'unixepoch', 'localtime') AS StartTime,
        datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime') AS LastModified,
        CASE WHEN Activity.OriginalLastModifiedOnClient > 0 THEN datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') ELSE '  -  ' END AS LastModifiedOnClient,
