@@ -54,7 +54,6 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Query
        case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
 	   Activity.PlatformDeviceId as 'Device ID', 
-	   -- The Platform DeviceID can be found in the user’s NTUSER.dat at Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
        json_extract(Activity.OriginalPayload, '$.type') AS Type,
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(Activity.OriginalPayload, '$.displayText') AS [Original File/title opened],
