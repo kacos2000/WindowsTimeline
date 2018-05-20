@@ -11,7 +11,7 @@
 
 SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Query
        json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
-       json_extract(ActivityOperation.AppId, '$[1].application') AS Application,
+       case when length(json_extract(ActivityOperation.AppId, '$[1].application')) <= 20 then json_extract(ActivityOperation.AppId, '$[0].application') else json_extract(ActivityOperation.AppId, '$[1].application') end AS Application,
        json_extract(ActivityOperation.Payload, '$.displayText') AS [File/title opened],
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
@@ -45,7 +45,7 @@ UNION  -- Join Activity & ActivityOperation Queries to get results from both Tab
 
 SELECT Activity.ETag AS Etag,  -- This the Activity Query
        json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
-       json_extract(Activity.AppId, '$[0].application') AS Application,
+       case when length(json_extract(Activity.AppId, '$[0].application')) <= 20 then json_extract(Activity.AppId, '$[1].application') else json_extract(Activity.AppId, '$[0].application') end AS Application,
        json_extract(Activity.Payload, '$.displayText') AS [File/title opened],
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
