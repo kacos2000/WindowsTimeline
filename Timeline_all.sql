@@ -14,8 +14,10 @@
 -- Any Entries removed from the Timeline are copied from the Activity table to the ActivityOperation table until
 -- (assumption here) they either expire or are uploaded to the Cloud.
 -- Any ActivityOperation table's ETAGs that also exist in the Activity table are marked as Removed. Also, according to the Smartlookup 
--- view all entries in the Activity Table are marked as NOT in the upload queue, but all entries in the ActivityOperation table 
--- (minus the ones listed as 'Deleted') are marked as in the upload queue.
+-- view all entries in the Activity Table are marked as NOT in the upload queue (The UserActivity has not yet been published), 
+-- but all entries in the ActivityOperation table minus the ones listed as 'Deleted') are marked 
+-- as in the upload queue (The UserActivity has been published on this (or another) device).
+-- https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.useractivities.useractivitystate 
 -- All ETAG entries from Activity and ActivityOperation tables remain in the Activity_PackageId even when they are deleted.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
@@ -35,10 +37,11 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
  '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') end AS Application,
        json_extract(ActivityOperation.Payload, '$.displayText') AS [File/title opened],
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
+	   json_extract(ActivityOperation.Payload, '$.activationUri') AS [AppUriHandler],
        Activity_PackageId.Platform AS Platform_id,
        ActivityOperation.OperationType AS Status,
        case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' end as 'WasRemoved',
-	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'In Queue' end AS 'UploadQueue',
+	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'Published' end AS 'UploadQueue',
 	   CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((ActivityOperation.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
@@ -84,10 +87,11 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
  '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') end AS Application,
        json_extract(Activity.Payload, '$.displayText') AS [File/title opened],
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
+	   json_extract(Activity.Payload, '$.activationUri') AS [AppUriHandler],
        Activity_PackageId.Platform AS Platform_id,
        Activity.ActivityStatus AS Status,
 	   null as 'WasRemoved',
-       null as 'Upload Queue',  
+       'New' as 'Upload Queue',  
 	   CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
