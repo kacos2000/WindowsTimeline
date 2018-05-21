@@ -15,7 +15,7 @@
 -- (assumption here) they either expire or are uploaded to the Cloud.
 -- Any ActivityOperation table's ETAGs that also exist in the Activity table are marked as Removed. Also, according to the Smartlookup 
 -- view all entries in the Activity Table are marked as NOT in the upload queue, but all entries in the ActivityOperation table 
--- (minus the ones listed as 'Removed') are marked as in the upload queue.
+-- (minus the ones listed as 'Deleted') are marked as in the upload queue.
 -- All ETAG entries from Activity and ActivityOperation tables remain in the Activity_PackageId even when they are deleted.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
@@ -37,8 +37,8 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
        ActivityOperation.OperationType AS Status,
-       case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' else '' end as 'Was Removed',
-	   Case when 'Was Removed' = '' then '' when 'Was Removed' = 'Removed' then '' else '' end AS [UploadQueue],
+       case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' end as 'WasRemoved',
+	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'In Queue' end AS 'UploadQueue',
 	   CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((ActivityOperation.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
@@ -86,8 +86,8 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
        Activity.ActivityStatus AS Status,
-	   '' as 'Was Removed',
-       '' AS 'Upload Queue',  
+	   null as 'WasRemoved',
+       null as 'Upload Queue',  
 	   CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
