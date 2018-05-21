@@ -9,7 +9,10 @@
 -- 308046B0AF4A39CB is Firefox as seen at 'SOFTWARE\RegisteredApplications'
 --
 -- Known folder GUIDs 
--- https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places
+-- "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
+--
+-- Assumption: After reviewing the SmartLookup view code, any ETAGs listed that exist in both Activity and ActivityOperation
+-- tables are assumed as Deleted. Similarly, Smartlookup marks all entries in the Activity Table as NOT in upload queue.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
@@ -30,7 +33,9 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
        ActivityOperation.OperationType AS Status,
-       CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
+       case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id)  then 'Deleted' else '' end as 'IsDeleted',
+	   Case when 'IsDeleted' = '' then '' when 'IsDeleted' = 'Deleted' then '' end AS [UploadQueue],
+	   CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((ActivityOperation.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
 	   ActivityOperation.PlatformDeviceId as 'Device ID', 
@@ -47,14 +52,15 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') AS LastModified,
        CASE WHEN ActivityOperation.OriginalLastModifiedOnClient > 0 THEN datetime(ActivityOperation.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') ELSE '  -  ' END AS LastModifiedOnClient,
        CASE WHEN ActivityOperation.EndTime > 0 THEN datetime(ActivityOperation.EndTime, 'unixepoch', 'localtime') ELSE "-" END AS EndTime,
-       CASE WHEN ActivityOperation.CreatedInCloud > 0 THEN datetime(ActivityOperation.CreatedInCloud, 'unixepoch', 'localtime') ELSE "-" END AS CreatedInCloud,
+	   CASE WHEN ActivityOperation.CreatedInCloud > 0 THEN datetime(ActivityOperation.CreatedInCloud, 'unixepoch', 'localtime') ELSE "-" END AS CreatedInCloud,
 	   json_extract(ActivityOperation.OriginalPayload, '$.userTimezone') AS TZone,
        CAST ( (ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime) AS INTEGER) / '86400' AS [Expires In days],
        datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') AS [Expiration on PackageID],
        datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') AS Expiration,
        '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [Timeline Entry unique GUID]
 	FROM Activity_PackageId
-	JOIN ActivityOperation ON Activity_PackageId.ActivityId = ActivityOperation.Id
+	JOIN ActivityOperation ON Activity_PackageId.ActivityId = ActivityOperation.Id  
+	
 WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = ActivityOperation.Id
 
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
@@ -76,7 +82,9 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
        Activity_PackageId.Platform AS Platform_id,
        Activity.ActivityStatus AS Status,
-       CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
+	   '' as [IsDeleted],
+       '' AS [Upload Queue],  
+	   CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
        case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
 	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
 	   Activity.PlatformDeviceId as 'Device ID', 
@@ -93,7 +101,7 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime') AS LastModified,
        CASE WHEN Activity.OriginalLastModifiedOnClient > 0 THEN datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') ELSE '  -  ' END AS LastModifiedOnClient,
        CASE WHEN Activity.EndTime > 0 THEN datetime(Activity.EndTime, 'unixepoch', 'localtime') ELSE "-" END AS EndTime,
-       CASE WHEN Activity.CreatedInCloud > 0 THEN datetime(Activity.CreatedInCloud, 'unixepoch', 'localtime') ELSE "-" END AS CreatedInCloud,
+	   CASE WHEN Activity.CreatedInCloud > 0 THEN datetime(Activity.CreatedInCloud, 'unixepoch', 'localtime') ELSE "-" END AS CreatedInCloud,
        json_extract(Activity.OriginalPayload, '$.userTimezone') AS TZone,
        CAST ( (Activity.ExpirationTime - Activity.LastModifiedTime) AS INTEGER) / '86400' AS [Expires In days],
        datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') AS [Expiration on PackageID],
