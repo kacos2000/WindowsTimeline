@@ -7,7 +7,7 @@ Activities,
 Activity_PackageID,
 ActivityOperation
 
-Either import to your SQLite program, or Copy Paste the code to the query window.
+Either import 'Timeline_all.sql' to your SQLite program, or Copy Paste the code to the query window.
 Your software needs to support the SQLIte JSON1 extension (https://www.sqlite.org/json1.html).
 
 Tested on:
