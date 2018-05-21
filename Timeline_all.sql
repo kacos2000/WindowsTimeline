@@ -19,12 +19,18 @@
 -- as in the upload queue (The UserActivity has been published on this (or another) device).
 -- https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.useractivities.useractivitystate 
 -- All ETAG entries from Activity and ActivityOperation tables remain in the Activity_PackageId even when they are deleted.
+-- 
+-- Duration or totalEngagementTime += e.EndTime.Value.Ticks - e.StartTime.Ticks) 
+-- https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.useractivities
+-- 
+-- StartTime: The start time for the UserActivity
+-- EndTime: The time when the user stopped engaging in the UserActivity associated 
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
 SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
-       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
+       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Activity Card Program Name],
  	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 	   then replace(replace(replace(replace(replace(json_extract(ActivityOperation.AppId, '$[0].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
  '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
@@ -47,9 +53,10 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
 	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
 	   ActivityOperation.PlatformDeviceId as 'Device ID', 
 	   json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
-       json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
+       json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Displayed Name],
        json_extract(ActivityOperation.OriginalPayload, '$.displayText') AS [Original File/title opened],
-       json_extract(ActivityOperation.OriginalPayload, '$.description') AS [Original Full Path /Url],
+       json_extract(ActivityOperation.OriginalPayload, '$.description') AS [Original Full Path /Url], 
+	   json_extract(ActivityOperation.OriginalPayload, '$.activationUri') AS [Original AppUriHandler],
        time(json_extract(ActivityOperation.Payload, '$.activeDurationSeconds'),'unixepoch') AS [Active Duration],
        time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') AS [Original Duration],
        CASE WHEN CAST ((ActivityOperation.EndTime - ActivityOperation.StartTime) AS INTEGER) < 0 THEN '-' 
@@ -73,7 +80,7 @@ WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
 SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
-       json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
+       json_extract(Activity.Payload, '$.appDisplayName') AS [Activity Card Displayed Name],
        case when length (json_extract(Activity.AppId, '$[0].application')) > 18 and 
 	   length(json_extract(Activity.AppId, '$[0].application')) < 22 
 	   then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
@@ -100,6 +107,7 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
        json_extract(Activity.OriginalPayload, '$.displayText') AS [Original File/title opened],
        json_extract(Activity.OriginalPayload, '$.description') AS [Original Full Path /Url],
+	   json_extract(Activity.OriginalPayload, '$.activationUri') AS [Original AppUriHandler],
        time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch') AS [Active Duration],
        time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) AS [Original Duration],       
 	   CASE WHEN CAST ((Activity.EndTime - Activity.StartTime) AS INTEGER) < 0 THEN '-' 
