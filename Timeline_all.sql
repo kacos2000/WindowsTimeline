@@ -17,7 +17,10 @@
 SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
  	   case when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 18 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
-	   then json_extract(ActivityOperation.AppId, '$[0].application') 
+	   then replace(replace(replace(replace(replace(json_extract(ActivityOperation.AppId, '$[0].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
+ '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
+ '{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '* Windows * '),
+ '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') 
 	   when json_extract(ActivityOperation.AppId, '$[1].application')  = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'	   
 	   else  replace(replace(replace(replace(replace(json_extract(ActivityOperation.AppId, '$[1].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
  '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
@@ -60,7 +63,10 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
        case when length (json_extract(Activity.AppId, '$[0].application')) > 18 and 
 	   length(json_extract(Activity.AppId, '$[0].application')) < 22 
-	   then json_extract(Activity.AppId, '$[1].application') 
+	   then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
+ '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
+ '{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '* Windows * '),
+ '{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '* SystemX86 * ') 
 	   when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   else  replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[0].application'),'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '* ProgramFilesX64 * ' ), 
  '{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '* ProgramFilesX32 * '),'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '* System * ' ) ,
