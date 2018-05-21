@@ -15,7 +15,7 @@
 -- (assumption here) they either expire or are uploaded to the Cloud.
 -- Any ActivityOperation table's ETAGs that also exist in the Activity table are marked as Removed. Also, according to the Smartlookup 
 -- view all entries in the Activity Table are marked as NOT in the upload queue, but all entries in the ActivityOperation table 
--- (minus the ones listed as 'Deleted') are marked as in the upload queue.
+-- (minus the ones listed as 'Removed') are marked as in the upload queue.
 -- All ETAG entries from Activity and ActivityOperation tables remain in the Activity_PackageId even when they are deleted.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
