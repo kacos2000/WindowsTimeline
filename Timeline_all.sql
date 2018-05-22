@@ -1,7 +1,7 @@
 -- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime" in the field converts it to our TimeZone.
--- The 'DeviceID' can be found in the user’s NTUSER.dat at
+-- The 'DeviceID' may be found in the user’s NTUSER.dat at
 -- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
