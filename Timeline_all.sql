@@ -45,14 +45,15 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
        json_extract(ActivityOperation.Payload, '$.description') AS [Full Path /Url],
 	   json_extract(ActivityOperation.Payload, '$.activationUri') AS [AppUriHandler],
 	   json_extract(ActivityOperation.Payload, '$.shellContentDescription') AS [FileShellLink (json)],
-	   Activity_PackageId.Platform AS Platform_id,
+	   case json_extract(ActivityOperation.AppId, '$[0].platform') when 'afs_crossplatform' then 'Yes' when 'host' then 
+	   (case json_extract(ActivityOperation.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'Synced',	   
+	   case when json_extract(ActivityOperation.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(ActivityOperation.AppId, '$[1].platform')
+	   else json_extract(ActivityOperation.AppId, '$[0].platform') end AS Platform_id,
        ActivityOperation.OperationType AS Status,
        case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' end as 'WasRemoved',
 	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'Published' end AS 'UploadQueue',
 	   CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
-       case when cast((ActivityOperation.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
-	   and cast((Activity_PackageId.ExpirationTime - ActivityOperation.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
-	   ActivityOperation.PlatformDeviceId as 'Device ID', 
+ 	   ActivityOperation.PlatformDeviceId as 'Device ID', 
 	   json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
        json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') AS [Original Displayed Name],
        json_extract(ActivityOperation.OriginalPayload, '$.displayText') AS [Original File/title opened],
@@ -97,13 +98,14 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
        json_extract(Activity.Payload, '$.description') AS [Full Path /Url],
 	   json_extract(Activity.Payload, '$.activationUri') AS [AppUriHandler],
 	   json_extract(Activity.Payload, '$.shellContentDescription') AS [FileShellLink (json)],
-       Activity_PackageId.Platform AS Platform_id,
+	   case json_extract(Activity.AppId, '$[0].platform') when 'afs_crossplatform' then 'Yes' when 'host' then 
+	   (case json_extract(Activity.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'Synced',
+	   case when json_extract(Activity.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(Activity.AppId, '$[1].platform')
+	   else json_extract(Activity.AppId, '$[0].platform') end AS Platform_id,
        Activity.ActivityStatus AS Status,
 	   null as 'WasRemoved',
        'New' as 'Upload Queue',  
 	   CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
-       case when cast((Activity.ExpirationTime - Activity_PackageId.ExpirationTime) as integer) <> 0 
-	   and cast((Activity_PackageId.ExpirationTime - Activity.CreatedInCloud) as integer) then 'Created In Cloud' else '-' end as 'Cloud Status' ,
 	   Activity.PlatformDeviceId as 'Device ID', 
        json_extract(Activity.OriginalPayload, '$.type') AS Type,
        json_extract(Activity.OriginalPayload, '$.appDisplayName') AS [Original Program Name],
