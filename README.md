@@ -1,4 +1,5 @@
-#DFIR Windows Timeline
+#DFIR Windows Timeline \n
+
 SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
 
 Tables processed:
