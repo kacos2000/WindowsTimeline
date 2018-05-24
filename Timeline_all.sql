@@ -1,8 +1,9 @@
 -- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
--- Using the 'localtime" in the field converts it to our TimeZone.
+-- Using the 'localtime" in the converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
 -- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+-- 
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
@@ -13,18 +14,17 @@
 --
 -- Any Entries removed from the Timeline are copied from the Activity table to the ActivityOperation table until
 -- (assumption here) they either expire or are uploaded to the Cloud.
--- Any ActivityOperation table's ETAGs that also exist in the Activity table are marked as Removed. Also, according to the Smartlookup 
+-- Any ActivityOperation table's IDs that also exist in the Activity table are marked as Removed. Also, according to the Smartlookup 
 -- view all entries in the Activity Table are marked as NOT in the upload queue (The UserActivity has not yet been published), 
 -- but all entries in the ActivityOperation table minus the ones listed as 'Deleted') are marked 
 -- as in the upload queue (The UserActivity has been published on this (or another) device).
 -- https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.useractivities.useractivitystate 
--- All ETAG entries from Activity and ActivityOperation tables remain in the Activity_PackageId even when they are deleted.
 -- 
 -- Duration or totalEngagementTime += e.EndTime.Value.Ticks - e.StartTime.Ticks) 
 -- https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.useractivities
 -- 
 -- StartTime: The start time for the UserActivity
--- EndTime: The time when the user stopped engaging in the UserActivity associated 
+-- EndTime: The time when the user stopped engaging in the associated UserActivity  
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
