@@ -47,12 +47,12 @@ SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
 	   json_extract(ActivityOperation.Payload, '$.activationUri') AS [AppUriHandler],
 	   json_extract(ActivityOperation.Payload, '$.shellContentDescription') AS [FileShellLink (json)],
 	   case json_extract(ActivityOperation.AppId, '$[0].platform') when 'afs_crossplatform' then 'Yes' when 'host' then 
-	   (case json_extract(ActivityOperation.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'Synced',	   
+	   (case json_extract(ActivityOperation.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'SyncEnabled',	   
 	   case when json_extract(ActivityOperation.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(ActivityOperation.AppId, '$[1].platform')
 	   else json_extract(ActivityOperation.AppId, '$[0].platform') end AS Platform_id,
        ActivityOperation.OperationType AS Status,
        case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' end as 'WasRemoved',
-	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'Published' end AS 'UploadQueue',
+	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'In Queue' end AS 'UploadQueue',
 	   CASE ActivityOperation.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
  	   ActivityOperation.PlatformDeviceId as 'Device ID', 
 	   json_extract(ActivityOperation.OriginalPayload, '$.type') AS Type,
@@ -102,12 +102,12 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
 	   json_extract(Activity.Payload, '$.activationUri') AS [AppUriHandler],
 	   json_extract(Activity.Payload, '$.shellContentDescription') AS [FileShellLink (json)],
 	   case json_extract(Activity.AppId, '$[0].platform') when 'afs_crossplatform' then 'Yes' when 'host' then 
-	   (case json_extract(Activity.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'Synced',
+	   (case json_extract(Activity.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'SyncEnabled',
 	   case when json_extract(Activity.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(Activity.AppId, '$[1].platform')
 	   else json_extract(Activity.AppId, '$[0].platform') end AS Platform_id,
        Activity.ActivityStatus AS Status,
 	   null as 'WasRemoved',
-       'New' as 'Upload Queue',  
+       'No' as 'UploadQueue',  
 	   CASE Activity.ActivityType WHEN 5 THEN 'Open App/File/Page' WHEN 6 THEN 'App In Use/Focus' ELSE 'Unknown yet' END AS [Activity type],
 	   Activity.PlatformDeviceId as 'Device ID', 
        json_extract(Activity.OriginalPayload, '$.type') AS Type,
