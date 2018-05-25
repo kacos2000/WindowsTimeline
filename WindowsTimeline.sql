@@ -29,7 +29,8 @@
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
 
-SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
+SELECT -- This the ActivityOperation Table Query
+	   ActivityOperation.ETag AS Etag, 
        json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Activity Card Program Name],
  	   case when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
@@ -82,7 +83,8 @@ WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].
 
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
-SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
+SELECT -- This the Activity Table Query
+	   Activity.ETag AS Etag,  
        json_extract(Activity.Payload, '$.appDisplayName') AS [Activity Card Displayed Name],
        case when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
