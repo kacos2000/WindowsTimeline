@@ -1,5 +1,5 @@
--- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
--- Dates/Times in the database are stored in Unixepoch and UTC by default. 
+-- SQLite query to list the total duration of use of an application per day.
+-- 
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
