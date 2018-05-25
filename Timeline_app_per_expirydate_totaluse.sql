@@ -5,7 +5,7 @@
 -- May 2018
 
 SELECT ActivityOperation.ETag AS Etag, -- This the ActivityOperation Table Query
-       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Activity Card Program Name],
+       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
  	   case when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 17 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
@@ -43,7 +43,7 @@ WHERE Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].
 UNION  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
 SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
-       json_extract(Activity.Payload, '$.appDisplayName') AS [Activity Card Displayed Name],
+       json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
        case when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when length (json_extract(Activity.AppId, '$[0].application')) > 17 and 
@@ -80,6 +80,6 @@ SELECT Activity.ETag AS Etag,  -- This the Activity Table Query
 	WHERE Activity_PackageId.Platform = json_extract(Activity.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = Activity.Id
  
  Group by Hash, date(Expiration, 'unixepoch')
- ORDER BY etag asc;  -- Edit this line to change the sorting 
+ ORDER BY etag desc;  -- Edit this line to change the sorting 
  
 -- EOF
