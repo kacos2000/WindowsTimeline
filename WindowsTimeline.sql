@@ -31,7 +31,7 @@
 
 SELECT -- This the ActivityOperation Table Query
 	   ActivityOperation.ETag AS Etag, 
-       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Activity Card Program Name],
+       json_extract(ActivityOperation.Payload, '$.appDisplayName') AS [Program Name],
  	   case when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 17 and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
@@ -85,7 +85,7 @@ UNION  -- Join Activity & ActivityOperation Queries to get results from both Tab
 
 SELECT -- This the Activity Table Query
 	   Activity.ETag AS Etag,  
-       json_extract(Activity.Payload, '$.appDisplayName') AS [Activity Card Displayed Name],
+       json_extract(Activity.Payload, '$.appDisplayName') AS [Program Name],
        case when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' then 'Firefox-308046B0AF4A39CB'
 	   when length (json_extract(Activity.AppId, '$[0].application')) > 17 and 
