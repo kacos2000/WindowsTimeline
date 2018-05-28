@@ -74,7 +74,7 @@ select
        Activity.OriginalLastModifiedOnClient, 
        Activity.ETag
 from   Activity
-where  Activity.Id not in (select Activity.Id from   ActivityOperation)
+where  Activity.Id not in (select ActivityOperation.Id from ActivityOperation)
 order by etag desc
 
  
