@@ -1,4 +1,4 @@
--- Query of ActivitiesCache.db Activity_PackageId table
+-- Query of ActivitiesCache.db 
 -- where the actual status of each entry is shown as:
 -- 'New Activity'
 -- 'Tile Removed'
@@ -24,3 +24,4 @@ from Activity_PackageId where Activity_PackageId.Platform in ('windows_win32', '
 group by ID
 order by ExpirationTime , ID
 
+-- EOF
