@@ -5,6 +5,9 @@
 -- 'In Upload Queue'
 -- 'Archived' (until expiration time)
 -- and sorted by Expiration Time
+--
+-- Costas Katsavounidis (kacos2000 [at] gmail.com)
+-- May 2018
 
 select
 case when Activity_PackageId.ActivityId not in (select Activity.Id from activity) and Activity_PackageId.Platform 
@@ -22,6 +25,6 @@ datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'Expira
 Activity_PackageId.Platform
 from Activity_PackageId where Activity_PackageId.Platform in ('windows_win32', 'windows_universal', 'x_exe_path')
 group by ID
-order by ExpirationTime , ID
+order by ID
 
 -- EOF
