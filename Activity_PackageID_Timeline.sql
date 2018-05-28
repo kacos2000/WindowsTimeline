@@ -18,7 +18,7 @@ case
 	when 
 		Activity_PackageId.ActivityId not in (select Activity.Id from Activity) and 
 		Activity_PackageId.ActivityId not in (select ActivityOperation.Id from ActivityOperation) 
-	then 'Archived - '||hex(Activity_PackageId.ActivityId) 
+	then 'Is Archived - '||hex(Activity_PackageId.ActivityId) 
 	when 
 		Activity_PackageId.ActivityId in (select Activity.Id from activity) and 
 		Activity_PackageId.ActivityId in (select ActivityOperation.Id from ActivityOperation)
@@ -27,12 +27,12 @@ case
 		Activity_PackageId.ActivityId in (select Activity.Id from activity) and 
 		Activity_PackageId.ActivityId not in (select ActivityOperation.Id from ActivityOperation)
 	then 'New Activity - '||hex(Activity_PackageId.ActivityId)
-end as 'ID',
-Activity_PackageId.PackageName as 'PackageNameName',
+end as 'Status_ID',
+Activity_PackageId.PackageName as 'PackageName',
 datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
 Activity_PackageId.Platform
 from Activity_PackageId where Activity_PackageId.Platform in ('windows_win32', 'windows_universal', 'x_exe_path')
-group by ID
-order by ID
+group by Status_ID
+order by ExpirationTime
 
 -- EOF
