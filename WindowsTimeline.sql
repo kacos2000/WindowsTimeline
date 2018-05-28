@@ -51,6 +51,7 @@ SELECT -- This the ActivityOperation Table Query
 	   (case json_extract(ActivityOperation.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'SyncEnabled',	   
 	   case when json_extract(ActivityOperation.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(ActivityOperation.AppId, '$[1].platform')
 	   else json_extract(ActivityOperation.AppId, '$[0].platform') end AS Platform_id,
+	   ActivityOperation.PackageIdHash as 'Hash',
        ActivityOperation.OperationType AS Status,
        case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then 'Removed' end as 'WasRemoved',
 	   Case when ActivityOperation.Id in(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) then null else 'In Queue' end AS 'UploadQueue',
@@ -75,7 +76,9 @@ SELECT -- This the ActivityOperation Table Query
        CAST ( (ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime) AS INTEGER) / '86400' AS [Expires In days],
        datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') AS [Expiration on PackageID],
        datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') AS Expiration,
-       '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [Timeline Entry unique GUID]
+       '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || 
+	   substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
+	   substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [ID]
 	FROM Activity_PackageId
 	JOIN ActivityOperation ON Activity_PackageId.ActivityId = ActivityOperation.Id  
 	
@@ -107,6 +110,7 @@ SELECT -- This the Activity Table Query
 	   (case json_extract(Activity.AppId, '$[1].platform') when 'afs_crossplatform' then'Yes' else null end) else null end as 'SyncEnabled',
 	   case when json_extract(Activity.AppId, '$[0].platform') = 'afs_crossplatform' then json_extract(Activity.AppId, '$[1].platform')
 	   else json_extract(Activity.AppId, '$[0].platform') end AS Platform_id,
+	   Activity.PackageIdHash as 'Hash',
        Activity.ActivityStatus AS Status,
 	   null as 'WasRemoved',
        'No' as 'UploadQueue',  
@@ -131,7 +135,9 @@ SELECT -- This the Activity Table Query
        CAST ( (Activity.ExpirationTime - Activity.LastModifiedTime) AS INTEGER) / '86400' AS [Expires In days],
        datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') AS [Expiration on PackageID],
        datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') AS Expiration,
-       '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [Timeline Entry unique GUID]
+       '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || 
+	   substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
+	   substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' AS [ID]
 	FROM Activity_PackageId
     JOIN        Activity ON Activity_PackageId.ActivityId = Activity.Id  
 	WHERE Activity_PackageId.Platform = json_extract(Activity.AppId, '$[0].platform') AND Activity_PackageId.ActivityId = Activity.Id
