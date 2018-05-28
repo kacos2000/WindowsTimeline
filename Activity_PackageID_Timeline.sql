@@ -10,15 +10,23 @@
 -- May 2018
 
 select
-case when Activity_PackageId.ActivityId not in (select Activity.Id from activity) and Activity_PackageId.Platform 
-then 'In Upload Queue - '||hex(Activity_PackageId.ActivityId) 
-when Activity_PackageId.ActivityId not in (select ActivityOperation.Id from ActivityOperation) 
-and Activity_PackageId.ActivityId not in (select Activity.Id from Activity) 
-then 'Archived - '||hex(Activity_PackageId.ActivityId) 
-when Activity_PackageId.ActivityId = (select Activity.Id from activity) 
-and Activity_PackageId.ActivityId = (select ActivityOperation.Id from ActivityOperation)
-then 'Tile Removed - '||hex(Activity_PackageId.ActivityId)
-else 'New Activity - '||hex(Activity_PackageId.ActivityId)
+case 
+	when 
+		Activity_PackageId.ActivityId not in(select Activity.Id from activity) and 
+		Activity_PackageId.ActivityId in(select ActivityOperation.Id from ActivityOperation) 
+	then 'In Upload Queue - '||hex(Activity_PackageId.ActivityId) 
+	when 
+		Activity_PackageId.ActivityId not in (select Activity.Id from Activity) and 
+		Activity_PackageId.ActivityId not in (select ActivityOperation.Id from ActivityOperation) 
+	then 'Archived - '||hex(Activity_PackageId.ActivityId) 
+	when 
+		Activity_PackageId.ActivityId in (select Activity.Id from activity) and 
+		Activity_PackageId.ActivityId in (select ActivityOperation.Id from ActivityOperation)
+	then 'Tile Removed - '||hex(Activity_PackageId.ActivityId)
+	when 
+		Activity_PackageId.ActivityId in (select Activity.Id from activity) and 
+		Activity_PackageId.ActivityId not in (select ActivityOperation.Id from ActivityOperation)
+	then 'New Activity - '||hex(Activity_PackageId.ActivityId)
 end as 'ID',
 Activity_PackageId.PackageName as 'PackageNameName',
 datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
