@@ -3,7 +3,7 @@
 -- 'New Activity'
 -- 'Tile Removed'
 -- 'In Upload Queue'
--- 'Archived' (until expiration time)
+-- 'Is Archived' (until expiration time)
 -- and sorted by Expiration Time
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
@@ -30,14 +30,14 @@ case
 				end
 		end
 	end
-end as 'Status_ID',
-Activity_PackageId.PackageName as 'PackageName',
-datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
-Activity_PackageId.Platform
+end as 'Status_ID', -- This field includes both the Status and the unique ID of the associated activity
+Activity_PackageId.PackageName as 'PackageName', -- The program/application associated with the above ID
+datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime', 
+Activity_PackageId.Platform  
 
 
 from Activity_PackageId 
---where Activity_PackageId.Platform in ('host','packageid')
+
 where Activity_PackageId.Platform in ('windows_win32', 'windows_universal', 'x_exe_path')
 group by Status_ID
 order by ExpirationTime asc
