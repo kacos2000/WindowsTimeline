@@ -1,6 +1,6 @@
 -- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
--- Using the 'localtime" in the converts it to our TimeZone.
+-- Using the 'localtime"  converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
 -- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
 -- 
@@ -74,7 +74,9 @@ SELECT -- This the ActivityOperation Table Query
 		else json_extract(ActivityOperation.AppId, '$[0].platform') 
 	end as 'Platform_id',
    ActivityOperation.PackageIdHash as 'Hash',
-   ActivityOperation.OperationType as 'Status',
+   case ActivityOperation.OperationType 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+	end as 'TileStatus',
     case 
 		when ActivityOperation.Id in
 			(select Activity.Id from Activity where Activity.Id = ActivityOperation.Id) 
@@ -88,7 +90,7 @@ SELECT -- This the ActivityOperation Table Query
 	case ActivityOperation.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 		else 'Unknown yet' 
-	end as 'Activity type',
+	end as 'Activity_type',
    ActivityOperation.PlatformDeviceId as 'Device ID', 
    json_extract(ActivityOperation.OriginalPayload, '$.type') as 'Type',
    json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') as 'Original Displayed Name',
@@ -177,13 +179,15 @@ select -- This the Activity Table Query
 		else json_extract(Activity.AppId, '$[0].platform') 
 	end as 'Platform_id',
    Activity.PackageIdHash as 'Hash',
-   Activity.ActivityStatus as 'Status',
+   case Activity.ActivityStatus 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+	end as 'TileStatus',
    null as 'WasRemoved',
    'No' as 'UploadQueue',  
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 		else 'Unknown yet' 
-	end as 'Activity type',
+	end as 'Activity_type',
    Activity.PlatformDeviceId as 'Device ID', 
    json_extract(Activity.OriginalPayload, '$.type') as 'Type',
    json_extract(Activity.OriginalPayload, '$.appDisplayName') as 'Original Program Name',
