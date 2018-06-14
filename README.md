@@ -16,7 +16,7 @@ DB Browser for SQLite (http://sqlitebrowser.org/), and
 SQLiteStudio (https://sqlitestudio.pl/index.rvt) as well as
 SQLite Expert Pro with the JSON extension http://www.sqliteexpert.com/extensions/ 
 
-<img>preview1.jpg</imag>
+<img>preview1.jpg</img>
 
 
 
