@@ -60,7 +60,10 @@ SELECT -- This the ActivityOperation Table Query
    json_extract(ActivityOperation.Payload, '$.displayText') as 'File/title opened',
    json_extract(ActivityOperation.Payload, '$.description') as 'Full Path /Url',
    json_extract(ActivityOperation.Payload, '$.activationUri') as 'AppUriHandler',
-   json_extract(ActivityOperation.Payload, '$.shellContentDescription') as 'FileShellLink (json)',
+	case when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '{"MergedGap":600}' 
+	   then json_extract(ActivityOperation.Payload, '$.type')
+		else json_extract(ActivityOperation.Payload, '$.shellContentDescription') 
+	end as 'FileShellLink (json)',
 	case json_extract(ActivityOperation.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
 		when 'host' then 
@@ -167,7 +170,10 @@ select -- This the Activity Table Query
    json_extract(Activity.Payload, '$.displayText') as 'File/title opened',
    json_extract(Activity.Payload, '$.description') as 'Full Path /Url',
    json_extract(Activity.Payload, '$.activationUri') as 'AppUriHandler',
-   json_extract(Activity.Payload, '$.shellContentDescription') as 'FileShellLink (json)',
+	case when json_extract(Activity.Payload, '$.shellContentDescription') like '{"MergedGap":600}' 
+	   then json_extract(Activity.Payload, '$.type')
+	   else json_extract(Activity.Payload, '$.shellContentDescription') 
+	  end as 'FileShellLink (json)',
 	case json_extract(Activity.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
 		when 'host' then (case json_extract(Activity.AppId, '$[1].platform') 
