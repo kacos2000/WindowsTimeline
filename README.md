@@ -31,7 +31,7 @@ Tested on:
 [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 
-Full [**Documentation](WindowsTimeline.pdf) and analysis of the database and its entries.**
+Full [**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries.**
 
 
 
