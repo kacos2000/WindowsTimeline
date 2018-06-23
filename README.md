@@ -30,6 +30,7 @@ Other queries:
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 
+![Timeline preview](timeline.jpg)
 [**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (pdf file)
 
 
