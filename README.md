@@ -26,10 +26,10 @@ Other queries:
 1. [A formated Smartlookup view query](SmartLookup.sql)
 2. [Activity_PackageID timeline query](Activity_PackageID_Timeline.sql)
 
-Tested on:
-[DB Browser for SQLite](http://sqlitebrowser.org/),
-[SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
-[SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
+**Tested on:**
+- [DB Browser for SQLite](http://sqlitebrowser.org/),
+- [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
+- [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 
 [**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (pdf file)
 
