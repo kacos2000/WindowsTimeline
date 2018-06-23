@@ -2,7 +2,7 @@
 
 ## Windows 10 Timeline
 
-SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
+**SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db**
 
 
 ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Preview1.PNG)
