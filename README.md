@@ -33,4 +33,6 @@ Tested on:
 
 Full [Documentation](WindowsTimeline.pdf) and analysis of the database and its entries.
 
+Licensed under [MIT license](licences/mit.txt).
+
 
