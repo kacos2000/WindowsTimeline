@@ -6,9 +6,10 @@
 SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
 
 
-![Preview1](https://github.com/kacos2000/WindowsTimeline/blob/master/Preview1.JPG)
+![Preview1](https://github.com/kacos2000/WindowsTimeline/blob/master/Preview1.png)
 
-![Preview2](https://github.com/kacos2000/WindowsTimeline/blob/master/Preview2.JPG)
+
+![Preview2](https://github.com/kacos2000/WindowsTimeline/blob/master/Preview2.png)
 
 
 Tables processed:
