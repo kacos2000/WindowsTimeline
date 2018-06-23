@@ -6,10 +6,10 @@ SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
 <table>
     <tr>
         <td>
-            <img alt="Preview 1" src="Preview1.jpg">
+            <img alt="Preview 1" src="./WindowsTimeline/Preview1.jpg">
         </td>
         <td>
-            <img alt="Preview 2" src="Preview2.jpg">
+            <img alt="Preview 2" src="./WindowsTimeline/Preview2.jpg">
         </td>
       </tr>
 </table>
