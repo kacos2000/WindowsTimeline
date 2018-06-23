@@ -12,7 +12,7 @@ SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
 ![Preview2](https://github.com/kacos2000/WindowsTimeline/blob/master/Preview2.png)
 
 
-Tables processed:
+SQLite Tables processed:
 
 - Activities,
 - Activity_PackageID,
@@ -26,4 +26,6 @@ Tested on:
 [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 
-[Documentation in pdf](WindowsTimeline.pdf)
+Full [Documentation in pdf](WindowsTimeline.pdf) and analysis of the database and its entries.
+
+
