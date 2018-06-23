@@ -3,16 +3,10 @@
 
 SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db
 
-<table>
-    <tr>
-        <td>
-            <img alt="Preview 1" src="./WindowsTimeline/Preview1.jpg">
-        </td>
-        <td>
-            <img alt="Preview 2" src="./WindowsTimeline/Preview2.jpg">
-        </td>
-      </tr>
-</table>
+
+![Preview1](Preview1.jpg)
+
+![Preview2](Preview2.jpg)
 
 
 Tables processed:
@@ -21,11 +15,12 @@ Tables processed:
 - Activity_PackageID,
 - ActivityOperation
 
-Either import 'WindowsTimeline.sql' to your SQLite program, or Copy Paste the code to the query window.
-Your software needs to support the SQLIte [JSON1 extension] (https://www.sqlite.org/json1.html).
+Either import '[The windows timeline query](WindowsTimeline.sql) to your SQLite program, or Copy Paste the code to a query tab.
+Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 Tested on:
-[DB Browser for SQLite] (http://sqlitebrowser.org/),
-[SQLiteStudio] (https://sqlitestudio.pl/index.rvt) as well as
-[SQLite Expert Pro with the JSON extension] (http://www.sqliteexpert.com/extensions/)
+[DB Browser for SQLite](http://sqlitebrowser.org/),
+[SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
+[SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 
+[Documentation in pdf](WindowsTimeline.pdf)
