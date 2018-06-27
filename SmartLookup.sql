@@ -1,12 +1,10 @@
--- SmartLookup View 
+-- SmartLookup View (the source of the Actual Timeline view a user sees) 
 -- in easy to view format.
 -- BLOBs and information stored in them needs manual extraction.
 -- No JSON1 extension required for this query to run.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
-
-
 
 select 
        '{'||hex(ActivityOperation.Id)||'}' as 'ID', 
@@ -18,7 +16,9 @@ select
 		end as 'Hash', 
        case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'Activity type', 
-       ActivityOperation.OperationType AS 'ActivityStatus', 
+       case ActivityOperation.OperationType 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		end as 'ActivityStatus', 
        ActivityOperation.ParentActivityId, 
        ActivityOperation.Tag, 
        ActivityOperation.MatchId, 
@@ -52,7 +52,9 @@ select
 		end as 'Hash', 
        case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'Activity type', 
-       Activity.ActivityStatus, 
+       case Activity.ActivityStatus 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		end as 'ActivityStatus', 
        Activity.ParentActivityId, 
        Activity.Tag, 
        Activity.MatchId, 
@@ -75,7 +77,7 @@ select
        Activity.ETag
 from   Activity
 where  Activity.Id not in (select ActivityOperation.Id from ActivityOperation)
-order by etag desc
+order by Etag desc
 
  
 -- EOF
