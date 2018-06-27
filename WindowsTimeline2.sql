@@ -286,7 +286,7 @@ case
 	case when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
-	end as 'Payload',
+	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 		else 'Unknown yet' 
@@ -622,7 +622,7 @@ case
 	case when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
 	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
-	  end as 'Payload',
+	  end as 'Payload/Timezone',
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	else 'Unknown yet' 
