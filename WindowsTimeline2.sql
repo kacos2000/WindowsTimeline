@@ -298,11 +298,6 @@ case
 			when 'afs_crossplatform' then 'Yes' else null end) 
 		else null 
 	end as 'Synced',	   
-	case 
-		when json_extract(ActivityOperation.AppId, '$[0].platform') = 'afs_crossplatform' 
-			then json_extract(ActivityOperation.AppId, '$[1].platform')
-		else json_extract(ActivityOperation.AppId, '$[0].platform') 
-	end as 'Platform',
    case ActivityOperation.OperationType 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 	end as 'TileStatus',
@@ -637,11 +632,6 @@ case
 		when 'host' then (case json_extract(Activity.AppId, '$[1].platform') 
 		when 'afs_crossplatform' then'Yes' else null end) else null 
 	end as 'Synced',
-	case 
-		when json_extract(Activity.AppId, '$[0].platform') = 'afs_crossplatform' 
-		then json_extract(Activity.AppId, '$[1].platform')
-		else json_extract(Activity.AppId, '$[0].platform') 
-	end as 'Platform',
    case Activity.ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 	end as 'TileStatus',
