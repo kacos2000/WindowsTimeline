@@ -18,7 +18,11 @@ SQLite Tables processed:
 - Activity_PackageID,
 - ActivityOperation
 
-Either import [the windows timeline database query](WindowsTimeline.sql) to your SQLite program, or Copy Paste the code to a query tab.
+Either import the query (.sql file) to your SQLite program, or Copy/Paste the code to a query tab.
+
+1. [Original windows timeline database query](WindowsTimeline.sql)
+2. [Extended windows timeline database query](WindowsTimeline2.sql)
+
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 Other queries:
