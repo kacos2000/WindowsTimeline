@@ -353,8 +353,7 @@ case
    substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
    json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') as 'Original Displayed Name',
    json_extract(ActivityOperation.OriginalPayload, '$.displayText') as 'Original File/title opened',
-   json_extract(ActivityOperation.OriginalPayload, '$.description') as 'Original Full Path /Url', 
-   json_extract(ActivityOperation.OriginalPayload, '$.activationUri') as 'Original AppUriHandler',
+   coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) as 'Original_App/Uri',
    time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') as 'Orig.Duration'   
 
 from Activity_PackageId
@@ -684,8 +683,7 @@ case
 				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
    json_extract(Activity.OriginalPayload, '$.appDisplayName') as 'Original Program Name',
    json_extract(Activity.OriginalPayload, '$.displayText') as 'Original File/title opened',
-   json_extract(Activity.OriginalPayload, '$.description') as 'Original Full Path /Url',
-   json_extract(Activity.OriginalPayload, '$.activationUri') as 'Original AppUriHandler',
+   coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) as 'Original_App/Uri',
    time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) as 'Orig.Duration' 				
 				
 from Activity_PackageId
