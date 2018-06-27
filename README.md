@@ -20,8 +20,8 @@ SQLite Tables processed:
 
 Either import the query (.sql file) to your SQLite program, or Copy/Paste the code to a query tab.
 
-1. [Original windows timeline database query](WindowsTimeline.sql)
-2. [Extended windows timeline database query](WindowsTimeline2.sql)
+1. [Original windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
+2. [Extended windows timeline database query (WindowsTimeline2.sql)](WindowsTimeline2.sql)
 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
