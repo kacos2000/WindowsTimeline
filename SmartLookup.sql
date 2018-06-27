@@ -1,7 +1,7 @@
--- SmartLookup View (the source of the Actual Timeline view a user sees) 
+-- SmartLookup View  
 -- in easy to view format.
 -- BLOBs and information stored in them needs manual extraction.
--- No JSON1 extension required for this query to run.
+-- JSON1 extension is NOT required for this query to run.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
 -- May 2018
