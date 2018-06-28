@@ -19,7 +19,7 @@ select
        case ActivityOperation.OperationType 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus', 
-       ActivityOperation.ParentActivityId, 
+       hex(ActivityOperation.ParentActivityId) as 'ParentActivityId', 
        ActivityOperation.Tag, 
        ActivityOperation.MatchId, 
        datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModifiedTime',
@@ -55,7 +55,7 @@ select
        case Activity.ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus', 
-       Activity.ParentActivityId, 
+       hex(Activity.ParentActivityId) as 'ParentActivityId', 
        Activity.Tag, 
        Activity.MatchId, 
        datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime')as 'LastModifiedTime',
