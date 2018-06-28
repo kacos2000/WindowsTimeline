@@ -8,7 +8,7 @@
 Either import the queries (.sql file) to your SQLite program, or Copy/Paste the code to a query tab.
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
-1. [Original windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
+1. [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
 
 *Screenshots of WindowsTimeline.sql*
 ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
