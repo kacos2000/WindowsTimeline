@@ -27,8 +27,10 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 Other queries:
 
-1. [A formated Smartlookup view query](SmartLookup.sql)
+1. [A re-formated Smartlookup view query](SmartLookup.sql)
 2. [Activity_PackageID timeline query](Activity_PackageID_Timeline.sql)
+3. [PackageID check](PackageID.sql)
+
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/),
