@@ -282,6 +282,29 @@ case
 	when json_extract(ActivityOperation.AppId, '$[6].platform') like '%ios%' then json_extract(ActivityOperation.AppId, '$[6].application') 
 	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%ios%' then json_extract(ActivityOperation.AppId, '$[7].application') 
 	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%ios%' then json_extract(ActivityOperation.AppId, '$[8].application') end as 'IOS',
+	
+case 
+	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[0].application') 
+	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[1].application') 
+	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[2].application')  
+	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[3].application') 
+	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[4].application') 
+	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[5].application') 
+	when json_extract(ActivityOperation.AppId, '$[6].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[6].application') 
+	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[7].application') 
+	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%msa%' then json_extract(ActivityOperation.AppId, '$[8].application') end as 'msa',
+
+case 
+	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[0].application') 
+	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[1].application') 
+	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[2].application')  
+	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[3].application') 
+	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[4].application') 
+	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[5].application') 
+	when json_extract(ActivityOperation.AppId, '$[6].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[6].application') 
+	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[7].application') 
+	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[8].application') end as 'web',
+	
    json_extract(ActivityOperation.Payload, '$.displayText')|| ' - (' ||json_extract(ActivityOperation.Payload, '$.description')||')' as 'File/title/path opened',
 	case when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
@@ -618,6 +641,29 @@ case
 	when json_extract(Activity.AppId, '$[6].platform') like '%ios%' then json_extract(Activity.AppId, '$[6].application') 
 	when json_extract(Activity.AppId, '$[7].platform') like '%ios%' then json_extract(Activity.AppId, '$[7].application') 
 	when json_extract(Activity.AppId, '$[8].platform') like '%ios%' then json_extract(Activity.AppId, '$[8].application') end as 'IOS',
+	
+case 
+	when json_extract(Activity.AppId, '$[0].platform') like '%msa%' then json_extract(Activity.AppId, '$[0].application') 
+	when json_extract(Activity.AppId, '$[1].platform') like '%msa%' then json_extract(Activity.AppId, '$[1].application') 
+	when json_extract(Activity.AppId, '$[2].platform') like '%msa%' then json_extract(Activity.AppId, '$[2].application')  
+	when json_extract(Activity.AppId, '$[3].platform') like '%msa%' then json_extract(Activity.AppId, '$[3].application') 
+	when json_extract(Activity.AppId, '$[4].platform') like '%msa%' then json_extract(Activity.AppId, '$[4].application') 
+	when json_extract(Activity.AppId, '$[5].platform') like '%msa%' then json_extract(Activity.AppId, '$[5].application') 
+	when json_extract(Activity.AppId, '$[6].platform') like '%msa%' then json_extract(Activity.AppId, '$[6].application') 
+	when json_extract(Activity.AppId, '$[7].platform') like '%msa%' then json_extract(Activity.AppId, '$[7].application') 
+	when json_extract(Activity.AppId, '$[8].platform') like '%msa%' then json_extract(Activity.AppId, '$[8].application') end as 'msa',
+
+case 
+	when json_extract(Activity.AppId, '$[0].platform') like '%web%' then json_extract(Activity.AppId, '$[0].application') 
+	when json_extract(Activity.AppId, '$[1].platform') like '%web%' then json_extract(Activity.AppId, '$[1].application') 
+	when json_extract(Activity.AppId, '$[2].platform') like '%web%' then json_extract(Activity.AppId, '$[2].application')  
+	when json_extract(Activity.AppId, '$[3].platform') like '%web%' then json_extract(Activity.AppId, '$[3].application') 
+	when json_extract(Activity.AppId, '$[4].platform') like '%web%' then json_extract(Activity.AppId, '$[4].application') 
+	when json_extract(Activity.AppId, '$[5].platform') like '%web%' then json_extract(Activity.AppId, '$[5].application') 
+	when json_extract(Activity.AppId, '$[6].platform') like '%web%' then json_extract(Activity.AppId, '$[6].application') 
+	when json_extract(Activity.AppId, '$[7].platform') like '%web%' then json_extract(Activity.AppId, '$[7].application') 
+	when json_extract(Activity.AppId, '$[8].platform') like '%web%' then json_extract(Activity.AppId, '$[8].application') end as 'web',
+	
    json_extract(Activity.Payload, '$.displayText')|| ' - (' ||json_extract(Activity.Payload, '$.description')||')' as 'File/title/path opened',
 	case when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
 	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
