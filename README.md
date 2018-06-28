@@ -6,16 +6,16 @@
 **SQLite query to parse Windows 10 (1803) Timeline's ActivityCache.db**
 
 *Screenshot of WindowsTimeline.sql*
-![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.jpg)
+![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
 
 
-![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.jpg)
+![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
 
 *Screenshot of WindowsTimeline2.sql*
-![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.jpg)
+![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
 
 
-![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.jpg)
+![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
 
 SQLite Tables processed:
 
