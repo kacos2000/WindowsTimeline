@@ -8,6 +8,7 @@
 Either import the queries (.sql file) to your SQLite program, or Copy/Paste the code to a query tab.
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
+
 * [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
 
 *Screenshots of WindowsTimeline.sql*
@@ -41,7 +42,7 @@ Other queries:
 - [DB Browser for SQLite](http://sqlitebrowser.org/),
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
-- and Microsoft Windows 10 version 1803 (OS builds from 17134.48 to 17134.112)
+- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.112)
 
 [**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (pdf file)
 
