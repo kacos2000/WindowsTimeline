@@ -1,6 +1,6 @@
 <!-- saved from url=(0023) https://kacos2000.github.io/WindowsTimeline/ --> 
 <!-- https://guides.github.com/features/mastering-markdown/ --> 
-U+00A9
+
 ## Windows 10 Timeline
 
 **SQLite query to parse Windows 10 ([1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)) Timeline's ActivityCache.db**
@@ -9,7 +9,7 @@ Either import the queries (.sql file) to your SQLite program, or Copy/Paste the 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 
-* :Arrow_Right: [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
+* [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
 
 *Screenshots of WindowsTimeline.sql*
 ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
