@@ -29,7 +29,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 ![Export](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e1.JPG) 
 
-and select CSV. This will open this delimiter options window. After you make any needed changes (e.g. *select comma for the delimiter*), click ok, 
+and select CSV. This will open this delimiter options window. After you make any needed changes (e.g. *select comma as the delimiter*), click ok, 
 
 ![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
 
