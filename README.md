@@ -32,6 +32,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 and select CSV. This will open this delimiter options window. After you make any needed changes (ie select comma for the delimiter), click ok, 
 
 ![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
+
 and you will be presented with another window to select Folder and Filename to save the CSV file.
 
 **SQLite Tables processed:**
@@ -53,7 +54,7 @@ and you will be presented with another window to select Folder and Filename to s
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 - and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.112)
 
-[**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (*.pdf file)
+[**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (*.pdf file*)
 
 **Status**
 - [x] Queries completed. 
