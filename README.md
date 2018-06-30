@@ -42,7 +42,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 - and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.112)
 
-[**Documentation**](WindowsTimeline.pdf) **and analysis of the database and its entries** (*.pdf file*)
+[**Documentation**](WindowsTimeline.pdf) *(or more liklely, my notes)* **of the database and its entries** (*.pdf file*)
 
 **Note:**  The output of the queries can be exported as a TX or CSV so that can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
 
