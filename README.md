@@ -57,6 +57,5 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 **Status**
 - **[x]** Queries completed.
-
 - **[ ]** Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)
 
