@@ -10,19 +10,19 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 * [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql)
 
-*Screenshots of WindowsTimeline.sql*
-![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
+  *Screenshots of WindowsTimeline.sql*
+  ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
 
 
-![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
+  ![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
 
 * [Extended windows timeline database query (WindowsTimeline2.sql)](WindowsTimeline2.sql)
 
-*Screenshots of WindowsTimeline2.sql*
-![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
+  *Screenshots of WindowsTimeline2.sql*
+  ![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
 
 
-![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
+  ![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
 
 **SQLite Tables processed:**
 
@@ -44,18 +44,18 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 [**Documentation**](WindowsTimeline.pdf) *(or more liklely, my notes)* **of the database and its entries** (*.pdf file*)
 
-**Note:**  The output of the queries can be exported as a TX or CSV so that can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
+  **Note:**  The output of the queries can be exported as a TX or CSV so that can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
 
-![Export](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e1.JPG) 
+  ![Export](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e1.JPG) 
 
-and select CSV. This will open this delimiter options window. After you make any needed changes (e.g. *select comma as the delimiter*), click ok, 
+  and select CSV. This will open this delimiter options window. After you make any needed changes (e.g. *select comma as the delimiter*), click ok, 
 
-![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
+  ![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
 
-and you will be presented with another window to select Folder and Filename to save the CSV file.
+  and you will be presented with another window to select Folder and Filename to save the CSV file.
 
 
 **Status**
-- [x] Queries completed. 
+- [**x**] Queries completed. 
 - [ ] Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)
 
