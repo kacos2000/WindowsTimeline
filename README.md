@@ -44,7 +44,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 [**Documentation**](WindowsTimeline.pdf) *(or more liklely, my notes)* **of the database and its entries** (*.pdf file*)
 
-  **Note:**  The output of the queries can be exported as a TX or CSV so that can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
+  **Note:**  The output of the queries can be exported as a TX or CSV so that it can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
 
   ![Export](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e1.JPG) 
 
