@@ -3,7 +3,7 @@
 
 ## Windows 10 Timeline 
 
-**SQLite query to parse Windows 10 ([1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)) Timeline's ActivityCache.db Database**
+**SQLite queries to parse Windows 10 ([1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)) Timeline's ActivityCache.db Database**
 
 Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* the code to a query tab.
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
