@@ -23,6 +23,8 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
 
   ![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
+  
+___________________________________________________________________________________________  
 
 **SQLite Tables processed:**
 
@@ -41,7 +43,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 - and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.137)
-  __________________________________________________________________________________________
+___________________________________________________________________________________________
 
   **Note:**  The output of the queries can be exported as a TX or CSV so that it can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
 
@@ -52,16 +54,16 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
   ![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
 
   and you will be presented with another window to select Folder and Filename to save the CSV file.
-    __________________________________________________________________________________________
+ __________________________________________________________________________________________
 
 ## [Documentation](WindowsTimeline.pdf) ##
-   *(or more liklely, my notes)* **of the database and its entries** (*.pdf file*)
-  __________________________________________________________________________________________
+   *(or more liklely, my notes)* **for the database and its entries** (*.pdf file*)
+ __________________________________________________________________________________________
 
    - [WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1) Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It seems type 9 entries are Full Size PCs while type 15 entries are Laptops. It is evident that after a while Platform Device IDs representing a specific device change. The Database stores only current IDs while the Registry stores older(?) values as well. 
    
       ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
-  __________________________________________________________________________________________
+ __________________________________________________________________________________________
 
 
 **Status**
