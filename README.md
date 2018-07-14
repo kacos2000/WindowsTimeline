@@ -68,8 +68,8 @@ ________________________________________________________________________________
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
        * ![command-line shell](http://www.sqlitetutorial.net/wp-content/uploads/2018/04/SQLite3-Help-command.png)
        
-       **Note* *- After you install the latest SQLite3.exe, check the version from inside powershell
-      by running `SQLite3.exe -version` (you may have already an older version in your Path - you can check that by running     [FindSQLite3.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/FindSQLite3.ps1))*
+       **Note** *- After you install the latest SQLite3.exe, check the version from inside powershell
+      by running `SQLite3.exe -version` (you may already have an older version in your Path - you can check that by running     [FindSQLite3.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/FindSQLite3.ps1))*
       
   ### - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
   Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.  
