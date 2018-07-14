@@ -73,6 +73,9 @@ finally{
 
 Try{(Get-Item $File1).FullName}
 Catch{Write-Host "(WinTimelineOffline.ps1.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; 
+		[gc]::Collect()		
+		reg unload HKEY_LOCAL_MACHINE\Temp 
+		exit
 		}
 
 #Timers 

@@ -40,7 +40,7 @@ $F =$File.replace($env:LOCALAPPDATA,'')
 # can also be copy/pasted and run on 'DB Browser for SQLite' 
 
 Try{(Get-Item $File).FullName}
-Catch{Write-Host "(WindowsTimeline.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
+Catch{Write-Host "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
  
 
 $db = $File
