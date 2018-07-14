@@ -58,11 +58,26 @@ ________________________________________________________________________________
 
 ## [Documentation](WindowsTimeline.pdf) ##
    *(or more liklely, my notes)* **for the database and its entries** (*.pdf file*)
- __________________________________________________________________________________________
-
-   - [WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1) Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It seems type 9 entries are Full Size PCs while type 15 entries are Laptops. It is evident that after a while Platform Device IDs representing a specific device change. The Database stores only current IDs while the Registry stores older(?) values as well. 
+   
+   A Forensic Exploration of the Microsoft Windows 10 Timeline *(link pending)*<br>
+    *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
+     __________________________________________________________________________________________
+###   PowerShell scripts ###
+   
+   Require SQLite3.exe :shipit:
+    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
+       * Download [SQLite3.exe](https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip) with
+       * Download [32bit Dll](https://www.sqlite.org/2018/sqlite-dll-win32-x86-3240000.zip) or the
+       * Download [64bit Dll](https://www.sqlite.org/2018/sqlite-dll-win64-x64-3240000.zip)
+       **Note* *- After you install the latest SQLite3.exe, check the version from inside powershell
+      by running `SQLite3.exe -version` (you may have already an older version in your Path)*
+      
+   - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It seems type 9 entries are Full Size PCs while type 15 entries are Laptops. It is evident that after a while Platform Device IDs representing a specific device change. The Database stores only current IDs while the Registry stores older(?) values as well. 
    
       ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
+      
+   - **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** Powershell script that runs a simplied SQLite query against one of the local ActivitiesCache.db's available to the user, and adds info for the PlatformID from the registry. 
+   - **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** Powershell script that runs a simplied SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from a related, user selected NTUser.dat file. 
  __________________________________________________________________________________________
 
 
