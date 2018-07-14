@@ -57,14 +57,14 @@ ________________________________________________________________________________
  __________________________________________________________________________________________
 
 ## [Documentation](WindowsTimeline.pdf) ##
-   *(or more liklely, my notes)* **for the database and its entries** (*.pdf file*)
+   :notebook: **for the database and its entries** (*.pdf file*)
    
    A Forensic Exploration of the Microsoft Windows 10 Timeline *(link pending)*<br>
     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
      __________________________________________________________________________________________
 ###   PowerShell scripts ###
    
-   Require SQLite3.exe :shipit:
+   :shipit: Require SQLite3.exe 
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
        * ![command-line shell](http://www.sqlitetutorial.net/wp-content/uploads/2018/04/SQLite3-Help-command.png)
        
@@ -82,6 +82,6 @@ ________________________________________________________________________________
 
 **Status**
 - **[x]** Queries completed.
-- **[x]** Powershell script to check DeviceIDs in both registry & database completed.
+- **[x]** Powershell scripts to check DeviceIDs in both registry & database completed.
 - **[ ]** Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)
 
