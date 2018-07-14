@@ -72,7 +72,7 @@ ________________________________________________________________________________
       by running `SQLite3.exe -version` (you may have already an older version in your Path)*
       
   ### - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
-  Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It seems type 9 entries are Full Size PCs while type 15 entries are Laptops. It is evident that after a while Platform Device IDs representing a specific device change. The Database stores only current IDs while the Registry stores older(?) values as well. 
+  Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.  
    
    ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
       
