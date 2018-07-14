@@ -65,7 +65,7 @@ ________________________________________________________________________________
 ###   PowerShell scripts ###
    
    Require SQLite3.exe :shipit:
-    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
+   * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
        * Download [SQLite3.exe](https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip) with
        * Download [32bit Dll](https://www.sqlite.org/2018/sqlite-dll-win32-x86-3240000.zip) or the
        * Download [64bit Dll](https://www.sqlite.org/2018/sqlite-dll-win64-x64-3240000.zip)
