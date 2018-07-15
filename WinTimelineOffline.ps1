@@ -169,20 +169,36 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                     Write-Progress -id 4 -Activity "Creating Output" -Status "with matching Registry entries - $rc of $($Registry.count))" -PercentComplete (([double]$rc / $Registry.count)*100) -ParentID 1
                     if($item.PlatformDeviceId -eq $rin.ID){
 
-                                
+                    $platform = ($item.Appid|convertfrom-json).platform
+                    $app1 = ($item.Appid|convertfrom-json).application[1]
+                    $app2 = ($item.Appid|convertfrom-json).application[2]
+                    $app = if($platform = 'windows_win32'){$app = $application} elseif ($platform = 'x_exe_path'){$app = $application} 
+                    $type = ($item.Payload |ConvertFrom-Json).Type
+                    $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
+                    $displayText = ($item.Payload |ConvertFrom-Json).displayText
+                    $description = ($item.Payload |ConvertFrom-Json).description
+                    $displayname = ($item.Payload |ConvertFrom-Json).appDisplayName
+                    $content = ($item.Payload |ConvertFrom-Json).contentUri
+                                                    
                     [PSCustomObject]@{
                                 ETag = $item.ETag 
-                                AppId = $item.AppId 
+                                App1_name = $app1
+                                App2_name = $app2
+                                DisplayText = $displayText
+                                Description = $description
+                                DisplayName = $displayname
+                                Content = $content
+                                Type = $type
                                 ActivityType = $item.ActivityType 
-                                ActivityStatus = $item.ActivityStatus
+                                ActivityStatu = $item.ActivityStatus
                                 IsInUploadQueue = $item.IsInUploadQueue
+                                Duration = $Duration
                                 LastModifiedTime = $item.LastModifiedTime
                                 ExpirationTime = $item.ExpirationTime
                                 StartTime = $item.StartTime
                                 EndTime = $item.EndTime
-                                Payload = $item.Payload
                                 PlatformDeviceId = $item.PlatformDeviceId 
-                                Type = $rin.Type
+                                'Type#' = if($rin.Type -eq 15){"Laptop"}elseif($rin.Type -eq 9){"Desktop PC"}else{$rin.Type}
                                 Name = $rin.Name
                                 Make = $rin.Make
                                 Model = $rin.Model
