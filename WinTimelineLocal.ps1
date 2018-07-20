@@ -107,7 +107,7 @@ $RegCount =$DeviceID.count
 $ra=0
 $rb=0
 
-$Registry = foreach ($entry in $DeviceID){$ra++
+$Registry = @(foreach ($entry in $DeviceID){$ra++
             $dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
             Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete (([double]$ra / $RegCount)*100) -ParentID 1
                 $ID = $entry
@@ -123,7 +123,7 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                                 Model = $Model
                      }
             }        
-
+            )
      
   $Output = foreach ($item in $dbresults ){$rb++
                     Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbresults.count))" -PercentComplete (([double]$rb / $dbresults.count)*100) -ParentID 1
@@ -134,9 +134,16 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                     if($item.PlatformDeviceId -eq $rin.ID){
                     
                     $platform = ($item.Appid|convertfrom-json).platform
-                    $app = if (($item.Appid|convertfrom-json).platform -eq "x_exe"){($item.Appid|convertfrom-json).application}
-		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_win32"){($item.Appid|convertfrom-json).application}
-		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_universal"){($item.Appid|convertfrom-json).application}
+                    
+                    $app = if (($item.Appid|convertfrom-json).platform[0] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[0]}
+		            elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_win32"){($item.Appid|convertfrom-json).application[0]}
+		            elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_universal"){($item.Appid|convertfrom-json).application[0]}
+                    elseif (($item.Appid|convertfrom-json).platform[1] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[1]}
+		            elseif (($item.Appid|convertfrom-json).platform[1] -eq "windows_win32"){($item.Appid|convertfrom-json).application[1]}
+		            elseif (($item.Appid|convertfrom-json).platform[1] -eq "windows_universal"){($item.Appid|convertfrom-json).application[1]}
+                    elseif (($item.Appid|convertfrom-json).platform[2] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[2]}
+		            elseif (($item.Appid|convertfrom-json).platform[2] -eq "windows_win32"){($item.Appid|convertfrom-json).application[2]}
+		            elseif (($item.Appid|convertfrom-json).platform[2] -eq "windows_universal"){($item.Appid|convertfrom-json).application[2]}
                     
                     $type = ($item.Payload |ConvertFrom-Json).Type
                     $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
@@ -174,6 +181,3 @@ $sw1.stop()
 $T = $sw1.Elapsed.TotalMinutes
 
 $Output|Out-GridView -PassThru -Title "Windows Timeline - ActiveBias= $Biasd - Done in $T minutes"           
-
-
-
