@@ -170,8 +170,9 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                     if($item.PlatformDeviceId -eq $rin.ID){
 
                     $platform = ($item.Appid|convertfrom-json).platform
-                    $app1 = ($item.Appid|convertfrom-json).application[1]
-                    $app2 = ($item.Appid|convertfrom-json).application[2]
+                    $app = if (($item.Appid|convertfrom-json).platform -eq "x_exe"){($item.Appid|convertfrom-json).application}
+		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_win32"){($item.Appid|convertfrom-json).application}
+		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_universal"){($item.Appid|convertfrom-json).application}
                     $app = if($platform = 'windows_win32'){$app = $application} elseif ($platform = 'x_exe_path'){$app = $application} 
                     $type = ($item.Payload |ConvertFrom-Json).Type
                     $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
@@ -182,15 +183,14 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                                                     
                     [PSCustomObject]@{
                                 ETag = $item.ETag 
-                                App1_name = $app1
-                                App2_name = $app2
+                                App_name = $app1
                                 DisplayText = $displayText
                                 Description = $description
                                 DisplayName = $displayname
                                 Content = $content
                                 Type = $type
                                 ActivityType = $item.ActivityType 
-                                ActivityStatu = $item.ActivityStatus
+                                ActivityStatus = $item.ActivityStatus
                                 IsInUploadQueue = $item.IsInUploadQueue
                                 Duration = $Duration
                                 LastModifiedTime = $item.LastModifiedTime
