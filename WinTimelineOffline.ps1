@@ -170,6 +170,7 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                     if($item.PlatformDeviceId -eq $rin.ID){
 
                     $platform = ($item.Appid|convertfrom-json).platform
+
 		    $app = if (($item.Appid|convertfrom-json).platform[0] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[0]}
 		            elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_win32"){($item.Appid|convertfrom-json).application[0]}
 		            elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_universal"){($item.Appid|convertfrom-json).application[0]}
