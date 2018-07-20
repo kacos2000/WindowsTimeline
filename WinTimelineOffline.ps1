@@ -173,7 +173,7 @@ $Registry = foreach ($entry in $DeviceID){$ra++
                     $app = if (($item.Appid|convertfrom-json).platform -eq "x_exe"){($item.Appid|convertfrom-json).application}
 		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_win32"){($item.Appid|convertfrom-json).application}
 		    elseif (($item.Appid|convertfrom-json).platform -eq "windows_universal"){($item.Appid|convertfrom-json).application}
-                    $app = if($platform = 'windows_win32'){$app = $application} elseif ($platform = 'x_exe_path'){$app = $application} 
+                     
                     $type = ($item.Payload |ConvertFrom-Json).Type
                     $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
                     $displayText = ($item.Payload |ConvertFrom-Json).displayText
