@@ -61,7 +61,7 @@ ________________________________________________________________________________
 ###  - [Documentation](WindowsTimeline.pdf) ###
    :notebook: **for the database and its entries** (*.pdf file*)
    
-   A Forensic Exploration of the Microsoft Windows 10 Timeline *(link pending)*<br>
+   [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875)*<br>
     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
      __________________________________________________________________________________________
 ###  - PowerShell scripts ###
