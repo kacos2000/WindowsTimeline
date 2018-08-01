@@ -8,6 +8,7 @@
 -- the Activity and ActivityOperation tables. 
 --
 -- 308046B0AF4A39CB is Firefox as seen at 'SOFTWARE\RegisteredApplications'
+-- E7CF176E110C211B is also Firefox
 --
 -- Known folder GUIDs 
 -- "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
@@ -28,8 +29,12 @@ SELECT -- This the ActivityOperation Table Query
 	case 
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Firefox-308046B0AF4A39CB'
-		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' 
+			when json_extract(ActivityOperation.AppId, '$[0].application') = 'E7CF176E110C211B'
+			then 'Firefox-E7CF176E110C211B'
+		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
 			then 'Firefox-308046B0AF4A39CB'
+			when json_extract(ActivityOperation.AppId, '$[1].application') = 'E7CF176E110C211B'
+			then 'Firefox-E7CF176E110C211B'
 		when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 17 
 			and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 			then 
@@ -134,10 +139,14 @@ select -- This the Activity Table Query
    Activity.ETag as 'Etag',  
    json_extract(Activity.Payload, '$.appDisplayName') AS 'Program Name',
 	case 
-		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
+		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
 			then 'Firefox-308046B0AF4A39CB'
-		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' 
+			when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
+			then 'Firefox-E7CF176E110C211B'
+		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
 			then 'Firefox-308046B0AF4A39CB'
+			when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
+			then 'Firefox-E7CF176E110C211B'
 		when length (json_extract(Activity.AppId, '$[0].application')) > 17 and 
 				length(json_extract(Activity.AppId, '$[0].application')) < 22 
 			then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),
