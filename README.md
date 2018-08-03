@@ -70,7 +70,8 @@ ________________________________________________________________________________
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
        * ![command-line shell](http://www.sqlitetutorial.net/wp-content/uploads/2018/04/SQLite3-Help-command.png)
        
-       **Note1** *- After you install the latest SQLite3.exe, check the version from inside powershell
+       **Note1** *- [Add C:\sqlite to the system PATH](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/)<br>
+       **Note2** *- After you install the latest SQLite3.exe, check the version from inside powershell
       by running `SQLite3.exe -version` (you may already have an older version in your Path - you can check that by running     [FindSQLite3.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/FindSQLite3.ps1))        
       
   ### - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
