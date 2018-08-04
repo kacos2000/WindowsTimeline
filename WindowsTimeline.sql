@@ -31,7 +31,7 @@ SELECT -- This the ActivityOperation Table Query
 			then 'Firefox-308046B0AF4A39CB'
 			when json_extract(ActivityOperation.AppId, '$[0].application') = 'E7CF176E110C211B'
 			then 'Firefox-E7CF176E110C211B'
-		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
+		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB'
 			then 'Firefox-308046B0AF4A39CB'
 			when json_extract(ActivityOperation.AppId, '$[1].application') = 'E7CF176E110C211B'
 			then 'Firefox-E7CF176E110C211B'
