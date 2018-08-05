@@ -75,17 +75,25 @@ ________________________________________________________________________________
       by running `SQLite3.exe -version` (you may already have an older version in your Path - you can check that by running     [FindSQLite3.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/FindSQLite3.ps1))        
       
   ### - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
-  Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.  
-   
+  Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.
+
    ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
    
-     
    ### - **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** ###
    Powershell script that runs a simple SQLite query against one of the local ActivitiesCache.db's available to the user, and adds info for the PlatformID from the registry. Json fields are parsed with Powershell's convertfrom-json.
    ### - **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** ###
    Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from a related, user selected NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.
+   
+   
+ __________________________________________________________________________________________   
+   -  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
+                * PCs and laptops *(Screen sizes 13” and greater)*<br>
+                * Tablets and 2-in-1s *(Screen sizes: 7” to 13.3” for tablet, 13.3" and greater for 2-in-1)*<br>
+                * Xbox and TV *(Screen sizes: 24" and up)*<br>
+                * Phones and phablets *(Screen sizes: 4'' to 5'' for phone, 5.5'' to 7'' for phablet)*<br>
+                * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
+                * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
  __________________________________________________________________________________________
-
 
 **Status**
 - **[x]** Queries completed.
