@@ -98,5 +98,5 @@ ________________________________________________________________________________
 **Status**
 - **[x]** Queries completed.
 - **[x]** Powershell scripts to check DeviceIDs in both registry & database completed.
-- **[ ]** Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)
+- **[ ]** ~~Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)~~
 
