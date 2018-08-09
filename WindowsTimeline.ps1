@@ -21,7 +21,11 @@ $F =$File.replace($env:LOCALAPPDATA,'')
 # Run SQLite query of the Selected dB
 # The Query (between " " below)
 # can also be copy/pasted and run on 'DB Browser for SQLite' 
+
+Try{(Get-Item $File).FullName}
+Catch{Write-Host "(WindowsTimeline.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
 $elapsedTime = [system.diagnostics.stopwatch]::StartNew()    
+
 $db = $File
 $sql = 
 "
@@ -38,17 +42,18 @@ $sql =
 		where Activity_PackageId.ActivityId = Activity.Id
 		group by platformdeviceid
 "
-1..1000 | %{write-progress -id 1 -activity "Running SQLite query ..." -status "$([string]::Format("Time Elapsed: {0:d2}:{1:d2}:{2:d2}", $elapsedTime.Elapsed.hours, $elapsedTime.Elapsed.minutes, $elapsedTime.Elapsed.seconds))" -percentcomplete ($_/10);}
+1..1000 | %{write-progress -id 1 -activity "Running SQLite query" -status "$([string]::Format("Time Elapsed: {0:d2}:{1:d2}:{2:d2}", $elapsedTime.Elapsed.hours, $elapsedTime.Elapsed.minutes, $elapsedTime.Elapsed.seconds))" -percentcomplete ($_/100);}
 
-$dbresult = @(sqlite3.exe $db $sql) 
+$dbresult = @(sqlite3.exe -readonly $db $sql) 
 $dbcount=$dbresult.count
 $elapsedTime.stop()
+write-progress -id 1 -activity "Running SQLite query" -status "Query Finished" 
 
 #Query HKCU, check results against the Database 
 	$DeviceID =  (Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object 
 	$RegCount =$DeviceID.count
 	$r=0
-	$Output = foreach ($entry in $DeviceID){$r++
+$Output = foreach ($entry in $DeviceID){$r++
 	$dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
 	Write-Progress -id 2 -Activity "Checking dB package IDs against HKCU DeviceCache" -Status "HKCU Entry $r of $($DeviceID.Count))" -PercentComplete (([double]$r / $DeviceID.Count)*100) -ParentID 1
                                     $Type = (get-itemproperty -path $dpath).DeviceType
@@ -69,7 +74,7 @@ $elapsedTime.stop()
 													}
                                 }
 # Display results           
-$output|Out-GridView -PassThru -Title "There are ($RegCount) device IDs in HKCU and ($dbcount) in the: '$F'"
+$output|Out-GridView -PassThru -Title "There are ($RegCount) device IDs in the Registry key (HKCU) and $dbcount in : ($F)"
 [gc]::Collect() 
 
 
