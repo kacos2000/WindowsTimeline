@@ -22,4 +22,4 @@ json_extract(Activity.AppId, '$[8].platform')  as 'p8' ,
 json_extract(Activity.AppId, '$[8].application') as '8'
 
 from Activity
-order by p5 desc
+order by etag desc
