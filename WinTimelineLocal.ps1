@@ -113,8 +113,6 @@ $T0 = $sw1.Elapsed
 write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0  -> $dbcount Entries found."
 if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 
-
-
 #Query HKCU, check results against the Database 
 $Registry = [pscustomobject]@()
 $DeviceID =  (Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object 
@@ -246,9 +244,6 @@ $Output = foreach ($item in $dbresults ){$rb++
                     if($item.PlatformDeviceId -eq $rin.ID){
                     
                     $platform = ($item.Appid|convertfrom-json).platform
-                    
-                    
-                    
                     $type = ($item.Payload |ConvertFrom-Json).Type
                     $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
                     $displayText = ($item.Payload |ConvertFrom-Json).displayText
