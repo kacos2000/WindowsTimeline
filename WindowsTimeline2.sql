@@ -305,7 +305,10 @@ case
 	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[7].application') 
 	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%web%' then json_extract(ActivityOperation.AppId, '$[8].application') end as 'web',
 	
-   json_extract(ActivityOperation.Payload, '$.displayText')|| ' - (' ||json_extract(ActivityOperation.Payload, '$.description')||')' as 'File/title/path opened',
+	case when like(ActivityOperation.AppActivityId , json_extract(ActivityOperation.Payload, '$.description'))  
+	then json_extract(ActivityOperation.Payload, '$.displayText')|| ' (' ||json_extract(ActivityOperation.Payload, '$.description')||')' 
+	else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'File/title/path opened',
+
 	case when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
@@ -664,7 +667,10 @@ case
 	when json_extract(Activity.AppId, '$[7].platform') like '%web%' then json_extract(Activity.AppId, '$[7].application') 
 	when json_extract(Activity.AppId, '$[8].platform') like '%web%' then json_extract(Activity.AppId, '$[8].application') end as 'web',
 	
-   json_extract(Activity.Payload, '$.displayText')|| ' - (' ||json_extract(Activity.Payload, '$.description')||')' as 'File/title/path opened',
+  case when like(Activity.AppActivityId , json_extract(Activity.Payload, '$.description'))  
+	then json_extract(Activity.Payload, '$.displayText')|| ' (' ||json_extract(Activity.Payload, '$.description')||')' 
+	else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'File/title/path opened',
+	
 	case when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
 	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')

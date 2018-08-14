@@ -53,7 +53,9 @@ SELECT -- This the ActivityOperation Table Query
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
-   json_extract(ActivityOperation.Payload, '$.displayText')|| ' (' ||json_extract(ActivityOperation.Payload, '$.description')||')' as 'File/title/path opened',
+	case when like(ActivityOperation.AppActivityId , json_extract(ActivityOperation.Payload, '$.description'))  
+	then json_extract(ActivityOperation.Payload, '$.displayText')|| ' (' ||json_extract(ActivityOperation.Payload, '$.description')||')' 
+	else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  end as 'File/title/path opened',
 	case when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
@@ -165,8 +167,10 @@ select -- This the Activity Table Query
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
-   json_extract(Activity.Payload, '$.displayText')|| ' (' ||json_extract(Activity.Payload, '$.description')||')' as 'File/title/path opened',
-	case when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
+  case when like(Activity.AppActivityId , json_extract(Activity.Payload, '$.description'))  
+	then json_extract(Activity.Payload, '$.displayText')|| ' (' ||json_extract(Activity.Payload, '$.description')||')' 
+	else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  end as 'File/title/path opened',
+ case when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
 	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
 	  end as 'Payload/Timezone',
