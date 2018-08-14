@@ -68,6 +68,8 @@ $Query = @"
 select 
        ActivityOperation.ETag,
        ActivityOperation.AppId, 
+	   case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
+		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
        case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'ActivityType', 
        case ActivityOperation.OperationType 
@@ -87,6 +89,8 @@ union
 select 
        Activity.ETag,
        Activity.AppId, 
+	   case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
+		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
        case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'ActivityType', 
        case Activity.ActivityStatus 
@@ -106,12 +110,14 @@ order by Etag desc
 "@ 
 write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query|ConvertFrom-String -Delimiter '\u007C' -PropertyNames ETag, AppId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Payload, PlatformDeviceId)
+$dbresults = @(sqlite3.exe -readonly $db $query|ConvertFrom-String -Delimiter '\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Payload, PlatformDeviceId)
 $dbcount = $dbresults.count
 $sw.stop()
 $T0 = $sw1.Elapsed
 write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0  -> $dbcount Entries found."
 if($dbcount -eq 0){'Sorry - 0 entries found';exit}
+
+
 
 #Query HKCU, check results against the Database 
 $Registry = [pscustomobject]@()
@@ -247,7 +253,11 @@ $Output = foreach ($item in $dbresults ){$rb++
                     $type = ($item.Payload |ConvertFrom-Json).Type
                     $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
                     $displayText = ($item.Payload |ConvertFrom-Json).displayText
-                    $description = ($item.Payload |ConvertFrom-Json).description
+                    $description = if ((($item.Payload |ConvertFrom-Json).description) -eq $item.AppActivityId)
+                            {($item.Payload |ConvertFrom-Json).description} 
+                            elseif(($item.Payload |ConvertFrom-Json).description -ne $null){($item.Payload |ConvertFrom-Json).description}
+                            else {$item.AppActivityId}
+                    
                     $displayname = ($item.Payload |ConvertFrom-Json).appDisplayName
                     $content = ($item.Payload |ConvertFrom-Json).contentUri
                     #Select the application name for x_exe, windows_win32 and Windows_universal entries
@@ -270,7 +280,7 @@ $Output = foreach ($item in $dbresults ){$rb++
                                 ETag = $item.ETag 
                                 App_name = $AppName
                                 DisplayText = $displayText
-                                Description = $description
+                                'Description/Hash' = $description
                                 DisplayName = $displayname
                                 Content = $content
                                 Type = $type
