@@ -10,9 +10,8 @@ select
        '{'||hex(ActivityOperation.Id)||'}' as 'ID', 
        ActivityOperation.AppId, 
        ActivityOperation.PackageIdHash, 
-       case when ActivityOperation.AppActivityId not like '%-%-%-%-%\%' then ActivityOperation.AppActivityId
-		when Activity.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
-		else substr(ActivityOperation.AppActivityId , 38)
+       case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
+		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
 		end as 'Hash', 
        case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'Activity type', 
@@ -46,9 +45,8 @@ select
        '{'||hex(Activity.Id)||'}' as 'ID', 
        Activity.AppId, 
        Activity.PackageIdHash, 
-       case when Activity.AppActivityId not like '%-%-%-%-%\%' then Activity.AppActivityId
-		when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
-		else substr(Activity.AppActivityId , 38)
+       case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
+		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
 		end as 'Hash', 
        case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 	   else 'Unknown yet' end as 'Activity type', 
