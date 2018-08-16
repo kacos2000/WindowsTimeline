@@ -7,8 +7,9 @@
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
--- 308046B0AF4A39CB is Firefox as seen at 'SOFTWARE\RegisteredApplications'
--- E7CF176E110C211B is also Firefox
+-- HKLM: \SOFTWARE\Mozilla\Firefox\TaskBarIDs :
+-- 308046B0AF4A39CB is Mozilla Firefox 64bit
+-- E7CF176E110C211B is Mozilla Firefox 32bit
 --
 -- Known folder GUIDs 
 -- "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
@@ -28,13 +29,13 @@ SELECT -- This the ActivityOperation Table Query
 	json_extract(ActivityOperation.Payload, '$.appDisplayName') as 'Program Name',
 	case 
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
-			then 'Firefox-308046B0AF4A39CB'
+			then 'Mozilla Firefox-64bit'
 			when json_extract(ActivityOperation.AppId, '$[0].application') = 'E7CF176E110C211B'
-			then 'Firefox-E7CF176E110C211B'
+			then 'Mozilla Firefox-32bit'
 		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB'
-			then 'Firefox-308046B0AF4A39CB'
+			then 'Mozilla Firefox-64bit'
 			when json_extract(ActivityOperation.AppId, '$[1].application') = 'E7CF176E110C211B'
-			then 'Firefox-E7CF176E110C211B'
+			then 'Mozilla Firefox-32bit'
 		when length (json_extract(ActivityOperation.AppId, '$[1].application')) > 17 
 			and length (json_extract(ActivityOperation.AppId, '$[1].application')) < 22 
 			then 
@@ -141,14 +142,14 @@ select -- This the Activity Table Query
    Activity.ETag as 'Etag',  
    json_extract(Activity.Payload, '$.appDisplayName') AS 'Program Name',
 	case 
-		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
-			then 'Firefox-308046B0AF4A39CB'
+		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
+			then 'Mozilla Firefox-64bit'
 			when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
-			then 'Firefox-E7CF176E110C211B'
-		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' or 'E7CF176E110C211B'
-			then 'Firefox-308046B0AF4A39CB'
+			then 'Mozilla Firefox-32bit'
+		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' 
+			then 'Mozilla Firefox-64bit'
 			when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
-			then 'Firefox-E7CF176E110C211B'
+			then 'Mozilla Firefox-32bit'
 		when length (json_extract(Activity.AppId, '$[0].application')) > 17 and 
 				length(json_extract(Activity.AppId, '$[0].application')) < 22 
 			then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),
@@ -157,8 +158,6 @@ select -- This the Activity Table Query
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	   when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
-			then 'Firefox-308046B0AF4A39CB'
 			else  replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[0].application'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
