@@ -8,21 +8,21 @@
 Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* the code to a query tab.
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
-### - [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
+* ### [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
 
-  *Screenshots of WindowsTimeline.sql*
-  ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
-
-
-  ![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
-
-### - [Extended windows timeline database query (WindowsTimeline2.sql)](WindowsTimeline2.sql) ###
-
-  *Screenshots of WindowsTimeline2.sql*
-  ![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
+    *Screenshots of WindowsTimeline.sql*
+    ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
 
 
-  ![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
+    ![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
+
+* ### [Extended windows timeline database query (WindowsTimeline2.sql)](WindowsTimeline2.sql) ###
+
+   *Screenshots of WindowsTimeline2.sql*
+   ![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
+
+
+   ![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
   
 ___________________________________________________________________________________________  
 
@@ -59,34 +59,33 @@ ________________________________________________________________________________
   and you will be presented with another window to select Folder and Filename to save the CSV file.
  __________________________________________________________________________________________
 
-###  - [Documentation](WindowsTimeline.pdf) ###
-   :notebook: **for the database and its entries** (*.pdf file*)
+* ### Documentation ###
    
-   [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875)*<br>
-    *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
+   - Documentation for the database and its entries - (*[WindowsTimeline.pdf](WindowsTimeline.pdf)*)
+   - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
      __________________________________________________________________________________________
-###  - PowerShell scripts ###
+* ### PowerShell scripts ###
    
    :shipit: Require SQLite3.exe <br> Note: *The PowerShell scripts are not the fastest way to parse Windows Timeline (~16min for a 10500 entry db)*
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
        * ![command-line shell](http://www.sqlitetutorial.net/wp-content/uploads/2018/04/SQLite3-Help-command.png)
        
-       **Note1** *- [Add C:\sqlite to the system PATH](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/)<br>
-       **Note2** *- After you install the latest SQLite3.exe, check the version from inside powershell
+       **Note1** - [Add C:\sqlite to the system PATH](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/)<br>
+       **Note2** - After you install the latest SQLite3.exe, check the version from inside powershell
       by running `SQLite3.exe -version` (you may already have an older version in your Path - you can check that by running     [FindSQLite3.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/FindSQLite3.ps1))        
 
         
-  ### - **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
-  Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.
+  * ### **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
+    Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.
 
-   ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
+    ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
    
-   ### - **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** ###
-   Powershell script that runs a simple SQLite query against one of the local ActivitiesCache.db's available to the user, and adds info for the PlatformID from the registry. Json fields are parsed with Powershell's convertfrom-json.<br>
-                   ![p](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/p1.JPG)
+   * ### **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** ###
+     Powershell script that runs a simple SQLite query against one of the local ActivitiesCache.db's available to the user, and adds info for the PlatformID from the registry. Json fields are parsed with Powershell's convertfrom-json.<br>
+     ![p](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/p1.JPG)
    
-   ### - **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** ###
-   Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from a related, user selected NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.
+   * ### **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** ###
+     Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from a related, user selected NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.
    
    
  __________________________________________________________________________________________   
