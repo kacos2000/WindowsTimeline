@@ -25,7 +25,8 @@
 
 
 SELECT -- This the ActivityOperation Table Query
-	ActivityOperation.ETag as 'Etag', 
+	ActivityOperation.ETag as 'Etag',
+	ActivityOperation.OperationOrder as 'Order',
 	json_extract(ActivityOperation.Payload, '$.appDisplayName') as 'Program Name',
 	case 
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
@@ -139,7 +140,8 @@ where 	Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0]
 union  -- Join Activity & ActivityOperation Queries to get results from both Tables
 
 select -- This the Activity Table Query
-   Activity.ETag as 'Etag',  
+   Activity.ETag as 'Etag',
+   null as 'Order',  
    json_extract(Activity.Payload, '$.appDisplayName') AS 'Program Name',
 	case 
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
