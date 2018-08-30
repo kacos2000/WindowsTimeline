@@ -76,7 +76,7 @@ ________________________________________________________________________________
 
         
   * ### **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
-    Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. *(From testing, it seems that Type 9 entries are Full Sized PCs while Type 15 entries are Laptops)*. It is evident that after a while Platform Device IDs representing a specific device change.
+    Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It appears that Type 8 entries are Smartphones, type 9 Full Sized PCs and type 15 Laptops). <br>*Note that Platform Device IDs representing a specific device change over time*. 
 
     ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
    
@@ -89,7 +89,7 @@ ________________________________________________________________________________
    
    
  __________________________________________________________________________________________   
-   -  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
+   *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
                 * PCs and laptops *(Screen sizes 13” and greater)*<br>
                 * Tablets and 2-in-1s *(Screen sizes: 7” to 13.3” for tablet, 13.3" and greater for 2-in-1)*<br>
                 * Xbox and TV *(Screen sizes: 24" and up)*<br>
@@ -98,8 +98,13 @@ ________________________________________________________________________________
                 * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
  __________________________________________________________________________________________
 
+**Related Windows Apps**
+- [YourPhone](https://www.microsoft.com/en-us/p/your-phone/9nmpj99vjbwv?ocid=AID681541_aff_7593_1243925&activetab=pivot:overviewtab)
+- [Connected Devices](https://www.microsoft.com/en-us/p/connected-devices/9nblggh4tssg?activetab=pivot%3aoverviewtab)
+
 **Status**
 - **[x]** Queries completed.
 - **[x]** Powershell scripts to check DeviceIDs in both registry & database completed.
+- **[x]** Win10 [Notifications Database](https://github.com/kacos2000/Win10/blob/master/Notifications/readme.md).
 - **[ ]** ~~Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)~~
 
