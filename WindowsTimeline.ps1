@@ -67,6 +67,7 @@ $Output = foreach ($entry in $DeviceID){$r++
                                     
                                     'HKCU DeviceCache ID' = $entry
                                     Type = $Type
+                                    DeviceType = if($Type -eq 15){"Laptop"}elseif($Type -eq 9){"Desktop PC"}elseif($Type -eq 8){"SmartPhone"}else{$rin.Type}
                                     'Device Name' = $Name
                                     Make = $Make
                                     Model = $Model
