@@ -303,17 +303,17 @@ $Output = foreach ($item in $dbresults ){$rb++
                                 EndTime = $endtime
                                 PlatformDeviceId = $item.PlatformDeviceId 
                                 DeviceType = 
-                                                if($Type -eq 15){"Windows 10 Laptop"}
-                                                elseif($Type -eq 1){"Xbox One"}
-                                                elseif($Type -eq 6){"Apple iPhone"}
-                                                elseif($Type -eq 7){"Apple iPad"}
-                                                elseif($Type -eq 8){"Android device"}
-                                                elseif($Type -eq 9){"Windows 10 Desktop"}
-                                                elseif($Type -eq 9){"Desktop PC"}
-                                                elseif($Type -eq 11){"Windows 10 Phone"}
-                                                elseif($Type -eq 12){"Linux device"}
-                                                elseif($Type -eq 13){"Windows IoT"}
-                                                elseif($Type -eq 14){"Surface Hub"}
+                                                if($rin.Type -eq 15){"Windows 10 Laptop"}
+                                                elseif($rin.Type -eq 1){"Xbox One"}
+                                                elseif($rin.Type -eq 6){"Apple iPhone"}
+                                                elseif($rin.Type -eq 7){"Apple iPad"}
+                                                elseif($rin.Type -eq 8){"Android device"}
+                                                elseif($rin.Type -eq 9){"Windows 10 Desktop"}
+                                                elseif($rin.Type -eq 9){"Desktop PC"}
+                                                elseif($rin.Type -eq 11){"Windows 10 Phone"}
+                                                elseif($rin.Type -eq 12){"Linux device"}
+                                                elseif($rin.Type -eq 13){"Windows IoT"}
+                                                elseif($rin.Type -eq 14){"Surface Hub"}
                                                 else{$rin.Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
                                 Name = $rin.Name
                                 Make = $rin.Make
