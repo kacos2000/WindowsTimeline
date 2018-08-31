@@ -67,7 +67,19 @@ $Output = foreach ($entry in $DeviceID){$r++
                                     
                                     'HKCU DeviceCache ID' = $entry
                                     Type = $Type
-                                    DeviceType = if($Type -eq 15){"Laptop"}elseif($Type -eq 9){"Desktop PC"}elseif($Type -eq 8){"SmartPhone"}else{$rin.Type}
+                                    DeviceType = 
+                                                if($Type -eq 15){"Windows 10 Laptop"}
+                                                elseif($Type -eq 1){"Xbox One"}
+                                                elseif($Type -eq 6){"Apple iPhone"}
+                                                elseif($Type -eq 7){"Apple iPad"}
+                                                elseif($Type -eq 8){"Android device"}
+                                                elseif($Type -eq 9){"Windows 10 Desktop"}
+                                                elseif($Type -eq 9){"Desktop PC"}
+                                                elseif($Type -eq 11){"Windows 10 Phone"}
+                                                elseif($Type -eq 12){"Linux device"}
+                                                elseif($Type -eq 13){"Windows IoT"}
+                                                elseif($Type -eq 14){"Surface Hub"}
+                                                else{$rin.Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
                                     'Device Name' = $Name
                                     Make = $Make
                                     Model = $Model
@@ -77,10 +89,4 @@ $Output = foreach ($entry in $DeviceID){$r++
 # Display results           
 $output|Out-GridView -PassThru -Title "There are ($RegCount) device IDs in the Registry key (HKCU) and $dbcount in : ($F)"
 [gc]::Collect() 
-
-
-
-
-
-
 
