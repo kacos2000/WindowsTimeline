@@ -76,7 +76,7 @@ ________________________________________________________________________________
 
         
   * ### **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
-    Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. It appears that Type 8 entries are Smartphones, type 9 Full Sized PCs and type 15 Laptops). <br>*Note that Platform Device IDs representing a specific device change over time*. 
+    Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. ~~It appears that Type 8 entries are Smartphones, type 9 Full Sized PCs and type 15 Laptops)~~. <br>*Note that Platform Device IDs representing a specific device change over time*. 
     
     * Note: According to the Connected [Devices Platform specification](https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf) these are the device types. Curiously, type 15 is not in that list:<br>
     
