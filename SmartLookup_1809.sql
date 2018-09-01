@@ -1,10 +1,10 @@
--- SmartLookup View  
+-- SmartLookup View for Win 10 1809 Timeline database
 -- in easy to view format.
 -- BLOBs and information stored in them needs manual extraction.
 -- JSON1 extension is NOT required for this query to run.
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
--- May 2018
+-- September 2018
 
 select 
        '{'||hex(ActivityOperation.Id)||'}' as 'ID', 
