@@ -1,0 +1,87 @@
+-- SmartLookup View  
+-- in easy to view format.
+-- BLOBs and information stored in them needs manual extraction.
+-- JSON1 extension is NOT required for this query to run.
+--
+-- Costas Katsavounidis (kacos2000 [at] gmail.com)
+-- May 2018
+
+select 
+       '{'||hex(ActivityOperation.Id)||'}' as 'ID', 
+       ActivityOperation.AppId, 
+       ActivityOperation.PackageIdHash, 
+       case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
+		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
+		end as 'AppActivityId', 
+       case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+	   else ActivityOperation.ActivityType end as 'Activity type', 
+       case ActivityOperation.OperationType 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		end as 'ActivityStatus', 
+       hex(ActivityOperation.ParentActivityId) as 'ParentActivityId', 
+       ActivityOperation.Tag, 
+       ActivityOperation.MatchId, 
+       datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModifiedTime',
+       datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime')as 'ExpirationTime',
+       ActivityOperation.Payload, 
+       ActivityOperation.Priority, 
+       Activity.IsLocalOnly, 
+       ActivityOperation.PlatformDeviceId, 
+       datetime(Activity.CreatedInCloud, 'unixepoch', 'localtime')as 'CreatedInCloud',
+       datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') as 'StartTime',
+       datetime(ActivityOperation.EndTime, 'unixepoch', 'localtime') as 'EndTime',
+       datetime(ActivityOperation.LastModifiedOnClient, 'unixepoch', 'localtime') as 'LastModifiedOnClient', 
+       'Yes' AS IsInUploadQueue, 
+       ActivityOperation.GroupAppActivityId, 
+       ActivityOperation.ClipboardPayload, 
+       ActivityOperation.EnterpriseId, 
+	   ActivityOperation.UserActionState,
+	   ActivityOperation.IsRead,
+       ActivityOperation.OriginalPayload, 
+       ActivityOperation.OriginalLastModifiedOnClient, 
+	   ActivityOperation.GroupItems,
+       ActivityOperation.ETag
+from   ActivityOperation 
+       left outer join Activity on ActivityOperation.Id = Activity.Id
+union
+select 
+       '{'||hex(Activity.Id)||'}' as 'ID', 
+       Activity.AppId, 
+       Activity.PackageIdHash, 
+       case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
+		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
+		end as 'AppActivityId', 
+       case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+	   else Activity.ActivityType end as 'Activity type', 
+       case Activity.ActivityStatus 
+		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		end as 'ActivityStatus', 
+       hex(Activity.ParentActivityId) as 'ParentActivityId', 
+       Activity.Tag, 
+       Activity.MatchId, 
+       datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime')as 'LastModifiedTime',
+       datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
+       Activity.Payload, 
+       Activity.Priority, 
+       Activity.IsLocalOnly, 
+       Activity.PlatformDeviceId, 
+       datetime(Activity.CreatedInCloud, 'unixepoch', 'localtime') as 'CreatedInCloud',
+       datetime(Activity.StartTime, 'unixepoch', 'localtime') as 'StartTime',
+       datetime(Activity.EndTime, 'unixepoch', 'localtime') as 'EndTime',
+       datetime(Activity.LastModifiedOnClient, 'unixepoch', 'localtime') as 'LastModifiedOnClient',
+       'No' AS 'IsInUploadQueue', 
+       Activity.GroupAppActivityId, 
+       Activity.ClipboardPayload, 
+       Activity.EnterpriseId,
+	   Activity.UserActionState,
+	   Activity.IsRead,
+       Activity.OriginalPayload, 
+       Activity.OriginalLastModifiedOnClient, 
+	   Activity.GroupItems,
+       Activity.ETag
+from   Activity
+where  Activity.Id not in (select ActivityOperation.Id from ActivityOperation)
+order by Etag desc
+
+ 
+-- EOF
