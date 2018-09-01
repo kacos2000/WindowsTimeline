@@ -9,7 +9,8 @@ Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 * ### [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
-
+    Updated to work with Win10 v1809 *(Build 17744.1003 RC5)*<br>
+    
     *Screenshots of WindowsTimeline.sql*
     ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
 
@@ -32,7 +33,7 @@ ________________________________________________________________________________
 - Activity_PackageID,
 - ActivityOperation
 
-**Other queries (Win10 - 1803):**
+**Other queries (Win10 - 1803):** *(Build 17744.rc5_release.180818-1845)* 
 
 1. [A re-formated Smartlookup view query](SmartLookup.sql) - Smartlookup is a view included in ActivitiesCache.db. This query makes it a bit more readable but does not extract the data in the BLOBs *(does not need the JSON1 extension)*. 
 2. [Activity_PackageID timeline query](Activity_PackageID_Timeline.sql) - Creates a timeline according to the Expiry Dates in the Activity_PackageID table.
@@ -43,6 +44,7 @@ ________________________________________________________________________________
 **Other queries (Win10 - 1809):**
 
 1. [A re-formated Smartlookup view query (1809)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
+2. [WindowsTimeline (1809)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more fields.
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/),
