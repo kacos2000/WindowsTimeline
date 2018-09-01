@@ -135,8 +135,13 @@ SELECT -- This the ActivityOperation Table Query
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
    substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID', 
+  ActivityOperation.UploadAllowedByPolicy as 'UploadAllowedByPolicy',
+  ActivityOperation.PatchFields as 'PatchFields',   
+  ActivityOperation.UserActionState as 'UserActionState',
   hex(ActivityOperation.ClipboardPayload) as 'ClipboardPayload',
+  case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
+  ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
    json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') as 'Original Displayed Name',
@@ -250,8 +255,13 @@ select -- This the Activity Table Query
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
+  '' as 'UploadAllowedByPolicy',
+  '' as 'PatchFields',  
+  Activity.UserActionState as 'UserActionState',
   hex(Activity.ClipboardPayload) as 'ClipboardPayload',
+  case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
+  Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
    json_extract(Activity.OriginalPayload, '$.appDisplayName') as 'Original Program Name',
