@@ -32,7 +32,7 @@ ________________________________________________________________________________
 - Activity_PackageID,
 - ActivityOperation
 
-**Other queries:**
+**Other queries (Win10 - 1803):**
 
 1. [A re-formated Smartlookup view query](SmartLookup.sql) - Smartlookup is a view included in ActivitiesCache.db. This query makes it a bit more readable but does not extract the data in the BLOBs *(does not need the JSON1 extension)*. 
 2. [Activity_PackageID timeline query](Activity_PackageID_Timeline.sql) - Creates a timeline according to the Expiry Dates in the Activity_PackageID table.
@@ -40,6 +40,9 @@ ________________________________________________________________________________
 3. [PackageID check](PackageID.sql) - Check that the 'PackageID' in the 'Activity.AppId' json field has the same value as the 'Activity_PackageId' table's 'PackageName' field *(for x_exe and Windows_win32 entries)*.
 4. [App_Platform](app_platform.sql) - A simple query to help understand the different PlatformID combinations (extracted from the AppID json field)
 
+**Other queries (Win10 - 1809):**
+
+1. [A re-formated Smartlookup view query (1809)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/),
@@ -64,7 +67,7 @@ ________________________________________________________________________________
    - Documentation for the database and its entries - (*[WindowsTimeline.pdf](WindowsTimeline.pdf)*)
    - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
      __________________________________________________________________________________________
-* ### PowerShell scripts ###
+* ### PowerShell scripts *(Win10 - 1803)* ###
    
    :shipit: Require SQLite3.exe <br> Note: *The PowerShell scripts are not the fastest way to parse Windows Timeline (~16min for a 10500 entry db)*
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
