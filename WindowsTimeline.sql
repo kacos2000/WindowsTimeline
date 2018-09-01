@@ -64,7 +64,7 @@ SELECT -- This the ActivityOperation Table Query
 	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-		else 'Unknown yet' 
+		else ActivityOperation.ActivityType 
 	end as 'Activity_type',
 	case json_extract(ActivityOperation.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
@@ -120,7 +120,7 @@ SELECT -- This the ActivityOperation Table Query
    datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration on PackageID',
    datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
    ActivityOperation.PlatformDeviceId as 'Device ID', 
-   ActivityOperation.PackageIdHash as 'Application_Hash',
+   ActivityOperation.PackageIdHash as 'PackageIdHash',
 	 '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
@@ -177,7 +177,7 @@ select -- This the Activity Table Query
 	  end as 'Payload/Timezone',
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	else 'Unknown yet' 
+	else Activity.ActivityType 
 	end as 'Activity_type',
 	case json_extract(Activity.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
@@ -222,7 +222,7 @@ select -- This the Activity Table Query
    datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration on PackageID',
    datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
    Activity.PlatformDeviceId as 'Device ID', 
-   Activity.PackageIdHash as 'Application_Hash',
+   Activity.PackageIdHash as 'PackageIdHash',
 		 '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||

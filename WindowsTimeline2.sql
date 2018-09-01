@@ -7,7 +7,9 @@
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
--- '308046B0AF4A39CB' is Firefox as seen at 'SOFTWARE\RegisteredApplications'
+-- HKLM: \SOFTWARE\Mozilla\Firefox\TaskBarIDs :
+-- 308046B0AF4A39CB is Mozilla Firefox 64bit
+-- E7CF176E110C211B is Mozilla Firefox 32bit
 --
 -- Known folder GUIDs 
 -- "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
@@ -91,73 +93,82 @@ SELECT -- This the ActivityOperation Table Query
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') end as 'x_exe',
 
 case 
-	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[0].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[1].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[2].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[3].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')  
-	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[4].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[5].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[6].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[7].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[8].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
@@ -166,7 +177,7 @@ case
 	end as 'windows_win32',
 
 case 
-	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%windows_universal%%' then json_extract(ActivityOperation.AppId, '$[0].application') 
+	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%windows_universal%' then json_extract(ActivityOperation.AppId, '$[0].application') 
 	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%windows_universal%' then json_extract(ActivityOperation.AppId, '$[1].application') 
 	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%windows_universal%' then json_extract(ActivityOperation.AppId, '$[2].application')  
 	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%windows_universal%' then json_extract(ActivityOperation.AppId, '$[3].application') 
@@ -188,73 +199,82 @@ case
 	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%host%' then json_extract(ActivityOperation.AppId, '$[8].application') end as 'host',	
 	
 case 
-	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[0].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[0].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[1].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[1].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[2].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[2].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')  
-	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[3].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[3].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[4].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[4].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[5].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[5].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[6].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[6].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[6].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[7].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[7].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(ActivityOperation.AppId, '$[8].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(ActivityOperation.AppId, '$[8].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
@@ -315,7 +335,7 @@ case
 	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-		else 'Unknown yet' 
+		else ActivityOperation.ActivityType 
 	end as 'Activity_type',
 	case json_extract(ActivityOperation.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
@@ -366,7 +386,7 @@ case
    datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration on PackageID',
    datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
    ActivityOperation.PlatformDeviceId as 'Device ID', 
-   ActivityOperation.PackageIdHash as 'Application_Hash',
+   ActivityOperation.PackageIdHash as 'PackageIdHash',
 	 '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
@@ -453,73 +473,82 @@ case
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') end as 'x_exe',
 
 case 
-	when json_extract(Activity.AppId, '$[0].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[0].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[0].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(Activity.AppId, '$[1].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[1].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[1].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(Activity.AppId, '$[2].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[2].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[2].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[3].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[3].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[3].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')  
-	when json_extract(Activity.AppId, '$[4].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[4].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[4].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[5].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[5].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[5].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[6].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[7].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[7].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[8].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[8].platform') like '%windows_win32%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[8].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
@@ -528,7 +557,7 @@ case
 	end as 'windows_win32',
 
 case 
-	when json_extract(Activity.AppId, '$[0].platform') like '%windows_universal%%' then json_extract(Activity.AppId, '$[0].application') 
+	when json_extract(Activity.AppId, '$[0].platform') like '%windows_universal%' then json_extract(Activity.AppId, '$[0].application') 
 	when json_extract(Activity.AppId, '$[1].platform') like '%windows_universal%' then json_extract(Activity.AppId, '$[1].application') 
 	when json_extract(Activity.AppId, '$[2].platform') like '%windows_universal%' then json_extract(Activity.AppId, '$[2].application')  
 	when json_extract(Activity.AppId, '$[3].platform') like '%windows_universal%' then json_extract(Activity.AppId, '$[3].application') 
@@ -550,73 +579,82 @@ case
 	when json_extract(Activity.AppId, '$[8].platform') like '%host%' then json_extract(Activity.AppId, '$[8].application') end as 'host',	
 	
 case 
-	when json_extract(Activity.AppId, '$[0].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[0].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[0].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')
-	when json_extract(Activity.AppId, '$[1].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[1].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[1].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[2].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[2].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[2].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')  
-	when json_extract(Activity.AppId, '$[3].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[3].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[3].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[4].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[4].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[4].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[5].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[5].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[5].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[6].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[6].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[6].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[7].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[7].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[7].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	when json_extract(Activity.AppId, '$[8].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace
+	when json_extract(Activity.AppId, '$[8].platform') like '%packageid%' then replace(replace(replace(replace(replace(replace(replace
 			(json_extract(Activity.AppId, '$[8].application'),
-			'308046B0AF4A39CB', 'Mozilla Firefox'),
+			'308046B0AF4A39CB', 'Mozilla Firefox 64bit'), 
+			'E7CF176E110C211B', 'Mozilla Firefox 32bit'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
@@ -677,7 +715,7 @@ case
 	  end as 'Payload/Timezone',
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	else 'Unknown yet' 
+	else Activity.ActivityType 
 	end as 'Activity_type',
 	case json_extract(Activity.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
@@ -717,7 +755,7 @@ case
    datetime(Activity_PackageId.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration on PackageID',
    datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
    Activity.PlatformDeviceId as 'Device ID', 
-   Activity.PackageIdHash as 'Application_Hash',
+   Activity.PackageIdHash as 'PackageIdHash',
 		 '{' || substr(hex(Activity_PackageId.ActivityId), 1, 8) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||
