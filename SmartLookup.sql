@@ -12,9 +12,9 @@ select
        ActivityOperation.PackageIdHash, 
        case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
 		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
-		end as 'Hash', 
+		end as 'AppActivityId', 
        case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	   else 'Unknown yet' end as 'Activity type', 
+	   else ActivityOperation.ActivityType end as 'Activity type', 
        case ActivityOperation.OperationType 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus', 
@@ -47,9 +47,9 @@ select
        Activity.PackageIdHash, 
        case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
 		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') 
-		end as 'Hash', 
+		end as 'AppActivityId', 
        case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	   else 'Unknown yet' end as 'Activity type', 
+	   else Activity.ActivityType end as 'Activity type', 
        case Activity.ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus', 
