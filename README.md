@@ -44,7 +44,7 @@ ________________________________________________________________________________
 **Other queries (Win10 - 1809):**
 
 1. [A re-formated Smartlookup view query (1809)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
-2. [WindowsTimeline (1809)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more fields.
+2. [WindowsTimeline (1809)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields.
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/),
@@ -69,7 +69,7 @@ ________________________________________________________________________________
    - Documentation for the database and its entries - (*[WindowsTimeline.pdf](WindowsTimeline.pdf)*)
    - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
      __________________________________________________________________________________________
-* ### PowerShell scripts *(Win10 - 1803)* ###
+* ### PowerShell scripts *(Win10 - 1803,1809)* ###
    
    :shipit: Require SQLite3.exe <br> Note: *The PowerShell scripts are not the fastest way to parse Windows Timeline (~16min for a 10500 entry db)*
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
