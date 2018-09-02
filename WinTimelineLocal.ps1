@@ -58,20 +58,22 @@ $F =$File.replace($env:LOCALAPPDATA,'')
 
 Try{write-host "Selected: " (Get-Item $File)|out-null}
 Catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
- 
+
+#Check if DEviceCache has entries
+try{$DeviceID =  (Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object}
+catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
 
 $db = $File
 $sw = [Diagnostics.Stopwatch]::StartNew()
 $sw1 = [Diagnostics.Stopwatch]::StartNew()
-
+$dbresults=@()
 $Query = @"
 select 
        ActivityOperation.ETag,
        ActivityOperation.AppId, 
 	   case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
 		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       case ActivityOperation.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	   else 'Unknown yet' end as 'ActivityType', 
+       ActivityOperation.ActivityType as 'ActivityType', 
        case ActivityOperation.OperationType 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
@@ -80,8 +82,10 @@ select
        datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime')as 'ExpirationTime',
        datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') as 'StartTime',
        datetime(ActivityOperation.EndTime, 'unixepoch', 'localtime') as 'EndTime',
-       ActivityOperation.Payload, 
-       ActivityOperation.PlatformDeviceId 
+       ActivityOperation.Tag, 
+       ActivityOperation.ClipboardPayload,
+       ActivityOperation.PlatformDeviceId,
+       ActivityOperation.Payload 
        
 from   ActivityOperation 
        left outer join Activity on ActivityOperation.Id = Activity.Id
@@ -91,8 +95,7 @@ select
        Activity.AppId, 
 	   case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
 		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       case Activity.ActivityType when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	   else 'Unknown yet' end as 'ActivityType', 
+       Activity.ActivityType as 'ActivityType', 
        case Activity.ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
@@ -101,8 +104,10 @@ select
        datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
        datetime(Activity.StartTime, 'unixepoch', 'localtime') as 'StartTime',
        datetime(Activity.EndTime, 'unixepoch', 'localtime') as 'EndTime',
-       Activity.Payload, 
-       Activity.PlatformDeviceId 
+       Activity.Tag,
+       activity.ClipboardPayload,
+       Activity.PlatformDeviceId,
+       Activity.Payload  
        
 from   Activity
 where  Activity.Id not in (select ActivityOperation.Id from ActivityOperation)
@@ -110,18 +115,15 @@ order by Etag desc
 "@ 
 write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query|ConvertFrom-String -Delimiter '\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Payload, PlatformDeviceId)
+$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, ClipboardPayload, PlatformDeviceId, Payload)
 $dbcount = $dbresults.count
 $sw.stop()
 $T0 = $sw1.Elapsed
 write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0  -> $dbcount Entries found."
 if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 
-
-
 #Query HKCU, check results against the Database 
 $Registry = [pscustomobject]@()
-$DeviceID =  (Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object 
 $UserBias = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").ActiveTimeBias
 $UserDay = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").DaylightBias
 			$Bias = -([convert]::ToInt32([Convert]::ToString($UserBias,2),2))
@@ -141,21 +143,23 @@ $Registry = @(foreach ($entry in $DeviceID){$ra++
                 $Make = (get-itemproperty -path $dpath).DeviceMake
                 $Model= (get-itemproperty -path $dpath).DeviceModel 
                 [PSCustomObject]@{
-                                ID = $ID
-                                Type = $Type
-                                Name = $Name
-                                Make = $Make
+                                ID =    $ID
+                                Type =  $Type
+                                Name =  $Name
+                                Make =  $Make
                                 Model = $Model
                      }
             }        
             )
 
-# Hash table with Known Folder GUIDs s 
-# "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
-#
+
+
 # HKLM: \SOFTWARE\Mozilla\Firefox\TaskBarIDs :
 # 308046B0AF4A39CB is Mozilla Firefox 64bit
 # E7CF176E110C211B is Mozilla Firefox 32bit
+
+# Hash table with Known Folder GUIDs  
+# Reference: "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
 
 $known = @{
             "308046B0AF4A39CB" = "Mozilla Firefox 64bit";
@@ -258,19 +262,19 @@ $Output = foreach ($item in $dbresults ){$rb++
                     Write-Progress -id 4 -Activity "Creating Output" -Status "with matching Registry entries - $rc of $($Registry.count))" -PercentComplete (([double]$rc / $Registry.count)*100) -ParentID 1
                     if($item.PlatformDeviceId -eq $rin.ID){
                     
-                    $platform = ($item.Appid|convertfrom-json).platform
-                    $type = ($item.Payload |ConvertFrom-Json).Type
-                    $Duration = ($item.Payload |ConvertFrom-Json).activeDurationSeconds
-                    $displayText = ($item.Payload |ConvertFrom-Json).displayText
-                    $description = if ((($item.Payload |ConvertFrom-Json).description) -eq $item.AppActivityId)
-                            {($item.Payload |ConvertFrom-Json).description} 
-                            elseif(($item.Payload |ConvertFrom-Json).description -ne $null){($item.Payload |ConvertFrom-Json).description}
-                            else {$item.AppActivityId}
+                    # Get Payload information
+
+                    $type =        if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).Type}
+                    $Duration =    if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).activeDurationSeconds}
+                    $displayText = if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).displayText}
+                    $description = if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).description} else{$item.payload}
+                    $displayname = if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).appDisplayName}
+                    $content =     if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).contentUri}
+                    $timezone =    if($item.ActivityType -notin (10,11,12,13,15)){($item.Payload |ConvertFrom-Json).userTimezone}
                     
-                    $displayname = ($item.Payload |ConvertFrom-Json).appDisplayName
-                    $content = ($item.Payload |ConvertFrom-Json).contentUri
-                    #Select the application name for x_exe, windows_win32 and Windows_universal entries
-                    $AppName = $(if (($item.Appid|convertfrom-json).platform[0] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[0]}
+                    # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
+                    $platform =         ($item.Appid|convertfrom-json).platform
+                    $AppName =    $(if (($item.Appid|convertfrom-json).platform[0] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[0]}
 		                        elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_win32"){($item.Appid|convertfrom-json).application[0]}
 		                        elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_universal"){($item.Appid|convertfrom-json).application[0]}
                                 elseif (($item.Appid|convertfrom-json).platform[1] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[1]}
@@ -286,38 +290,41 @@ $Output = foreach ($item in $dbresults ){$rb++
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
                     
                     [PSCustomObject]@{
-                                ETag = $item.ETag 
-                                App_name = $AppName
-                                DisplayText = $displayText
-                                'Description/Hash' = $description
-                                DisplayName = $displayname
-                                Content = $content
-                                Type = $type
-                                ActivityType = $item.ActivityType 
-                                ActivityStatus = $item.ActivityStatus
-                                IsInUploadQueue = $item.IsInUploadQueue
-                                Duration = $Duration
+                                ETag =             $item.ETag 
+                                App_name =         $AppName
+                                DisplayText =      $displayText
+                                Description =      $description
+                                DisplayName =      $displayname
+                                AppActivityId =    $item.AppActivityId
+                                Content =          $content
+                                Tag =              $item.Tag
+                                Clipboard =        $item.ClipboardPayload
+                                Type =             $type
+                                ActivityType =     if($item.ActivityType -eq 5){'Open App/File/Page'}elseif($item.ActivityType -eq 6){'App In Use/Focus'}else{$item.ActivityType}
+                                ActivityStatus =   $item.ActivityStatus
+                                IsInUploadQueue =  $item.IsInUploadQueue
+                                Duration =         $Duration
                                 LastModifiedTime = Get-Date($item.LastModifiedTime) -f s
-                                ExpirationTime = Get-Date($item.ExpirationTime) -f s
-                                StartTime = Get-Date($item.StartTime) -f s
-                                EndTime = $endtime
+                                ExpirationTime =   Get-Date($item.ExpirationTime) -f s
+                                StartTime =        Get-Date($item.StartTime) -f s
+                                EndTime =          $endtime
+                                TimeZone =         $timezone
                                 PlatformDeviceId = $item.PlatformDeviceId 
-                                DeviceType = 
-                                                if($rin.Type -eq 15){"Windows 10 Laptop"}
-                                                elseif($rin.Type -eq 1){"Xbox One"}
-                                                elseif($rin.Type -eq 6){"Apple iPhone"}
-                                                elseif($rin.Type -eq 7){"Apple iPad"}
-                                                elseif($rin.Type -eq 8){"Android device"}
-                                                elseif($rin.Type -eq 9){"Windows 10 Desktop"}
-                                                elseif($rin.Type -eq 9){"Desktop PC"}
-                                                elseif($rin.Type -eq 11){"Windows 10 Phone"}
-                                                elseif($rin.Type -eq 12){"Linux device"}
-                                                elseif($rin.Type -eq 13){"Windows IoT"}
-                                                elseif($rin.Type -eq 14){"Surface Hub"}
-                                                else{$rin.Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
-                                Name = $rin.Name
-                                Make = $rin.Make
-                                Model = $rin.Model
+                                DeviceType =           if($rin.Type -eq 15){"Windows 10 Laptop"}
+                                                   elseif($rin.Type -eq 1){"Xbox One"}
+                                                   elseif($rin.Type -eq 6){"Apple iPhone"}
+                                                   elseif($rin.Type -eq 7){"Apple iPad"}
+                                                   elseif($rin.Type -eq 8){"Android device"}
+                                                   elseif($rin.Type -eq 9){"Windows 10 Desktop"}
+                                                   elseif($rin.Type -eq 9){"Desktop PC"}
+                                                   elseif($rin.Type -eq 11){"Windows 10 Phone"}
+                                                   elseif($rin.Type -eq 12){"Linux device"}
+                                                   elseif($rin.Type -eq 13){"Windows IoT"}
+                                                   elseif($rin.Type -eq 14){"Surface Hub"}
+                                                   else{$rin.Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
+                                Name =             $rin.Name
+                                Make =             $rin.Make
+                                Model =            $rin.Model
                                 }
                         }                             
               }
