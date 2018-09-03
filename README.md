@@ -66,8 +66,8 @@ ________________________________________________________________________________
 
 * ### Documentation ###
    
-   - Documentation for the database and its entries - (*[WindowsTimeline.pdf](WindowsTimeline.pdf)*)
-   - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     *(Journal of Forensic Sciences DOI:10.1111/1556-4029.13875)*<br>
+   - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the upcoming Win10 v1809 upgrade.*
+   - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     (Journal of Forensic Sciences DOI:10.1111/1556-4029.13875) - *(Win10 1803)*<br>
      __________________________________________________________________________________________
 * ### PowerShell scripts *(Win10 - 1803,1809)* ###
    
