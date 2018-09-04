@@ -47,10 +47,10 @@ ________________________________________________________________________________
 2. [WindowsTimeline (1809)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields.
 
 **Tested on:**
-- [DB Browser for SQLite](http://sqlitebrowser.org/),
+- [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10,
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
-- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254)
+- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17744.rc5_release.180818-1845)
 ___________________________________________________________________________________________
 
   **Note:**  The output of the queries can be exported as a TX or CSV so that it can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
