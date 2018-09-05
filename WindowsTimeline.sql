@@ -21,7 +21,7 @@
 -- EndTime: The time when the user stopped engaging with the UserActivity  
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
--- May 2018
+-- May/September 2018
 
 
 SELECT -- This the ActivityOperation Table Query
@@ -144,7 +144,7 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
-  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
+  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name/Payload',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.description') end as 'Original Full Path /Url', 
   case when ActivityOperation.ActivityType not in (11,12,15) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
@@ -264,7 +264,7 @@ select -- This the Activity Table Query
   Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
-  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
+  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Displayed Name/Payload',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.description') end as 'Original Full Path /Url',
   case when Activity.ActivityType in (11,12,15) then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
