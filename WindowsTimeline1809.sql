@@ -1,4 +1,4 @@
--- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
+-- SQLite query to get any useful results from MS Windows 1809 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime"  converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
@@ -61,8 +61,8 @@ SELECT -- This the ActivityOperation Table Query
 	case when ActivityOperation.ActivityType not in (11,12,15) then 
 	json_extract(ActivityOperation.Payload, '$.description')||')' else ''  end as 'Full Path',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
-	case when ActivityOperation.ActivityType in (11,12,15) then ActivityOperation.Payload
-	   when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
+	case when ActivityOperation.ActivityType in (11,12,15) then ActivityOperation.Payload else
+	   when ActivityOperation.ActivityType in (11,12,15) and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
 	end as 'Payload/Timezone',
@@ -135,7 +135,7 @@ SELECT -- This the ActivityOperation Table Query
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
    substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID', 
-  ActivityOperation.UploadAllowedByPolicy as 'UploadAllowedByPolicy',
+  case ActivityOperation.UploadAllowedByPolicy when 0 then 'No' when 1 then 'Yes' else ActivityOperation.UploadAllowedByPolicy end as 'UploadAllowedByPolicy',
   ActivityOperation.PatchFields as 'PatchFields',   
   ActivityOperation.UserActionState as 'UserActionState',
   hex(ActivityOperation.ClipboardPayload) as 'ClipboardPayload',
@@ -144,11 +144,11 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
-   json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') as 'Original Displayed Name',
-   json_extract(ActivityOperation.OriginalPayload, '$.displayText') as 'Original File/title opened',
-   json_extract(ActivityOperation.OriginalPayload, '$.description') as 'Original Full Path /Url', 
-   coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) as 'Original_App/Uri',
-   time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') as 'Orig.Duration'
+  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
+  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
+  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.description') end as 'Original Full Path /Url', 
+  case when ActivityOperation.ActivityType not in (11,12,15) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
+  case when ActivityOperation.ActivityType not in (11,12,15) then time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') end as 'Orig.Duration'
 
 from Activity_PackageId
 join ActivityOperation on Activity_PackageId.ActivityId = ActivityOperation.Id  
@@ -230,8 +230,8 @@ select -- This the Activity Table Query
    datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModified',
 	case 
 		when Activity.OriginalLastModifiedOnClient > 0 
-			THEN datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') 
-			ELSE '  -  ' 
+			then datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') 
+			else '  -  ' 
 	end as 'LastModifiedOnClient',
 	case 
 		when Activity.EndTime > 0 
@@ -264,11 +264,11 @@ select -- This the Activity Table Query
   Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
-   json_extract(Activity.OriginalPayload, '$.appDisplayName') as 'Original Program Name',
-   json_extract(Activity.OriginalPayload, '$.displayText') as 'Original File/title opened',
-   json_extract(Activity.OriginalPayload, '$.description') as 'Original Full Path /Url',
-   coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) as 'Original_App/Uri',
-   time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) as 'Orig.Duration'
+  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
+  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',
+  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.description') end as 'Original Full Path /Url',
+  case when Activity.ActivityType in (11,12,15) then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
+  case when Activity.ActivityType in (11,12,15) then time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) end as 'Orig.Duration'
    
 from Activity_PackageId
 join Activity on Activity_PackageId.ActivityId = Activity.Id  
