@@ -61,7 +61,7 @@ SELECT -- This the ActivityOperation Table Query
 	case when ActivityOperation.ActivityType not in (11,12,15) then 
 	json_extract(ActivityOperation.Payload, '$.description')||')' else ''  end as 'Full Path',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
-	case when ActivityOperation.ActivityType in (11,12,15) then ActivityOperation.Payload else
+	case when ActivityOperation.ActivityType in (11,12,15) then ActivityOperation.Payload 
 	   when ActivityOperation.ActivityType in (11,12,15) and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
