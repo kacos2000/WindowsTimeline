@@ -9,7 +9,7 @@ Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 * ### [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
-    Updated to work with Win10 v1809 *(Build 17751.1 ~~17744.1003~~ RC5)*<br>
+    Updated to work with Win10 v1809 *(Build 17754.1 ~~17744.1003~~ RC5)*<br>
     
     *Screenshots of WindowsTimeline.sql*
     ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
@@ -33,7 +33,7 @@ ________________________________________________________________________________
 - Activity_PackageID,
 - ActivityOperation
 
-**Other queries (Win10 - 1803):** *(Build 17751.1 ~~17744.rc5_release.180818-1845~~ )* 
+**Other queries (Win10 - 1803):** *(Build 17754.1 ~~17744.rc5_release.180818-1845~~ )* 
 
 1. [A re-formated Smartlookup view query](SmartLookup.sql) - Smartlookup is a view included in ActivitiesCache.db. This query makes it a bit more readable but does not extract the data in the BLOBs *(does not need the JSON1 extension)*. 
 2. [Activity_PackageID timeline query](Activity_PackageID_Timeline.sql) - Creates a timeline according to the Expiry Dates in the Activity_PackageID table.
@@ -50,7 +50,7 @@ ________________________________________________________________________________
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
-- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17751.1 ~~17744.rc5_release.180818-1845~~)
+- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17754.1 ~~17744.rc5_release.180818-1845~~)
 ___________________________________________________________________________________________
 
   **Note:**  The output of the queries can be exported as a TX or CSV so that it can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
