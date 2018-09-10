@@ -1,4 +1,4 @@
--- SQLite query to get any useful results from MS Windows 1809 Timeline feature's database (ActivitiesCache.db).
+-- SQLite query to get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime"  converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
@@ -21,7 +21,7 @@
 -- EndTime: The time when the user stopped engaging with the UserActivity  
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
--- May/September 2018
+-- May 2018
 
 
 SELECT -- This the ActivityOperation Table Query
@@ -135,16 +135,11 @@ SELECT -- This the ActivityOperation Table Query
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
    substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID', 
-  case ActivityOperation.UploadAllowedByPolicy when 0 then 'No' when 1 then 'Yes' else ActivityOperation.UploadAllowedByPolicy end as 'UploadAllowedByPolicy',
-  ActivityOperation.PatchFields as 'PatchFields',   
-  ActivityOperation.UserActionState as 'UserActionState',
   hex(ActivityOperation.ClipboardPayload) as 'ClipboardPayload',
-  case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
-  ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
-  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name/Payload',
+  case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.description') end as 'Original Full Path /Url', 
   case when ActivityOperation.ActivityType not in (11,12,15) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
@@ -230,8 +225,8 @@ select -- This the Activity Table Query
    datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModified',
 	case 
 		when Activity.OriginalLastModifiedOnClient > 0 
-			then datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') 
-			else '  -  ' 
+			THEN datetime(Activity.OriginalLastModifiedOnClient, 'unixepoch', 'localtime') 
+			ELSE '  -  ' 
 	end as 'LastModifiedOnClient',
 	case 
 		when Activity.EndTime > 0 
@@ -255,16 +250,11 @@ select -- This the Activity Table Query
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
-  '' as 'UploadAllowedByPolicy',
-  '' as 'PatchFields',  
-  Activity.UserActionState as 'UserActionState',
   hex(Activity.ClipboardPayload) as 'ClipboardPayload',
-  case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
-  Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
-  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Displayed Name/Payload',
+  case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.description') end as 'Original Full Path /Url',
   case when Activity.ActivityType in (11,12,15) then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
