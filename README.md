@@ -116,7 +116,7 @@ ________________________________________________________________________________
  __________________________________________________________________________________________
 
 **Related Windows Apps**
-- [YourPhone](https://www.microsoft.com/en-us/p/your-phone/9nmpj99vjbwv?ocid=AID681541_aff_7593_1243925&activetab=pivot:overviewtab)
+- [YourPhone artifacts](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)
 - [Connected Devices](https://www.microsoft.com/en-us/p/connected-devices/9nblggh4tssg?activetab=pivot%3aoverviewtab)
 
 **Status**
