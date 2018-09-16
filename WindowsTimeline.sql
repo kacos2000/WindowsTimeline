@@ -60,6 +60,8 @@ SELECT -- This the ActivityOperation Table Query
 	json_extract(ActivityOperation.Payload, '$.displayText') else '' end as 'File Opened',
 	case when ActivityOperation.ActivityType not in (11,12,15) then 
 	json_extract(ActivityOperation.Payload, '$.description')||')' else ''  end as 'Full Path',
+	case when ActivityOperation.ActivityType not in (11,12,15) then 
+	json_extract(ActivityOperation.Payload, '$.contenturi') else ''  end as 'Content',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case when ActivityOperation.ActivityType in (11,12,15) then ActivityOperation.Payload
 	   when json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -186,6 +188,8 @@ select -- This the Activity Table Query
 	json_extract(Activity.Payload, '$.displayText') else '' end as 'File Opened',
 	case when Activity.ActivityType not in (11,12,15) then 
 	json_extract(Activity.Payload, '$.description')||')' else ''  end as 'Full Path',
+	case when Activity.ActivityType not in (11,12,15) then 
+	json_extract(Activity.Payload, '$.contentUri') else ''  end as 'Content',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
  case when Activity.ActivityType in (11,12,15) then Activity.Payload
        when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
