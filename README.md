@@ -9,7 +9,7 @@ Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 * ### [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
-    Updated to work with Win10 v1809 *(Build 17754.1 ~~17744.1003~~ RC5)*<br>
+    Updated to work with Win10  1809 *(Build 17754.1 ~~17744.1003~~ RC5), 1903*<br>
     
     *Screenshots of WindowsTimeline.sql*
     ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
@@ -41,16 +41,16 @@ ________________________________________________________________________________
 3. [PackageID check](PackageID.sql) - Check that the 'PackageID' in the 'Activity.AppId' json field has the same value as the 'Activity_PackageId' table's 'PackageName' field *(for x_exe and Windows_win32 entries)*.
 4. [App_Platform](app_platform.sql) - A simple query to help understand the different PlatformID combinations (extracted from the AppID json field)
 
-**Other queries (Win10 - 1809):**
+**Other queries (Win10 - 1809/1903):**
 
-1. [A re-formated Smartlookup view query (1809)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
-2. [WindowsTimeline (1809)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields.
+1. [A re-formated Smartlookup view query (1809/1903)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
+2. [WindowsTimeline (1809/1903)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809/1903 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields.
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
-- and Microsoft Windows 10 version [1803](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17754.1 ~~17744.rc5_release.180818-1845~~)
+- and Microsoft Windows 10 version [1803, 1903](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17754.1 ~~17744.rc5_release.180818-1845~~) and 1903 (18353.1)
 ___________________________________________________________________________________________
 
   **Note:**  The output of the queries can be exported as a TX or CSV so that it can be used with [log2timeline](https://github.com/log2timeline/plaso/wiki/Windows-Packaged-Release), [TimelineExplorer](https://ericzimmerman.github.io/Software/TimelineExplorer.zip) or [MS Excel](https://products.office.com/en-ca/excel). For example, in [DB Browser for SQLite](http://sqlitebrowser.org/) at the bottom right corner, click on
@@ -66,10 +66,10 @@ ________________________________________________________________________________
 
 * ### Documentation ###
    
-   - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the upcoming Win10 v1809 upgrade.*
+   - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the ~upcoming~ Win10 v1809 & v1903 upgrades.*
    - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     (Journal of Forensic Sciences DOI:10.1111/1556-4029.13875) - *(Win10 1803)*<br>
      __________________________________________________________________________________________
-* ### PowerShell scripts *(Win10 - 1803,1809)* ###
+* ### PowerShell scripts *(Win10 - 1803,1809,1903)* ###
    
    :shipit: Require SQLite3.exe <br> Note: *The PowerShell scripts are not the fastest way to parse Windows Timeline (~16min for a 10500 entry db)*
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
