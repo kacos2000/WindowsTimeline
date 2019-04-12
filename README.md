@@ -45,6 +45,9 @@ ________________________________________________________________________________
 
 1. [A re-formated Smartlookup view query (1809/1903)](SmartLookup_1809.sql) - Smartlookup  for Win10 v1809 ActivitiesCache.db. *(does not need the JSON1 extension)*. 
 2. [WindowsTimeline (1809/1903)](WindowsTimeline1809.sql) - Full SQLite query that works with Win10 v1809/1903 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields.
+3. [WindowsTimeline (1903)](WindowsTimeline1903.sql) - Full SQLite query that works with Win10 v1903 ActivitiesCache.db. Will not work with earlier Windows versions (1803) as the latest Windows version has more dB fields. Now copy/paste operations can be seen as wel and clipboard text (Base64 encoded):
+
+      ![1903_screenshot](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/1903b.JPG)
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
