@@ -48,6 +48,8 @@ ________________________________________________________________________________
 3. [WindowsTimeline (1903)](WindowsTimeline1903.sql) - Full SQLite query that works with Win10 v1903 ActivitiesCache.db. Will not work with earlier Windows versions (1803/1809) as the latest Windows version 19H1 has more dB fields. Now copy/paste operations can be seen as wel and clipboard text (Base64 encoded):
 
       ![1903_screenshot](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/1903b.JPG)
+      
+      [Clipboard copy/paste operations (1903)](clipboard1903.sql)
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
