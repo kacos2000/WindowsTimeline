@@ -1,4 +1,4 @@
--- SQLite query to get any useful results from MS Windows 1809 Timeline feature's database (ActivitiesCache.db).
+-- SQLite query to get any useful results from MS Windows 1903 Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime"  converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
@@ -7,7 +7,9 @@
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
+
 -- HKLM: \SOFTWARE\Mozilla\Firefox\TaskBarIDs :
+-- HKCU: \SOFTWARE\Clients\StartMenuInternet:
 -- 308046B0AF4A39CB is Mozilla Firefox 64bit
 -- E7CF176E110C211B is Mozilla Firefox 32bit
 --
@@ -149,6 +151,7 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation."Group" as 'Group',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
   ActivityOperation.GroupItems as 'GroupItems',
+  ActivityOperation.Attachments as 'Attachments',
   case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
@@ -278,6 +281,7 @@ select -- This the Activity Table Query
   Activity."Group" as 'Group',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.GroupItems as 'GroupItems',
+  '' as 'Attachments',
   case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
