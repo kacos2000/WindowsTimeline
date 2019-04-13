@@ -144,8 +144,7 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation.PatchFields as 'PatchFields',   
   ActivityOperation.UserActionState as 'UserActionState',
   
-  case when json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') = 'Text' then 
-  json_extract(ActivityOperation.ClipboardPayload, '$[0].content') else ' ' end as 'Text(Base64)',
+
   
   ActivityOperation.ClipboardPayload as 'ClipboardPayload',
   ActivityOperation."Group" as 'Group',
@@ -155,6 +154,17 @@ SELECT -- This the ActivityOperation Table Query
   case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
+  case when ActivityOperation.ActivityType in (10,16) then json_extract(ActivityOperation.Payload, '$.clipboardDataId') else '' end as 'clipboardDataId',
+  case when json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') = 'Text' then 
+  json_extract(ActivityOperation.ClipboardPayload, '$[0].content') else ' ' end as 'Text(Base64)',
+  case when ActivityOperation.ActivityType in (10,16) then json_extract(ActivityOperation.Payload, '$.1[0].content') else '' end as 'Payload (Text)',
+  
+  case when ActivityOperation.ActivityType in (10,16) then json_extract(ActivityOperation.Payload, '$.gdprType') else '' end as 'gdprType',
+  case when ActivityOperation.ActivityType in (10,16) then json_extract(ActivityOperation.ClipboardPayload, '$.1[0].formatName') else '' end as 'Format',
+  case when ActivityOperation.ActivityType in (10,16) then json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') else '' end as 'Clip Type',
+   
+
+  
   ActivityOperation.DdsDeviceId as 'DdsDeviceId',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
   case when ActivityOperation.ActivityType not in (11,12,15) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
@@ -162,6 +172,8 @@ SELECT -- This the ActivityOperation Table Query
   case when ActivityOperation.ActivityType not in (11,12,15) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
   case when ActivityOperation.ActivityType not in (11,12,15) then time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') end as 'Orig.Duration'
 
+  
+  
 from Activity_PackageId
 join ActivityOperation on Activity_PackageId.ActivityId = ActivityOperation.Id  
 where 	Activity_PackageId.Platform = json_extract(ActivityOperation.AppId, '$[0].platform') 
@@ -274,8 +286,7 @@ select -- This the Activity Table Query
   '' as 'PatchFields',  
   Activity.UserActionState as 'UserActionState',
   
-  case when json_extract(Activity.ClipboardPayload, '$[0].formatName') = 'Text' then 
-  json_extract(Activity.ClipboardPayload, '$[0].content') else ' ' end as 'Text(Base64)',
+
   
   Activity.ClipboardPayload as 'ClipboardPayload',
   Activity."Group" as 'Group',
@@ -284,7 +295,17 @@ select -- This the Activity Table Query
   '' as 'Attachments',
   case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
   Activity.EnterpriseId as 'EnterpriseId',
-  hex(Activity.ParentActivityId) as 'ParentActivityId',
+  hex(Activity.ParentActivityId)  as 'ParentActivityId',
+  case when Activity.ActivityType in (10,16) then json_extract(Activity.Payload, '$.clipboardDataId') else '' end as 'clipboardDataId',
+  
+  case when json_extract(Activity.ClipboardPayload, '$[0].formatName') = 'Text' then 
+  json_extract(Activity.ClipboardPayload, '$[0].content') else ' ' end as 'Text(Base64)',
+  case when Activity.ActivityType in (10,16) then json_extract(Activity.Payload, '$.1[0].content') else '' end as 'Payload (Text)',
+  
+  case when Activity.ActivityType in (10,16) then json_extract(Activity.Payload, '$.gdprType') else '' end as 'gdprType',
+  case when Activity.ActivityType in (10,16) then json_extract(Activity.Payload, '$.1[0].formatName') else '' end as 'Format',
+  case when Activity.ActivityType in (10,16) then json_extract(Activity.ClipboardPayload, '$[0].formatName') else '' end as 'Clip Type',
+  
   Activity.DdsDeviceId as 'DdsDeviceId',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
   case when Activity.ActivityType in (11,12,15) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',

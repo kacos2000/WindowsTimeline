@@ -32,9 +32,12 @@ Select
 
 
   case when json_extract(Activity.ClipboardPayload, '$[0].formatName') = 'Text' then 
-  json_extract(Activity.ClipboardPayload, '$[0].content') else ' ' end as 'Text(Base64)',
+  json_extract(Activity.ClipboardPayload, '$[0].content') else ' ' end as 'Clip Text(Base64)',
+  json_extract(Activity.ClipboardPayload, '$[0].formatName') as 'Format',
+  json_extract(Activity.Payload, '$.1[0].content') as 'Payload Content', 
+  json_extract(Activity.Payload, '$.1[0].formatName')  as 'Type',
   
-  Activity.ClipboardPayload as 'ClipboardPayload',
+ 
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
 		when 10 then 'Clipboard' when 16 then 'Copy/Paste'
@@ -42,12 +45,14 @@ Select
   Activity."Group" as 'Group',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.GroupItems as 'GroupItems',
+  json_extract(Activity.Payload, '$.clipboardDataId') as 'clipboardDataId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',
+  
   Activity.DdsDeviceId as 'DdsDeviceId',
   Activity.PlatformDeviceId as 'Device ID', 
    cast((Activity.ExpirationTime - Activity.LastModifiedTime) as integer) / '86400' as 'Expires In days',
 
-   json_extract(Activity.Payload, '$.clipboardDataId') as 'clipboardDataId',
+   
 
 	case 
 		when Activity.OriginalLastModifiedOnClient > 0 
@@ -73,7 +78,11 @@ Select
 				substr(hex(Activity_PackageId.ActivityId), 9, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' ||
-				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID'
+				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
+				
+	 Activity.Payload as 'Payload',	
+	 Activity.ClipboardPayload as 'ClipboardPayload'
+      
 
  
 from Activity_PackageId
