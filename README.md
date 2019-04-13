@@ -117,6 +117,15 @@ ________________________________________________________________________________
                 * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
                 * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
  __________________________________________________________________________________________
+ 
+   * Windows versions (OSBuild*) supporting Timeline:<br>
+        - March 2019 Update (18875)<br>
+        - October 2018 Update (17763)<br>
+        - April 2018 Update (17134)<br>
+        - ~Fall Creators Update (16299)~<br>
+        - ~Creators Update (15063)~<br>
+        - ~Anniversary Update (14393)~<br>
+
 
 **Related Windows Apps**
 - [YourPhone artifacts](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)
