@@ -49,7 +49,11 @@ ________________________________________________________________________________
 
       ![1903_screenshot](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/1903b.JPG)
       
-      [Clipboard copy/paste operations (1903)](clipboard1903.sql) - Query to get just clipboard related data.
+      *-->* [Clipboard copy/paste operations (1903)](clipboard1903.sql) - SQLite query to get just clipboard related data.
+      
+      * [Clipboard in Windows 10](https://support.microsoft.com/en-us/help/4028529/windows-10-clipboard)<br>
+      * [Get help with clipboard (Applies to: Windows 10)](https://support.microsoft.com/en-us/help/4464215/windows-10-get-help-with-clipboard)<br>
+      * [Using Windows 10’s New Clipboard: History and Cloud Sync](https://www.howtogeek.com/351978/using-windows-10s-new-clipboard-history-and-cloud-sync/)<br>
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
