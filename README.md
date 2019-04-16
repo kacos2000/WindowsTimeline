@@ -124,7 +124,17 @@ ________________________________________________________________________________
                 * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
  __________________________________________________________________________________________
  
-   * Windows versions (OSBuild*) supporting Timeline:<br>
+   * **ActivityTypes observed:**
+        - 2  (Notifications) 
+        - 5  (Open Application/File/Webpage)
+        - 6  (Application in Use/Focus)
+        - 10 (Clipboard Text)
+        - 11 (Windows operations/do not sync)
+        - 12 (Windows operations/do not sync)
+        - 16 (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
+   
+   
+   * **Windows versions (OSBuild*) supporting Timeline:**<br>
         - March 2019 Update (18875)<br>
         - October 2018 Update (17763)<br>
         - April 2018 Update (17134)<br>
