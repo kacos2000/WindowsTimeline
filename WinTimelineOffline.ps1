@@ -94,7 +94,11 @@ select
        ActivityOperation.AppId, 
 	   case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
 		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       ActivityOperation.ActivityType as 'ActivityType', 
+       	case ActivityOperation.ActivityType
+        when 2 then 'Notification'		
+		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+		when 10 then 'Clipboard' when 16 then 'Copy/Paste'
+		else ActivityOperation.ActivityType	end as 'Activity_type', 
        case ActivityOperation.OperationType 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
@@ -116,7 +120,11 @@ select
        Activity.AppId, 
 	   case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
 		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       Activity.ActivityType as 'ActivityType', 
+       	case Activity.ActivityType 
+		when 2 then 'Notification'
+		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+		when 10 then 'Clipboard' when 16 then 'Copy/Paste'
+		else Activity.ActivityType 	end as 'Activity_type', 
        case Activity.ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
@@ -332,7 +340,7 @@ $Output = foreach ($item in $dbresults ){$rb++
                                 Tag =              $item.Tag
                                 Clipboard =        $item.ClipboardPayload
                                 Type =             $type
-                                ActivityType =     if($item.ActivityType -eq 5){'Open App/File/Page'}elseif($item.ActivityType -eq 6){'App In Use/Focus'}else{$item.ActivityType}
+                                ActivityType =     $item.ActivityType
                                 ActivityStatus =   $item.ActivityStatus
                                 IsInUploadQueue =  $item.IsInUploadQueue
                                 Duration =         $Duration
