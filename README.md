@@ -138,9 +138,6 @@ ________________________________________________________________________________
         - March 2019 Update (18875)<br>
         - October 2018 Update (17763)<br>
         - April 2018 Update (17134)<br>
-        - ~Fall Creators Update (16299)~<br>
-        - ~Creators Update (15063)~<br>
-        - ~Anniversary Update (14393)~<br>
 
 
 **Related Windows Apps**
