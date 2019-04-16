@@ -50,10 +50,11 @@ ________________________________________________________________________________
       ![1903_screenshot](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/1903b.JPG)
       
       *-->* [Clipboard copy/paste operations (1903)](clipboard1903.sql) - SQLite query to get just clipboard related data.
-      
-      * [Clipboard in Windows 10](https://support.microsoft.com/en-us/help/4028529/windows-10-clipboard)<br>
-      * [Get help with clipboard (Applies to: Windows 10)](https://support.microsoft.com/en-us/help/4464215/windows-10-get-help-with-clipboard)<br>
-      * [Using Windows 10’s New Clipboard: History and Cloud Sync](https://www.howtogeek.com/351978/using-windows-10s-new-clipboard-history-and-cloud-sync/)<br>
+ __________________________________________________________________________________________
+   - About the clipboard sync:<br>
+         * [Clipboard in Windows 10](https://support.microsoft.com/en-us/help/4028529/windows-10-clipboard)<br>
+         * [Get help with clipboard (Applies to: Windows 10)](https://support.microsoft.com/en-us/help/4464215/windows-10-get-help-with-clipboard)<br>
+         * [Using Windows 10’s New Clipboard: History and Cloud Sync](https://www.howtogeek.com/351978/using-windows-10s-new-clipboard-history-and-cloud-sync/)<br>
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
@@ -128,7 +129,7 @@ ________________________________________________________________________________
         - 2  (Notifications) 
         - 5  (Open Application/File/Webpage)
         - 6  (Application in Use/Focus)
-        - 10 (Clipboard Text)
+        - 10 (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
         - 11 (Windows operations/do not sync)
         - 12 (Windows operations/do not sync)
         - 16 (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
@@ -139,7 +140,8 @@ ________________________________________________________________________________
         - October 2018 Update (17763)<br>
         - April 2018 Update (17134)<br>
 
-
+ __________________________________________________________________________________________
+ 
 **Related Windows Apps**
 - [YourPhone artifacts](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)
 - [Connected Devices](https://www.microsoft.com/en-us/p/connected-devices/9nblggh4tssg?activetab=pivot%3aoverviewtab)
