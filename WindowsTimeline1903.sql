@@ -69,9 +69,12 @@ SELECT -- This the ActivityOperation Table Query
 	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
 	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
-		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+		when 5 then 'Open App/File/Page' 
+		when 6 then 'App In Use/Focus' 
+		when 10 then 'Clipboard' 
+		when 16 then 'Copy/Paste'
 		else ActivityOperation.ActivityType 
-	end as 'Activity_type',
+	end as 'ActivityType',
 	case json_extract(ActivityOperation.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
 		when 'host' then 
@@ -210,9 +213,12 @@ select -- This the Activity Table Query
 	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
 	  end as 'Payload/Timezone',
 	case Activity.ActivityType 
-		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
+		when 5 then 'Open App/File/Page' 
+		when 6 then 'App In Use/Focus' 
+		when 10 then 'Clipboard' 
+		when 16 then 'Copy/Paste'
 	else Activity.ActivityType 
-	end as 'Activity_type',
+	end as 'ActivityType',
 	case json_extract(Activity.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
 		when 'host' then (case json_extract(Activity.AppId, '$[1].platform') 
