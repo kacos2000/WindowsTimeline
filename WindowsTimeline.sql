@@ -27,8 +27,10 @@
 SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag',
 	ActivityOperation.OperationOrder as 'Order',
-	case when ActivityOperation.ActivityType in (11,12,15) then ''
-	else json_extract(ActivityOperation.Payload, '$.appDisplayName') end as 'Program Name',
+	case when ActivityOperation.ActivityType =5 
+	then json_extract(ActivityOperation.Payload, '$.appDisplayName') 
+	else ''
+	end as 'Program Name',
 	case 
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -137,7 +139,7 @@ SELECT -- This the ActivityOperation Table Query
 			substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' || 
 			substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' || 
    substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID', 
-  hex(ActivityOperation.ClipboardPayload) as 'ClipboardPayload',
+  ActivityOperation.ClipboardPayload as 'ClipboardPayload',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
   hex(ActivityOperation.ParentActivityId) as 'ParentActivityId',
@@ -157,8 +159,10 @@ union  -- Join Activity & ActivityOperation Queries to get results from both Tab
 select -- This the Activity Table Query
    Activity.ETag as 'Etag',
    null as 'Order',  
-   case when Activity.ActivityType in (11,12,15) then ''
-   else json_extract(Activity.Payload, '$.appDisplayName') end as 'Program Name',
+   case when Activity.ActivityType = 5 
+   then json_extract(Activity.Payload, '$.appDisplayName') 
+   else ''
+   end as 'Program Name',
 	case 
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -168,8 +172,7 @@ select -- This the Activity Table Query
 			then 'Mozilla Firefox-64bit'
 			when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
 			then 'Mozilla Firefox-32bit'
-		when length (json_extract(Activity.AppId, '$[0].application')) > 17 and 
-				length(json_extract(Activity.AppId, '$[0].application')) < 22 
+		when length (json_extract(Activity.AppId, '$[0].application')) between 17 and 22 
 			then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),
 			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)' ),  
 			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
@@ -196,10 +199,12 @@ select -- This the Activity Table Query
 	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
 	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
 	  end as 'Payload/Timezone',
-	case Activity.ActivityType 
-		when 5 then 'Open App/File/Page' when 6 then 'App In Use/Focus' 
-	else Activity.ActivityType 
-	end as 'Activity_type',
+  case Activity.ActivityType 
+		when 5 then 'Open App/File/Page' 
+		when 6 then 'App In Use/Focus' 
+		when 10 then 'Clipboard' 
+		when 16 then 'Copy/Paste'
+		else Activity.ActivityType end as 'Activity_type',
 	case json_extract(Activity.AppId, '$[0].platform') 
 		when 'afs_crossplatform' then 'Yes' 
 		when 'host' then (case json_extract(Activity.AppId, '$[1].platform') 
@@ -211,13 +216,22 @@ select -- This the Activity Table Query
 		else json_extract(Activity.AppId, '$[0].platform') 
 	end as 'Platform',
    case Activity.ActivityStatus 
-		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		when 1 then 'Active' 
+		when 2 then 'Updated' 
+		when 3 then 'Deleted' 
+		when 4 then 'Ignored' 
 	end as 'TileStatus',
    null as 'WasRemoved',
    'No' as 'UploadQueue',
-   case Activity.IsLocalOnly when 0 then 'No' when 1 then 'Yes' else Activity.IsLocalOnly end as 'IsLocalOnly',
-   case when Activity.ActivityType in (11,12,15) then ''
-   else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) end as 'App/Uri',
+   case Activity.IsLocalOnly
+		when 0 then 'No' 
+		when 1 then 'Yes' 
+		else Activity.IsLocalOnly 
+	end as 'IsLocalOnly',
+   case 
+		when Activity.ActivityType in (11,12,15) then ''
+		else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) 
+		end as 'App/Uri',
    Activity.Priority as 'Priority',	  
    case when Activity.ActivityType in (11,12,15) then ''
    else time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch') end as 'Active Duration',
@@ -254,7 +268,7 @@ select -- This the Activity Table Query
 				substr(hex(Activity_PackageId.ActivityId), 13, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 17, 4) || '-' ||
 				substr(hex(Activity_PackageId.ActivityId), 21, 12) || '}' as 'ID',
-  hex(Activity.ClipboardPayload) as 'ClipboardPayload',
+  Activity.ClipboardPayload as 'ClipboardPayload',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.EnterpriseId as 'EnterpriseId',
   hex(Activity.ParentActivityId) as 'ParentActivityId',

@@ -27,8 +27,11 @@
 SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag',
 	ActivityOperation.OperationOrder as 'Order',
-	case when ActivityOperation.ActivityType in (10,11,12,15,16) then ''
-	else json_extract(ActivityOperation.Payload, '$.appDisplayName') end as 'Program Name',
+	case 
+		when ActivityOperation.ActivityType = 5 
+		then json_extract(ActivityOperation.Payload, '$.appDisplayName') 
+		else ''
+		end as 'Program Name',
 	case 
 		when ActivityOperation.ActivityType in (11,12,15) then json_extract(ActivityOperation.AppId, '$[0].application')
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
@@ -88,7 +91,10 @@ SELECT -- This the ActivityOperation Table Query
 		else json_extract(ActivityOperation.AppId, '$[0].platform') 
 	end as 'Platform',
    case ActivityOperation.OperationType 
-		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
+		when 1 then 'Active' 
+		when 2 then 'Updated' 
+		when 3 then 'Deleted' 
+		when 4 then 'Ignored' 
 	end as 'TileStatus',
     case 
 		when ActivityOperation.Id in
@@ -152,7 +158,7 @@ SELECT -- This the ActivityOperation Table Query
   case ActivityOperation.UploadAllowedByPolicy when 0 then 'No' when 1 then 'Yes' else ActivityOperation.UploadAllowedByPolicy end as 'UploadAllowedByPolicy',
   ActivityOperation.PatchFields as 'PatchFields',   
   ActivityOperation.UserActionState as 'UserActionState',
-  ActivityOperation.ClipboardPayload as 'ClipboardPayload',
+  json_extract(ActivityOperation.ClipboardPayload,'$') as 'ClipboardPayload',
   case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
   ActivityOperation.GroupItems as 'GroupItems',
@@ -173,8 +179,11 @@ union  -- Join Activity & ActivityOperation Queries to get results from both Tab
 select -- This the Activity Table Query
    Activity.ETag as 'Etag',
    null as 'Order',  
-   case when Activity.ActivityType in (10,11,12,15,16) then ''
-   else json_extract(Activity.Payload, '$.appDisplayName') end as 'Program Name',
+   case 
+		when Activity.ActivityType =5 
+		then json_extract(Activity.Payload, '$.appDisplayName') 
+		else ''
+		end as 'Program Name',
 	case
 	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
@@ -234,7 +243,11 @@ select -- This the Activity Table Query
 	end as 'TileStatus',
    null as 'WasRemoved',
    'No' as 'UploadQueue',
-   case Activity.IsLocalOnly when 0 then 'No' when 1 then 'Yes' else Activity.IsLocalOnly end as 'IsLocalOnly',
+   case Activity.IsLocalOnly 
+		when 0 then 'No' 
+		when 1 then 'Yes' 
+		else Activity.IsLocalOnly 
+		end as 'IsLocalOnly',
    case when Activity.ActivityType in (10,11,12,15,16) then ''
    else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) end as 'App/Uri',
    Activity.Priority as 'Priority',	  
@@ -285,7 +298,7 @@ select -- This the Activity Table Query
   '' as 'UploadAllowedByPolicy',
   '' as 'PatchFields',  
   Activity.UserActionState as 'UserActionState',
-  Activity.ClipboardPayload as 'ClipboardPayload',
+  json_extract(Activity.ClipboardPayload,'$') as 'ClipboardPayload',
   case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.GroupItems as 'GroupItems',
