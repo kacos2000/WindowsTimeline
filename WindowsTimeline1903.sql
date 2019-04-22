@@ -159,7 +159,12 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation.PatchFields as 'PatchFields',   
   ActivityOperation.UserActionState as 'UserActionState',
   json_extract(ActivityOperation.ClipboardPayload,'$') as 'ClipboardPayload',
-  case ActivityOperation.IsRead when 0 then 'No' when 1 then 'Yes' else ActivityOperation.IsRead end as 'Is_Read',
+  case ActivityOperation.IsRead 
+		when 0 then 'No' 
+		when 1 then 'Yes' 
+		else ActivityOperation.IsRead 
+		end as 'Is_Read',
+  ActivityOperation."Group" as 'Group',
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
   ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
@@ -300,6 +305,7 @@ select -- This the Activity Table Query
   Activity.UserActionState as 'UserActionState',
   json_extract(Activity.ClipboardPayload,'$') as 'ClipboardPayload',
   case Activity.IsRead when 0 then 'No' when 1 then 'Yes' else Activity.IsRead end as 'Is_Read',
+  Activity."Group" as 'Group',
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
