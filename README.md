@@ -132,6 +132,7 @@ ________________________________________________________________________________
         - 10 (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
         - 11 (Windows operations/do not sync)
         - 12 (Windows operations/do not sync)
+        - 15 (Windows operations/do not sync)
         - 16 (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
    
    
