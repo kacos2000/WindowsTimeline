@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Artifacts version="2.0">
-  <Artifact type="SqliteArtifact" name="Win 10 Timeline (supports Win 10 versions: 1803,1809,1903)" version="1.0" platform="Computer">
-    <Source type="FileName">
-	ActivitiesCache.db
-	</Source>
+  <Artifact type="SqliteArtifact" name="Win 10 Timeline (supports Win 10 versions: 1803,1809,1903)" version="1.2" platform="Computer">
+    <Source type="FileName">ActivitiesCache.db</Source>
     <Query>
-		SELECT 
-			ActivityOperation.ETag as 'Etag',
+SELECT 
+			ActivityOperation.ETag as 'ETAG',
 			case 
-				when ActivityOperation.OperationOrder not null 
+				when ActivityOperation.OperationOrder notnull 
 				then ActivityOperation.OperationOrder
 				else ''
 			end as 'Order',
@@ -46,24 +44,24 @@
 					'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 			end as 'Application',
 			case 
-				when ActivityOperation.ActivityType not in (11,12,15) 
+				when ActivityOperation.ActivityType =5 and json_extract(ActivityOperation.Payload, '$.displayText') notnull
 				then json_extract(ActivityOperation.Payload, '$.displayText') 
 				else '' 
 			end as 'FileOpened',
 			case 
-				when ActivityOperation.ActivityType not in (11,12,15) 
+				when ActivityOperation.ActivityType =5 and json_extract(ActivityOperation.Payload, '$.description') notnull 
 				then json_extract(ActivityOperation.Payload, '$.description')||')' 
 				else ''  
 			end as 'FullPath',
 			case 
-				when ActivityOperation.ActivityType not in (11,12,15) 
+				when ActivityOperation.ActivityType =5 and json_extract(ActivityOperation.Payload, '$.contenturi') notnull 
 				then json_extract(ActivityOperation.Payload, '$.contenturi') 
 				else ''  
 			end as 'Content',
 			trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 			case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16)
-				and ActivityOperation.Payload not null 	
+				when ActivityOperation.ActivityType = 6
+				and ActivityOperation.Payload notnull 	
 				then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
 				else ''
 			end as 'StatusTimezone',
@@ -107,7 +105,7 @@
 			end as 'AppUri',
 		   ActivityOperation.Priority as 'Priority',	  
 		   CASE 
-				when ActivityOperation.ActivityType = 6 and ActivityOperation.Payload not null
+				when ActivityOperation.ActivityType = 6 and ActivityOperation.Payload notnull
 				then time(json_extract(ActivityOperation.Payload, '$.activeDurationSeconds'),'unixepoch')
 				else ''
 		   end as 'ActiveDuration',
@@ -134,19 +132,19 @@
 		    Activity_PackageId.ExpirationTime as 'ExpirationOnPackageID',
 		    ActivityOperation.ExpirationTime as 'Expiration',
 		    case 
-				when ActivityOperation.Tag not NULL
+				when ActivityOperation.Tag notnull
 				then ActivityOperation.Tag
 				else ''
 			end as 'Tag',
 		    case 
-				when ActivityOperation.MatchId not NULL
+				when ActivityOperation.MatchId notnull
 				then ActivityOperation.MatchId
 				else ''
 			end as 'MatchID',
 		    ActivityOperation.PlatformDeviceId as 'DeviceID', 
 		    ActivityOperation.PackageIdHash as 'PackageIdHash',
 		    case 
-				when ActivityOperation."Group" not NULL
+				when ActivityOperation."Group" notnull
 				then ActivityOperation."Group"
 				else ''
 			end as 'Group',
@@ -178,7 +176,7 @@
 				else ' ' 
 		  end as 'TextBase64',
 		  case 
-				when ActivityOperation.ActivityType = 10 and ActivityOperation.Payload not null
+				when ActivityOperation.ActivityType = 10 and ActivityOperation.Payload notnull
 				then json_extract(ActivityOperation.Payload, '$.1[0].content') 
 				else '' 
 		  end as 'PayloadText',
@@ -188,37 +186,37 @@
 				else '' 
 		  end as 'gdprType',
 		  case 
-			    when ActivityOperation.ActivityType = 10 and ActivityOperation.ClipboardPayload not null
+			    when ActivityOperation.ActivityType = 10 and ActivityOperation.ClipboardPayload notnull
 			    then json_extract(ActivityOperation.ClipboardPayload, '$.1[0].formatName')
 			    else '' 
 		  end as 'Format',
 		  case 
-				when ActivityOperation.ActivityType = 16 and ActivityOperation.ClipboardPayload not null
+				when ActivityOperation.ActivityType = 16 and ActivityOperation.ClipboardPayload notnull
 				then json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') 
 				else '' 
 		  end as 'ClipType',
 		  case 
-				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload notnull
 				then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') 
 				else '' 
 		  end as 'OriginalName',
 		  case 
-				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload notnull
 				then json_extract(ActivityOperation.OriginalPayload, '$.displayText') 
 				else ''
 		  end as 'OriginalFile',
 		  case 
-				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload notnull
 				then json_extract(ActivityOperation.OriginalPayload, '$.description') 
 				else ''
 		  end as 'OriginalPath', 
 		  case 
-				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload notnull 
 				then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) 
 				else ''
 		  end as 'OriginalApp',
 		  case 
-				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload notnull 
 				then json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds') 
 				else ''
 		  end as 'OrigDuration'
@@ -231,7 +229,7 @@
 		union  
 
 		select 
-		   Activity.ETag as 'Etag',
+		   Activity.ETag as 'ETAG',
 		   '' as 'Order', 
 		   case
 			     when Activity.ActivityType = 5 
@@ -265,24 +263,24 @@
 					'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 			end as 'Application',
 			case 
-				when Activity.ActivityType not in (10,11,12,15,16) 
+				when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.displayText') notnull
 				then json_extract(Activity.Payload, '$.displayText') 
 				else '' 
 			end as 'FileOpened',
 			case 
-				when Activity.ActivityType not in (10,11,12,15,16) 
+				when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.description') notnull 
 				then json_extract(Activity.Payload, '$.description')||')' 
 				else ''  
 			end as 'FullPath',
 			case 
-				when Activity.ActivityType not in (10,11,12,15,16) 
+				when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.contentUri') notnull 
 				then json_extract(Activity.Payload, '$.contentUri') 
 				else ''  
 			end as 'Content',
 			trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 		    case 
-				when Activity.ActivityType not in (10,11,12,15,16) 
-				and Activity.Payload not null
+				when Activity.ActivityType = 6 
+				and Activity.Payload notnull
 			    then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
 				else ''
 			end as 'StatusTimezone',
@@ -326,7 +324,7 @@
 		   end as 'AppUri',
 		   Activity.Priority as 'Priority',	  
 		   CASE 
-				when Activity.ActivityType = 6 and Activity.Payload not null
+				when Activity.ActivityType = 6 and Activity.Payload notnull
 				then time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch')
 				else ''
 		   end as 'ActiveDuration',
@@ -345,7 +343,7 @@
 			case 
 				when Activity.EndTime > 0 
 				then Activity.EndTime
-				else "-" 
+				else "" 
 			end as 'EndTime',
 			case 
 				when Activity.CreatedInCloud > 0 
@@ -356,19 +354,19 @@
 		    Activity_PackageId.ExpirationTime as 'ExpirationOnPackageID',
 		    Activity.ExpirationTime as 'Expiration',
 		    case 
-				when Activity.Tag not NULL
+				when Activity.Tag notnull
 				then Activity.Tag
 				else ''
 			end as 'Tag',
 		    case 
-				when Activity.MatchId not NULL
+				when Activity.MatchId notnull
 				then Activity.MatchId
 				else ''
 			end as 'MatchID',
 		    Activity.PlatformDeviceId as 'DeviceID', 
 		    Activity.PackageIdHash as 'PackageIdHash',
 		    case 
-				when Activity."Group" not null 
+				when Activity."Group" notnull 
 				then Activity."Group"
 				else ''
 			end as 'Group',
@@ -401,47 +399,47 @@
 				else '' 
 			end as 'TextBase64',
 		    case 
-				when Activity.ActivityType = 10 and Activity.Payload not null 
+				when Activity.ActivityType = 10 and Activity.Payload notnull 
 				then json_extract(Activity.Payload, '$.1[0].content') 
 				else '' 
 			end as 'PayloadText',
 		    case 
-				when Activity.ActivityType = 16  and Activity.Payload not null 
+				when Activity.ActivityType = 16  and Activity.Payload notnull 
 				then json_extract(Activity.Payload, '$.gdprType') 
 				else '' 
 			end as 'gdprType',
 		    case 
-				when Activity.ActivityType = 10 and Activity.Payload not null
+				when Activity.ActivityType = 10 and Activity.Payload notnull
 				then json_extract(Activity.Payload, '$.1[0].formatName') 
 				else '' 
 			end as 'Format',
 		    case 
-				when Activity.ActivityType = 16 and Activity.ClipboardPayload not null 
+				when Activity.ActivityType = 16 and Activity.ClipboardPayload notnull 
 				then json_extract(Activity.ClipboardPayload, '$[0].formatName') 
 				else '' 
 			end as 'ClipType',
 		    case 
-				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload notnull 
 				then json_extract(Activity.OriginalPayload, '$.appDisplayName')  
 				else ''
 			end as 'OriginalName',
 		    case 
-				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload notnull  
 				then json_extract(Activity.OriginalPayload, '$.displayText')  
 				else ''
 			end as 'OriginalFile',
 		    case 
-				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload notnull  
 				then json_extract(Activity.OriginalPayload, '$.description')  
 				else ''
 			end as 'OriginalPath',
 		    case 
-				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload notnull  
 				then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp'))  
 				else ''
 			end as 'OriginalApp',
 		    case 
-				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload notnull  
 				then json_extract(Activity.OriginalPayload, '$.activeDurationSeconds') 
 				else ''
 			end as 'OrigDuration'
@@ -456,22 +454,22 @@
     <Fragments>
 	<Fragment source="ETAG" alias="ETAG" datatype="Integer" category="none" />
 	<Fragment source="Order" alias="Order" datatype="Integer" category="none" />
-	<Fragment source="Program" alias="Program Name" datatype="String" category="Content" />
-	<Fragment source="Application" alias="Application ID" datatype="String" category="Content" />
+	<Fragment source="Program" alias="Program Name" datatype="String" category="none" />
+	<Fragment source="Application" alias="Application ID" datatype="String" category="none" />
 	<Fragment source="FileOpened" alias="File or App Opened" datatype="String" category="none" />
-	<Fragment source="FullPath" alias="Full Path" datatype="String" category="Content" />
-	<Fragment source="Content" alias="Content" datatype="String" category="Content" />
+	<Fragment source="FullPath" alias="Full Path" datatype="String" category="none" />
+	<Fragment source="Content" alias="Content" datatype="String" category="none" />
 	<Fragment source="AppActivityId" alias="App Activity Id" datatype="String" category="none" />
 	<Fragment source="StatusTimezone" alias="Status-Timezone" datatype="String" category="none" />
 	<Fragment source="ActivityType" alias="Activity Type" datatype="String" category="none" />
-	<Fragment source="Synced" alias="Synced" datatype="String" category="" />
-	<Fragment source="Platform" alias="Application Type" datatype="String" category="" />
+	<Fragment source="Synced" alias="Synced" datatype="String" category="none" />
+	<Fragment source="Platform" alias="Application Type" datatype="String" category="none" />
 	<Fragment source="TileStatus" alias="Tile Status" datatype="String" category="none" />
-	<Fragment source="WasRemoved" alias="Was Removed" datatype="String" category="" />
+	<Fragment source="WasRemoved" alias="Was Removed" datatype="String" category="none" />
 	<Fragment source="UploadQueue" alias="In Upload Queue" datatype="String" category="none" />
-	<Fragment source="IsLocalOnly" alias="Is Local Only" datatype="String" category="" />
-	<Fragment source="AppUri" alias="App /Uri" datatype="String" category="" />
-	<Fragment source="Priority" alias="Priority" datatype="String" category="" />
+	<Fragment source="IsLocalOnly" alias="Is Local Only" datatype="String" category="none" />
+	<Fragment source="AppUri" alias="App-Uri" datatype="String" category="none" />
+	<Fragment source="Priority" alias="Priority" datatype="String" category="none" />
 	<Fragment source="ActiveDuration" alias="Active Duration (sec)" datatype="String" category="none" />	
 	<Fragment source="CalculatedDuration" alias="Calculated Duration (sec)" datatype="String" category="none" />	
 	<Fragment source="StartTime" alias="Start Time" datatype="DateTime" category="DateTime" />
@@ -480,7 +478,7 @@
 	<Fragment source="EndTime" alias="End Time" datatype="DateTime" category="DateTime" />
 	<Fragment source="CreatedInCloud" alias="Created In Cloud" datatype="DateTime" category="DateTime" />
 	<Fragment source="ExpiresInDays" alias="Expires In Days" datatype="Integer" category="none" />
-	<Fragment source="ExpirationOnPackageID" alias="Expiration on Package_ID" datatype="Integer" category="none" />
+	<Fragment source="ExpirationOnPackageID" alias="Expiration on Package_ID" datatype="DateTime" category="DateTime" />
 	<Fragment source="Expiration" alias="Expiration Time" datatype="DateTime" category="DateTime" />
 	<Fragment source="Tag" alias="Tag" datatype="String" category="none" />
 	<Fragment source="MatchID" alias="MatchID" datatype="String" category="none" />
@@ -493,24 +491,24 @@
 	<Fragment source="ActivityId" alias="Activity Id" datatype="String" category="none" />
 	<Fragment source="ParentActivityId" alias="ParentActivityId" datatype="String" category="none" />
 	<Fragment source="clipboardDataId" alias="Clipboard Data Id" datatype="String" category="none" />
-	<Fragment source="TextBase64" alias="Clipboard Text (Base64)" datatype="String" category="Content" />
-	<Fragment source="PayloadText" alias="Payload Text (Base64)" datatype="String" category="" />
-	<Fragment source="gdprType" alias="gdpr Type" datatype="String" category="" />
-	<Fragment source="Format" alias="Format" datatype="String" category="" />
-	<Fragment source="ClipType" alias="Clipboard Type" datatype="String" category="" />
-	<Fragment source="OriginalName" alias="Original App Name" datatype="String" category="" />
-	<Fragment source="OriginalFile" alias="Original File" datatype="String" category="" />
-	<Fragment source="OriginalPath" alias="Original Path/Uri" datatype="String" category="" />
-	<Fragment source="OriginalApp" alias="Original App" datatype="String" category="" />
+	<Fragment source="TextBase64" alias="Clipboard Text (Base64)" datatype="String" category="none" />
+	<Fragment source="PayloadText" alias="Payload Text (Base64)" datatype="String" category="none" />
+	<Fragment source="gdprType" alias="gdpr Type" datatype="String" category="none" />
+	<Fragment source="Format" alias="Format" datatype="String" category="none" />
+	<Fragment source="ClipType" alias="Clipboard Type" datatype="String" category="none" />
+	<Fragment source="OriginalName" alias="Original App Name" datatype="String" category="none" />
+	<Fragment source="OriginalFile" alias="Original File" datatype="String" category="none" />
+	<Fragment source="OriginalPath" alias="Original Path-Uri" datatype="String" category="none" />
+	<Fragment source="OriginalApp" alias="Original App" datatype="String" category="none" />
 	<Fragment source="OrigDuration" alias="Original Duration (sec)" datatype="String" category="none" />
     </Fragments>
   </Artifact>
 
-  <Artifact type="SqliteArtifact" name="Win 10 Clipboard entries (Win 10 v1903 Timeline)" version="1.0" platform="Computer">
+  <Artifact type="SqliteArtifact" name="Win 10 Clipboard entries (Win 10 v1903 Timeline)" version="1.2" platform="Computer">
     <Source type="FileName">ActivitiesCache.db</Source>
     <Query>
 	Select
-		ActivityOperation.ETag as 'ETag',
+		ActivityOperation.ETag as 'ETAG',
 		ActivityOperation.StartTime as 'StartTime',
 		ActivityOperation.LastModifiedTime as 'LastModified',
 		case 
@@ -601,7 +599,7 @@
 	UNION
 
 	Select
-	 Activity.ETag as 'ETag',
+	 Activity.ETag as 'ETAG',
 	 Activity.StartTime as 'StartTime',
 	 Activity.LastModifiedTime as 'LastModified',
 	 case 
@@ -696,13 +694,13 @@
 	order by Etag desc
     </Query>
     <Fragments>
-	<Fragment source="ETag" alias="ETAG" datatype="Integer" category="none" />
+	<Fragment source="ETAG" alias="ETAG" datatype="Integer" category="none" />
 	<Fragment source="StartTime" alias="Start Time" datatype="DateTime" category="DateTime" />
 	<Fragment source="LastModified" alias="Last Modified" datatype="DateTime" category="DateTime" />
 	<Fragment source="Application" alias="Application" datatype="String" category="none" />
-	<Fragment source="ClipText" alias="Clipboard Text(Base64)" datatype="String" category="Content" />
+	<Fragment source="ClipText" alias="Clipboard Text(Base64)" datatype="String" category="none" />
 	<Fragment source="Format" alias="Format" datatype="String" category="none" />
-	<Fragment source="PayloadContent" alias="Payload Content" datatype="String" category="Content" />	
+	<Fragment source="PayloadContent" alias="Payload Content" datatype="String" category="none" />	
 	<Fragment source="ClipType" alias="Type" datatype="String" category="none" />	
 	<Fragment source="ActivityType" alias="Activity Type" datatype="String" category="none" />	
 	<Fragment source="Group" alias="Group" datatype="String" category="none" />
