@@ -7,7 +7,11 @@
     <Query>
 		SELECT 
 			ActivityOperation.ETag as 'Etag',
-			ActivityOperation.OperationOrder as 'Order',
+			case 
+				when ActivityOperation.OperationOrder not null 
+				then ActivityOperation.OperationOrder
+				else ''
+			end as 'Order',
 		   case
 			     when ActivityOperation.ActivityType = 5 
 				 then json_extract(ActivityOperation.Payload, '$.appDisplayName') 
@@ -58,8 +62,10 @@
 			end as 'Content',
 			trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 			case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType not in (10,11,12,15,16)
+				and ActivityOperation.Payload not null 	
 				then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
+				else ''
 			end as 'StatusTimezone',
 			case ActivityOperation.ActivityType 
 				when 5 then 'Open App/File/Page' 
@@ -101,8 +107,9 @@
 			end as 'AppUri',
 		   ActivityOperation.Priority as 'Priority',	  
 		   CASE 
-				when ActivityOperation.ActivityType = 6
+				when ActivityOperation.ActivityType = 6 and ActivityOperation.Payload not null
 				then time(json_extract(ActivityOperation.Payload, '$.activeDurationSeconds'),'unixepoch')
+				else ''
 		   end as 'ActiveDuration',
 		   case 
 				when 0 >= cast((ActivityOperation.EndTime - ActivityOperation.StartTime) as integer) 
@@ -126,11 +133,23 @@
 		    cast((ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime)	as integer) / '86400' as 'ExpiresInDays',
 		    Activity_PackageId.ExpirationTime as 'ExpirationOnPackageID',
 		    ActivityOperation.ExpirationTime as 'Expiration',
-		    ActivityOperation.Tag as 'Tag',
-		    ActivityOperation.MatchId as 'MatchID',
+		    case 
+				when ActivityOperation.Tag not NULL
+				then ActivityOperation.Tag
+				else ''
+			end as 'Tag',
+		    case 
+				when ActivityOperation.MatchId not NULL
+				then ActivityOperation.MatchId
+				else ''
+			end as 'MatchID',
 		    ActivityOperation.PlatformDeviceId as 'DeviceID', 
 		    ActivityOperation.PackageIdHash as 'PackageIdHash',
-		    ActivityOperation."Group" as 'Group',
+		    case 
+				when ActivityOperation."Group" not NULL
+				then ActivityOperation."Group"
+				else ''
+			end as 'Group',
 		    ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
 		    ActivityOperation.Attachments as 'Attachments',
 		    ActivityOperation.EnterpriseId as 'EnterpriseId',
@@ -154,12 +173,12 @@
 				else '' 
 		  end as 'clipboardDataId',
 		  case 
-				when json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') = 'Text' 
+				when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') = 'Text' 
 				then json_extract(ActivityOperation.ClipboardPayload, '$[0].content') 
 				else ' ' 
 		  end as 'TextBase64',
 		  case 
-				when ActivityOperation.ActivityType in (10,16) 
+				when ActivityOperation.ActivityType = 10 and ActivityOperation.Payload not null
 				then json_extract(ActivityOperation.Payload, '$.1[0].content') 
 				else '' 
 		  end as 'PayloadText',
@@ -169,35 +188,39 @@
 				else '' 
 		  end as 'gdprType',
 		  case 
-			    when ActivityOperation.ActivityType in (10,16) 
-			    then json_extract(ActivityOperation.ClipboardPayload, '$.1[0].formatName') 
+			    when ActivityOperation.ActivityType = 10 and ActivityOperation.ClipboardPayload not null
+			    then json_extract(ActivityOperation.ClipboardPayload, '$.1[0].formatName')
 			    else '' 
 		  end as 'Format',
 		  case 
-				when ActivityOperation.ActivityType in (10,16) 
+				when ActivityOperation.ActivityType = 16 and ActivityOperation.ClipboardPayload not null
 				then json_extract(ActivityOperation.ClipboardPayload, '$[0].formatName') 
 				else '' 
 		  end as 'ClipType',
 		  case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
 				then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') 
-				else ActivityOperation.OriginalPayload 
+				else '' 
 		  end as 'OriginalName',
 		  case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
 				then json_extract(ActivityOperation.OriginalPayload, '$.displayText') 
+				else ''
 		  end as 'OriginalFile',
 		  case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null
 				then json_extract(ActivityOperation.OriginalPayload, '$.description') 
+				else ''
 		  end as 'OriginalPath', 
 		  case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null 
 				then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) 
+				else ''
 		  end as 'OriginalApp',
 		  case 
-				when ActivityOperation.ActivityType not in (10,11,12,15,16) 
+				when ActivityOperation.ActivityType in (5,6) and ActivityOperation.OriginalPayload not null 
 				then json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds') 
+				else ''
 		  end as 'OrigDuration'
 
 		from Activity_PackageId
@@ -209,7 +232,7 @@
 
 		select 
 		   Activity.ETag as 'Etag',
-		   null as 'Order', 
+		   '' as 'Order', 
 		   case
 			     when Activity.ActivityType = 5 
 				 then json_extract(Activity.Payload, '$.appDisplayName') 
@@ -259,7 +282,9 @@
 			trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 		    case 
 				when Activity.ActivityType not in (10,11,12,15,16) 
+				and Activity.Payload not null
 			    then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
+				else ''
 			end as 'StatusTimezone',
 			case Activity.ActivityType 
 				when 5 then 'Open App/File/Page' 
@@ -301,8 +326,9 @@
 		   end as 'AppUri',
 		   Activity.Priority as 'Priority',	  
 		   CASE 
-				when Activity.ActivityType = 6
+				when Activity.ActivityType = 6 and Activity.Payload not null
 				then time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch')
+				else ''
 		   end as 'ActiveDuration',
 		   case 
 				when 0 >= cast((Activity.EndTime - Activity.StartTime) as integer) 
@@ -329,11 +355,23 @@
 		    cast((Activity.ExpirationTime - Activity.LastModifiedTime) as integer) / '86400' as 'ExpiresInDays',
 		    Activity_PackageId.ExpirationTime as 'ExpirationOnPackageID',
 		    Activity.ExpirationTime as 'Expiration',
-		    Activity.Tag as 'Tag',
-		    Activity.MatchId as 'MatchID',
+		    case 
+				when Activity.Tag not NULL
+				then Activity.Tag
+				else ''
+			end as 'Tag',
+		    case 
+				when Activity.MatchId not NULL
+				then Activity.MatchId
+				else ''
+			end as 'MatchID',
 		    Activity.PlatformDeviceId as 'DeviceID', 
 		    Activity.PackageIdHash as 'PackageIdHash',
-		    Activity."Group" as 'Group',
+		    case 
+				when Activity."Group" not null 
+				then Activity."Group"
+				else ''
+			end as 'Group',
 		    Activity.GroupAppActivityId as 'GroupAppActivityId',
 		    '' as 'Attachments',
 		    Activity.EnterpriseId as 'EnterpriseId',
@@ -358,50 +396,54 @@
 				else '' 
 			end as 'clipboardDataId',
 		    case 
-				when json_extract(Activity.ClipboardPayload, '$[0].formatName') = 'Text' 
+				when Activity.ActivityType = 10 and json_extract(Activity.ClipboardPayload, '$[0].formatName') = 'Text' 
 				then json_extract(Activity.ClipboardPayload, '$[0].content') 
-				else ' ' 
+				else '' 
 			end as 'TextBase64',
 		    case 
-				when Activity.ActivityType in (10,16) 
+				when Activity.ActivityType = 10 and Activity.Payload not null 
 				then json_extract(Activity.Payload, '$.1[0].content') 
 				else '' 
 			end as 'PayloadText',
 		    case 
-				when Activity.ActivityType = 16 
+				when Activity.ActivityType = 16  and Activity.Payload not null 
 				then json_extract(Activity.Payload, '$.gdprType') 
 				else '' 
 			end as 'gdprType',
 		    case 
-				when Activity.ActivityType in (10,16) 
+				when Activity.ActivityType = 10 and Activity.Payload not null
 				then json_extract(Activity.Payload, '$.1[0].formatName') 
 				else '' 
 			end as 'Format',
 		    case 
-				when Activity.ActivityType in (10,16) 
+				when Activity.ActivityType = 16 and Activity.ClipboardPayload not null 
 				then json_extract(Activity.ClipboardPayload, '$[0].formatName') 
 				else '' 
 			end as 'ClipType',
 		    case 
-				when Activity.ActivityType in (10,11,12,15,16) 
-				then json_extract(Activity.OriginalPayload, '$.appDisplayName') 
-				else Activity.OriginalPayload 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null 
+				then json_extract(Activity.OriginalPayload, '$.appDisplayName')  
+				else ''
 			end as 'OriginalName',
 		    case 
-				when Activity.ActivityType in (10,11,12,15,16) 
-				then json_extract(Activity.OriginalPayload, '$.displayText') 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				then json_extract(Activity.OriginalPayload, '$.displayText')  
+				else ''
 			end as 'OriginalFile',
 		    case 
-				when Activity.ActivityType in (10,11,12,15,16) 
-				then json_extract(Activity.OriginalPayload, '$.description') 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				then json_extract(Activity.OriginalPayload, '$.description')  
+				else ''
 			end as 'OriginalPath',
 		    case 
-				when Activity.ActivityType in (10,11,12,15,16) 
-				then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
+				then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp'))  
+				else ''
 			end as 'OriginalApp',
 		    case 
-				when Activity.ActivityType in (10,11,12,15,16) 
+				when Activity.ActivityType in (5,6) and Activity.OriginalPayload not null  
 				then json_extract(Activity.OriginalPayload, '$.activeDurationSeconds') 
+				else ''
 			end as 'OrigDuration'
 		   
 		from Activity_PackageId
