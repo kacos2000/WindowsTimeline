@@ -126,15 +126,24 @@ ________________________________________________________________________________
  __________________________________________________________________________________________
  
    * **ActivityTypes observed:**
-        - 2  (Notifications) 
-        - 5  (Open Application/File/Webpage)
-        - 6  (Application in Use/Focus)
-        - 10 (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
-        - 11 (Windows operations/do not sync)
-        - 12 (Windows operations/do not sync)
-        - 15 (Windows operations/do not sync)
-        - 16 (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
    
+        - **2**  (Notifications) 
+        - **5**  (Open Application/File/Webpage)
+        - **6**  (Application in Use/Focus)
+        - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
+        - **11,12,15** Windows operations such as:
+            - Microsoft.Credentials.Vault
+            - Microsoft.Credentials.WiFi
+            - Microsoft.Default
+            - Microsoft.Credentials
+            - Microsoft.Personalization
+            - Microsoft.Language
+            - Microsoft.Accessibility*
+        - **0,3,1,7,13** *unknown yet*
+        - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
+   
+            *Note: Windows operations include things like:<br>
+               
    
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
         - March 2019 Update (18875)<br>
