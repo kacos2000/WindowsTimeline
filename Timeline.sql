@@ -1,4 +1,4 @@
--- SQLite query wasto get any useful results from MS Windows 1803 Timeline feature's database (ActivitiesCache.db).
+-- SQLite query wasto get any useful results from MS Windows 1803+ Timeline feature's database (ActivitiesCache.db).
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
 -- Using the 'localtime"  converts it to our TimeZone.
 -- The 'DeviceID' may be found in the user’s NTUSER.dat at
@@ -21,7 +21,7 @@
 -- EndTime: The time when the user stopped engaging with the UserActivity  
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
--- May 2018
+-- May 2019
 
 
 SELECT -- This the ActivityOperation Table Query
