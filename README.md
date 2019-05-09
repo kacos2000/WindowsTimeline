@@ -141,10 +141,7 @@ ________________________________________________________________________________
             - Microsoft.Accessibility*
         - **0,3,1,7,13** *unknown yet*
         - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
-   
-            *Note: Windows operations include things like:<br>
-               
-   
+      
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
         - March 2019 Update (18875)<br>
         - October 2018 Update (17763)<br>
