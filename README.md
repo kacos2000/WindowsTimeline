@@ -4,7 +4,7 @@
 ## Windows 10 Timeline ## 
 
 ### NEW (5/2019) ### 
-[**Revised query**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline which works with all versions (1803,1809,1903+) based on the smartlookup query. #dfir 
+[**Revised query**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view. #dfir 
 ___________________________________________________________________________________________  
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
