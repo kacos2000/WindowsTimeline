@@ -4,7 +4,30 @@
 ## Windows 10 Timeline ## 
 
 ### NEW (5/2019) ### 
-[**Revised query**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view. #dfir 
+[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir <br>
+(Tested on Win10 pro 1903 OS Build 18890.1000) <br>
+ 
+   * **ActivityTypes observed:**
+   
+        - **2**  (Notifications) - Win10 1709
+        - **5**  (Open Application/File/Webpage)
+        - **6**  (Application in Use/Focus)
+        - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
+        - **11,12,15** Windows System operations such as:
+            - Microsoft.Credentials.Vault
+            - Microsoft.Credentials.WiFi
+            - Microsoft.Default
+            - Microsoft.Credentials
+            - Microsoft.Personalization
+            - Microsoft.Language
+            - Microsoft.Accessibility*
+        - **0,3,1,7,13** *unknown yet*
+        - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
+      
+   * **Windows versions (OSBuild*) supporting Timeline:**<br>
+        - March 2019 Update (v1903 18875)<br>
+        - October 2018 Update (v1809 - 17763)<br>
+        - April 2018 Update (v1803 - 17134)<br>
 ___________________________________________________________________________________________  
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
@@ -127,30 +150,6 @@ ________________________________________________________________________________
                 * Phones and phablets *(Screen sizes: 4'' to 5'' for phone, 5.5'' to 7'' for phablet)*<br>
                 * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
                 * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
- __________________________________________________________________________________________
- 
-   * **ActivityTypes observed:**
-   
-        - **2**  (Notifications) 
-        - **5**  (Open Application/File/Webpage)
-        - **6**  (Application in Use/Focus)
-        - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
-        - **11,12,15** Windows System operations such as:
-            - Microsoft.Credentials.Vault
-            - Microsoft.Credentials.WiFi
-            - Microsoft.Default
-            - Microsoft.Credentials
-            - Microsoft.Personalization
-            - Microsoft.Language
-            - Microsoft.Accessibility*
-        - **0,3,1,7,13** *unknown yet*
-        - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
-      
-   * **Windows versions (OSBuild*) supporting Timeline:**<br>
-        - March 2019 Update (18875)<br>
-        - October 2018 Update (17763)<br>
-        - April 2018 Update (17134)<br>
-
  __________________________________________________________________________________________
  
 **Related Windows Apps**
