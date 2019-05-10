@@ -4,8 +4,7 @@
 ## Windows 10 Timeline ## 
 
 ### NEW (5/2019) ### 
-[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir <br>
-(Tested on Win10 pro 1903 OS Build 18890.1000) <br>
+[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 OS Build 18890.1000) <br>
  
    * **ActivityTypes observed:**
    
