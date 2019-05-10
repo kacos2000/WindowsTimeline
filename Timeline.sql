@@ -1,9 +1,13 @@
--- SQLite query wasto get any useful results from MS Windows 1803+ Timeline feature's database (ActivitiesCache.db).
--- Dates/Times in the database are stored in Unixepoch and UTC by default. 
--- Using the 'localtime"  converts it to our TimeZone.
--- The 'DeviceID' may be found in the user’s NTUSER.dat at
--- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+-- SQLite query to get any useful results from MS Windows 1803/1809/1903+ 
+-- Timeline feature's database (ActivitiesCache.db).
 -- 
+-- Dates/Times in the database are stored in Unixepoch and UTC by default. 
+-- Using the 'localtime'  converts it to our TimeZone.
+-- 
+-- The 'Device ID' may be found in the user’s NTUSER.dat at
+-- Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
+-- which shows the originating device info.
+--
 -- The Query uses the SQLite JSON1 extension to parse information from the BLOBs found at 
 -- the Activity and ActivityOperation tables. 
 --
@@ -21,7 +25,7 @@
 -- EndTime: The time when the user stopped engaging with the UserActivity  
 --
 -- Costas Katsavounidis (kacos2000 [at] gmail.com)
--- May 2019
+-- May 2018
 
 
 SELECT -- This the ActivityOperation Table Query
@@ -74,18 +78,22 @@ SELECT -- This the ActivityOperation Table Query
 	end as 'Content',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
-		when ActivityOperation.ActivityType in (11,12,15,16) 
+		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
+		then json_extract(ActivityOperation.Payload,'$')
+		when ActivityOperation.ActivityType in (11,12,15) and ActivityOperation.Payload notnull  
 		then ActivityOperation.Payload
-	    when ActivityOperation.ActivityType = 6 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
+		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
-		when ActivityOperation.ActivityType = 6 then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
+		when ActivityOperation.ActivityType = 6 
+		then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
+		else ''	
 	end as 'Payload/Timezone',
 	case  
-		when ActivityOperation.ActivityType = 5 then 'Open App/File/Page' 
-		when ActivityOperation.ActivityType = 6 then 'App In Use/Focus' 
-		when ActivityOperation.ActivityType = 10 then 'Clipboard' 
-		when ActivityOperation.ActivityType = 16 then 'Copy/Paste'
-		when ActivityOperation.ActivityType in (11,12,15) then 'System'
+		when ActivityOperation.ActivityType = 5 then 'Open App/File/Page('||ActivityOperation.ActivityType||')' 
+		when ActivityOperation.ActivityType = 6 then 'App In Use/Focus  ('||ActivityOperation.ActivityType||')'  
+		when ActivityOperation.ActivityType = 10 then 'Clipboard ('||ActivityOperation.ActivityType||')'  
+		when ActivityOperation.ActivityType = 16 then 'Copy/Paste('||ActivityOperation.ActivityType||')' 
+		when ActivityOperation.ActivityType in (11,12,15) then 'System ('||ActivityOperation.ActivityType||')' 
 		else ActivityOperation.ActivityType 
 	end as 'Activity_type',
 	ActivityOperation."Group" as 'Group',
@@ -146,7 +154,11 @@ SELECT -- This the ActivityOperation Table Query
 		else cast((ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime)/86400 as integer)||' days' 
     end as 'ExpiresIn',
    datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
-   ActivityOperation.Tag as 'Tag',
+   case 
+	when ActivityOperation.Tag notnull
+	then ActivityOperation.Tag
+	else ''
+   end as 'Tag',
    ActivityOperation.MatchId as 'MatchID',
    ActivityOperation.PlatformDeviceId as 'Device ID', 
    ActivityOperation.PackageIdHash as 'PackageIdHash',
@@ -240,20 +252,24 @@ select -- This the Activity Table Query
 	end as 'Content',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
-		when Activity.ActivityType in (11,12,15,16) 
+		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
+		then json_extract(Activity.Payload,'$')
+		when Activity.ActivityType in (11,12,15) and Activity.Payload notnull
 		then Activity.Payload
-	    when Activity.ActivityType = 6 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
+		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
-		when Activity.ActivityType = 6 then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
+		when Activity.ActivityType = 6 
+		then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
+		else ''	
 	end as 'Payload/Timezone',
-	 case 
-			when Activity.ActivityType = 5 then 'Open App/File/Page' 
-			when Activity.ActivityType = 6 then 'App In Use/Focus' 
-			when Activity.ActivityType = 10 then 'Clipboard' 
-			when Activity.ActivityType = 16 then 'Copy/Paste'
-			when Activity.ActivityType in (11,12,15) then 'System'
+	case 
+			when Activity.ActivityType = 5 then 'Open App/File/Page('||Activity.ActivityType||')' 
+			when Activity.ActivityType = 6 then 'App In Use/Focus  ('||Activity.ActivityType||')' 
+			when Activity.ActivityType = 10 then 'Clipboard ('||Activity.ActivityType||')' 
+			when Activity.ActivityType = 16 then 'Copy/Paste('||Activity.ActivityType||')'
+			when Activity.ActivityType in (11,12,15) then 'System ('||Activity.ActivityType||')'
 			else Activity.ActivityType 
-	 end as 'Activity_type',
+	end as 'Activity_type',
 	Activity."Group" as 'Group',
 	case 
 		when json_extract(Activity.AppId, '$') like '%afs_crossplatform%' 
@@ -317,7 +333,11 @@ select -- This the Activity Table Query
 		else cast((Activity.ExpirationTime - Activity.LastModifiedTime)/86400 as integer)||' days' 
    end as 'Expires In',
     datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
-    Activity.Tag as 'Tag',
+    case 
+		when Activity.Tag notnull
+		then Activity.Tag
+		else ''
+	end as 'Tag',
     Activity.MatchId as 'MatchID',
     Activity.PlatformDeviceId as 'Device ID', 
     Activity.PackageIdHash as 'PackageIdHash',
