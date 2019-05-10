@@ -20,7 +20,7 @@
             - Microsoft.Personalization
             - Microsoft.Language
             - Microsoft.Accessibility*
-        - **0,3,1,7,13** *unknown yet*
+        - **0,1,3,7,13** *unknown yet*
         - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
       
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
