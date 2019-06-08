@@ -31,7 +31,8 @@
 SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag',
 	case
-	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
+	    when Activity.ActivityType in (11,12,15) 
+			then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
 		when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
@@ -206,7 +207,8 @@ union
 select -- This the Activity Table Query
    Activity.ETag as 'Etag',
 	case
-	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
+	    when Activity.ActivityType in (11,12,15) 
+			then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
 			when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
