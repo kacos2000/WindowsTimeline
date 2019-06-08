@@ -1,4 +1,4 @@
--- SQLite query to get useful results from MS Windows 1803/1809/1903+ 
+-- Works with MS Windows 10 v1803/1809/1903+ 
 -- Timeline feature's database (ActivitiesCache.db).
 -- 
 -- Dates/Times in the database are stored in Unixepoch and UTC by default. 
@@ -30,30 +30,28 @@
 
 SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag',
-	case 
-		when json_extract(ActivityOperation.AppId, '$[0].platform') != "afs_crossplatform"  
-	    	then json_extract(ActivityOperation.AppId, '$[0].application') 
-		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
+	case
+	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
+		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
-		when json_extract(ActivityOperation.AppId, '$[0].application') = 'E7CF176E110C211B'
+		when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
 			then 'Mozilla Firefox-32bit'
-		when json_extract(ActivityOperation.AppId, '$[1].application') = '308046B0AF4A39CB'
+		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
-		when json_extract(ActivityOperation.AppId, '$[1].application') = 'E7CF176E110C211B'
+		when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
 			then 'Mozilla Firefox-32bit'
-		when length (json_extract(ActivityOperation.AppId, '$[1].application')) between 17 and 22 
-			then 
-			replace(replace(replace(replace(replace
-			(json_extract(ActivityOperation.AppId, '$[0].application'),
-			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles(x64)'), 
-			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles(x32)'),
+		when length (json_extract(Activity.AppId, '$[0].application')) between 17 and 22 
+			then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),
+			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)' ),  
+			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-		else replace(replace(replace(replace(replace(json_extract(ActivityOperation.AppId,'$[1].application'),
-			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles(x64)' ), 
-			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles(x32)'),
-			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
+			else  replace(replace(replace(replace(replace
+			(json_extract(Activity.AppId, '$[0].application'),
+			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
+			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
+			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
@@ -207,32 +205,30 @@ union
 
 select -- This the Activity Table Query
    Activity.ETag as 'Etag',
-   case 
-		when json_extract(Activity.AppId, '$[0].platform') != "afs_crossplatform"  
-		then json_extract(Activity.AppId, '$[0].application') 
-	when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
-	then 'Mozilla Firefox-64bit'
-	when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
-		then 'Mozilla Firefox-32bit'
-	when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB'
-		then 'Mozilla Firefox-64bit'
-	when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
-		then 'Mozilla Firefox-32bit'
-	when length(json_extract(Activity.AppId, '$[1].application')) between 17 and 22 
-		then 
-		replace(replace(replace(replace(replace
-		(json_extract(Activity.AppId, '$[0].application'),
-		'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles(x64)'), 
-		'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles(x32)'),
-		'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
-		'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
-		'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	else replace(replace(replace(replace(replace(json_extract(Activity.AppId,'$[1].application'),
-		'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles(x64)' ), 
-		'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles(x32)'),
-		'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
-		'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
-		'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32')  
+	case
+	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
+		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
+			then 'Mozilla Firefox-64bit'
+			when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
+			then 'Mozilla Firefox-32bit'
+		when json_extract(Activity.AppId, '$[1].application') = '308046B0AF4A39CB' 
+			then 'Mozilla Firefox-64bit'
+			when json_extract(Activity.AppId, '$[1].application') = 'E7CF176E110C211B'
+			then 'Mozilla Firefox-32bit'
+		when length (json_extract(Activity.AppId, '$[0].application')) between 17 and 22 
+			then replace(replace(replace(replace(replace(json_extract(Activity.AppId, '$[1].application'),
+			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)' ),  
+			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
+			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System' ),
+			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
+			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
+			else  replace(replace(replace(replace(replace
+			(json_extract(Activity.AppId, '$[0].application'),
+			'{'||'6D809377-6AF0-444B-8957-A3773F02200E'||'}', '*ProgramFiles (x64)'),
+			'{'||'7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E'||'}', '*ProgramFiles (x32)'),
+			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
+			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
+			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
 	case 
 		when Activity.ActivityType = 5 
