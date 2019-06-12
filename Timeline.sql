@@ -29,7 +29,7 @@
 
 
 SELECT -- This the ActivityOperation Table Query
-	ActivityOperation.ETag as 'Etag',
+	ActivityOperation.ETag as 'Etag', --entity tag (unique)
 	case
 	    when Activity.ActivityType in (11,12,15) 
 			then json_extract(Activity.AppId, '$[0].application')	
@@ -55,28 +55,28 @@ SELECT -- This the ActivityOperation Table Query
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	end as 'Application',
+	end as 'Application', --Program name with simple Known folder GUIDs conversion
 	case 
 		when ActivityOperation.ActivityType = 5 
 		then json_extract(ActivityOperation.Payload, '$.appDisplayName') 
 		else ''
-	end as 'DisplayName',
+	end as 'DisplayName', --Display name of the application from the Payload field 
 	case 
 		when ActivityOperation.ActivityType = 5
 		then json_extract(ActivityOperation.Payload, '$.displayText') 
 		else '' 
-	end as 'DisplayText',
+	end as 'DisplayText', --Opened filename or url from the Payload field
 	case 
 		when ActivityOperation.ActivityType = 5  
 		then json_extract(ActivityOperation.Payload, '$.description') 
 		else ''  
-	end as 'Description',
+	end as 'Description', --Full path /url of the file/url opened from the Payload field
 	case 
 		when ActivityOperation.ActivityType = 5 
 		then json_extract(ActivityOperation.Payload, '$.contenturi') 
 		else ''  
-	end as 'Content',
-	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
+	end as 'Content', --Full path /url, Volume Id & Object Id from the Payload field
+	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId', --Full path /url 
 	case 
 		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
 		then json_extract(ActivityOperation.Payload,'$')
@@ -87,7 +87,7 @@ SELECT -- This the ActivityOperation Table Query
 		when ActivityOperation.ActivityType = 6 
 		then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
 		else ''	
-	end as 'Payload/Timezone',
+	end as 'Payload/Timezone', --Payload for types 10,11,12,15 (encoded), Payload (FileShellLink) for type 5 and Payload (type & userTimezone) for type 6
 	case  
 		when ActivityOperation.ActivityType = 5 then 'Open App/File/Page('||ActivityOperation.ActivityType||')' 
 		when ActivityOperation.ActivityType = 6 then 'App In Use/Focus  ('||ActivityOperation.ActivityType||')'  
@@ -96,7 +96,7 @@ SELECT -- This the ActivityOperation Table Query
 		when ActivityOperation.ActivityType in (11,12,15) then 'System ('||ActivityOperation.ActivityType||')' 
 		else ActivityOperation.ActivityType 
 	end as 'Activity_type',
-	ActivityOperation."Group" as 'Group',
+	ActivityOperation."Group" as 'Group', 
 	case 
 		when json_extract(ActivityOperation.AppId, '$') like '%afs_crossplatform%' 
 		then 'Yes' 
@@ -130,7 +130,7 @@ SELECT -- This the ActivityOperation Table Query
    case 
 		when cast((ActivityOperation.EndTime - ActivityOperation.StartTime) as integer) < 0 then '' 
 		else time(cast((ActivityOperation.EndTime - ActivityOperation.StartTime) as integer),'unixepoch') 
-   end as 'Calculated Duration',
+   end as 'Calculated Duration', --EndTime - StartTime
    datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') as 'StartTime', 
    datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModified',
 	case 
@@ -152,7 +152,7 @@ SELECT -- This the ActivityOperation Table Query
 		when ActivityOperation.ActivityType = 10 
 		then cast((ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime)/3600 as integer)||' hours'
 		else cast((ActivityOperation.ExpirationTime - ActivityOperation.LastModifiedTime)/86400 as integer)||' days' 
-    end as 'ExpiresIn',
+    end as 'ExpiresIn', --ExpirationTime - LastModifiedTime (in hours for activitytype 10 or days for the rest) 
    datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
    case 
 	when ActivityOperation.Tag notnull
@@ -160,8 +160,8 @@ SELECT -- This the ActivityOperation Table Query
 	else ''
    end as 'Tag',
    ActivityOperation.MatchId as 'MatchID',
-   ActivityOperation.PlatformDeviceId as 'Device ID', 
-   ActivityOperation.PackageIdHash as 'PackageIdHash',
+   ActivityOperation.PlatformDeviceId as 'Device ID', -- Can be used to identify the source device in NTUSER.dat
+   ActivityOperation.PackageIdHash as 'PackageIdHash', --Unique hash of the application (different version of the same application has a different hash)
 	 '{' || substr(hex(ActivityOperation.Id), 1, 8) || '-' || 
 			substr(hex(ActivityOperation.Id), 9, 4) || '-' || 
 			substr(hex(ActivityOperation.Id), 13, 4) || '-' || 
@@ -175,7 +175,7 @@ SELECT -- This the ActivityOperation Table Query
 				substr(hex(ActivityOperation.ParentActivityId), 13, 4) || '-' || 
 				substr(hex(ActivityOperation.ParentActivityId), 17, 4) || '-' || 
 				substr(hex(ActivityOperation.ParentActivityId), 21, 12) || '}' 
-	end as 'ParentActivityId',
+	end as 'ParentActivityId', --this ID  can be used to find the source/target of the copy/paste operation
 	case 
 		when ActivityOperation.ActivityType = 16 
 		then json_extract(ActivityOperation.Payload, '$.clipboardDataId') 
@@ -185,7 +185,7 @@ SELECT -- This the ActivityOperation Table Query
 		when ActivityOperation.ActivityType = 10 
 		then json_extract(ActivityOperation.ClipboardPayload,'$[0].content')
 		else ''
-	end as 'Clipboard Text(Base64)',	
+	end as 'Clipboard Text(Base64)',--Use CyberChef to decode https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true)	
 	case 
 		when ActivityOperation.ActivityType = 16 
 		then json_extract(ActivityOperation.Payload, '$.gdprType')
@@ -231,28 +231,28 @@ select -- This the Activity Table Query
 			'{'||'1AC14E77-02E7-4E5D-B744-2EB1AE5198B7'||'}', '*System'),
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
-	end as 'Application',
+	end as 'Application', --Program name with simple Known folder GUIDs conversion
 	case 
 		when Activity.ActivityType = 5 
 		then json_extract(Activity.Payload, '$.appDisplayName') 
 		else ''
-	end as 'DisplayName',
+	end as 'DisplayName', --Display name of the application from the Payload field
 	case 
 			when Activity.ActivityType = 5
 			then json_extract(Activity.Payload, '$.displayText') 
 			else '' 
-	end as 'DisplayText',
+	end as 'DisplayText', --Opened filename or url from the Payload field
 	case 
 			when Activity.ActivityType = 5 
 			then json_extract(Activity.Payload, '$.description') 
 			else '' 
-	end as 'Description',
+	end as 'Description', --Full path /url of the file/url opened from the Payload field
 	case 
 			when Activity.ActivityType =  5 
 			then json_extract(Activity.Payload, '$.contentUri') 
 			else ''  
-	end as 'Content',
-	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
+	end as 'Content', --Full path /url, Volume Id & Object Id from the Payload field
+	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId', --Full path /url
 	case 
 		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
 		then json_extract(Activity.Payload,'$')
@@ -263,7 +263,7 @@ select -- This the Activity Table Query
 		when Activity.ActivityType = 6 
 		then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
 		else ''	
-	end as 'Payload/Timezone',
+	end as 'Payload/Timezone', --Payload for types 10,11,12,15 (encoded), Payload (FileShellLink) for type 5 and Payload (type & userTimezone) for type 6
 	case 
 			when Activity.ActivityType = 5 then 'Open App/File/Page('||Activity.ActivityType||')' 
 			when Activity.ActivityType = 6 then 'App In Use/Focus  ('||Activity.ActivityType||')' 
@@ -271,7 +271,7 @@ select -- This the Activity Table Query
 			when Activity.ActivityType = 16 then 'Copy/Paste('||Activity.ActivityType||')'
 			when Activity.ActivityType in (11,12,15) then 'System ('||Activity.ActivityType||')'
 			else Activity.ActivityType 
-	end as 'Activity_type',
+	end as 'Activity_type', 
 	Activity."Group" as 'Group',
 	case 
 		when json_extract(Activity.AppId, '$') like '%afs_crossplatform%' 
@@ -311,7 +311,7 @@ select -- This the Activity Table Query
 		when cast ((Activity.EndTime - Activity.StartTime) as integer) < 0 
 		then '' 
 		else time(cast((Activity.EndTime - Activity.StartTime) as integer),'unixepoch') 
-	end as 'Calculated Duration',
+	end as 'Calculated Duration', --EndTime - StartTime
     datetime(Activity.StartTime, 'unixepoch', 'localtime') as 'StartTime',
     datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModified',
 	case 
@@ -333,7 +333,7 @@ select -- This the Activity Table Query
 		when Activity.ActivityType = 10 
 		then cast((Activity.ExpirationTime - Activity.LastModifiedTime)/3600 as integer)||' hours'
 		else cast((Activity.ExpirationTime - Activity.LastModifiedTime)/86400 as integer)||' days' 
-   end as 'Expires In',
+   end as 'Expires In', --ExpirationTime - LastModifiedTime (in hours for activitytype 10 or days for the rest) 
     datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
     case 
 		when Activity.Tag notnull
@@ -341,8 +341,8 @@ select -- This the Activity Table Query
 		else ''
 	end as 'Tag',
     Activity.MatchId as 'MatchID',
-    Activity.PlatformDeviceId as 'Device ID', 
-    Activity.PackageIdHash as 'PackageIdHash',
+    Activity.PlatformDeviceId as 'Device ID', --Can be used to identify the source device in NTUSER.dat
+    Activity.PackageIdHash as 'PackageIdHash', -- Unique hash of the application (different version of the same application has a different hash)
 		 '{' || substr(hex(Activity.Id), 1, 8) || '-' ||
 				substr(hex(Activity.Id), 9, 4) || '-' ||
 				substr(hex(Activity.Id), 13, 4) || '-' ||
@@ -357,7 +357,7 @@ select -- This the Activity Table Query
 				substr(hex(Activity.ParentActivityId), 13, 4) || '-' || 
 				substr(hex(Activity.ParentActivityId), 17, 4) || '-' || 
 				substr(hex(Activity.ParentActivityId), 21, 12) || '}' 
-	end as 'ParentActivityId',
+	end as 'ParentActivityId', --this ID  can be used to find the source/target of the copy/paste operation
 	case 
 		when Activity.ActivityType = 16 
 		then json_extract(Activity.Payload, '$.clipboardDataId') 
@@ -367,7 +367,7 @@ select -- This the Activity Table Query
 		when Activity.ActivityType = 10 
 		then json_extract(Activity.ClipboardPayload,'$[0].content')
 		else ''
-	end as 'Clipboard Text(Base64)',
+	end as 'Clipboard Text(Base64)', https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) --Use CyberChef to decode https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) 
 	  case 
 	when Activity.ActivityType = 16 
 	then json_extract(Activity.Payload, '$.gdprType')
