@@ -367,7 +367,7 @@ select -- This the Activity Table Query
 		when Activity.ActivityType = 10 
 		then json_extract(Activity.ClipboardPayload,'$[0].content')
 		else ''
-	end as 'Clipboard Text(Base64)', https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) --Use CyberChef to decode https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) 
+	end as 'Clipboard Text(Base64)', -- https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) --Use CyberChef to decode https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true) 
 	  case 
 	when Activity.ActivityType = 16 
 	then json_extract(Activity.Payload, '$.gdprType')
