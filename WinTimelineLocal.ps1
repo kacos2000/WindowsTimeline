@@ -87,7 +87,6 @@ select
        datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') as 'StartTime',
        datetime(ActivityOperation.EndTime, 'unixepoch', 'localtime') as 'EndTime',
        ActivityOperation.Tag, 
-       ActivityOperation.ClipboardPayload,
        ActivityOperation.PlatformDeviceId,
        ActivityOperation.Payload 
        
@@ -113,7 +112,6 @@ select
        datetime(Activity.StartTime, 'unixepoch', 'localtime') as 'StartTime',
        datetime(Activity.EndTime, 'unixepoch', 'localtime') as 'EndTime',
        Activity.Tag,
-       activity.ClipboardPayload,
        Activity.PlatformDeviceId,
        Activity.Payload  
        
@@ -123,7 +121,7 @@ order by Etag desc
 "@ 
 write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, ClipboardPayload, PlatformDeviceId, Payload)
+$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, IsInUploadQueue, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
 $dbcount = $dbresults.count
 $sw.stop()
 $T0 = $sw1.Elapsed
@@ -306,7 +304,6 @@ $Output = foreach ($item in $dbresults ){$rb++
                                 AppActivityId =    $item.AppActivityId
                                 Content =          $content
                                 Tag =              $item.Tag
-                                Clipboard =        $item.ClipboardPayload
                                 Type =             $type
                                 ActivityType =     $item.ActivityType
                                 ActivityStatus =   $item.ActivityStatus
