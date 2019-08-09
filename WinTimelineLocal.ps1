@@ -29,11 +29,6 @@ catch {
 # Device Name and Model of the originating machine can be seen 
 # in the HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
 
-# Note:
-# Device Name and Model of the originating machine can be seen 
-# in the HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
-
-
 
 # Show an Open File Dialog 
 Function Get-FileName($initialDirectory)
