@@ -1,8 +1,5 @@
 ﻿#Requires -RunAsAdministrator
 
-#Set encoding to UTF-8 
-$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = (New-Object System.Text.UTF8Encoding)
-
 #Check if SQLite exists
 try{write-host "sqlite3.exe version => "-f Yellow -nonewline; sqlite3.exe -version }
 catch {
@@ -127,28 +124,22 @@ $UserDay = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZ
 			$Day = -([convert]::ToInt32([Convert]::ToString($UserDay,2),2)) 
 			$Biasd = $Bias/60
 $RegCount = $DeviceID.count
-$ra=0
-$rb=0
 
-
-$Registry = @(foreach ($entry in $DeviceID){$ra++
+$Registry = @(foreach ($entry in $DeviceID){
             
             $entry = $entry -replace ("/","`/")
             $dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
             
-            if ($ra % ($RegCount/1000) -eq 0){
-            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete ($ra*100/ $RegCount) -ParentID 1
-            }
+            
+            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
+            
                 $ID = $entry
-                try {$Type = (get-itemproperty -path $dpath).DeviceType
+                if((test-path -path $dpath) -eq $true){
+                     $Type = (get-itemproperty -path $dpath).DeviceType
                      $Name = (get-itemproperty -path $dpath).DeviceName
                      $Make = (get-itemproperty -path $dpath).DeviceMake
                      $Model= (get-itemproperty -path $dpath).DeviceModel}
-                Catch [System.Management.Automation.ItemNotFoundException]
-                {Write-Host -ForegroundColor Yellow "$dpath `n Can not be read or does not match a DeviceID in the database"}
-                catch {Write-Host -ForegroundColor Yellow "$dpath `n Can not be read or does not match a DeviceID in the database"}
-                Finally { $ErrorActionPreference = "Continue" }
-
+                
                 [PSCustomObject]@{
                                 ID =    $ID
                                 Type =  $Type
@@ -260,10 +251,9 @@ $known = @{
             "F38BF404-1D43-42F2-9305-67DE0B28FC23" = "Windows"
             }          
    
-$Output = foreach ($item in $dbresults ){$rb++
-                    if ($rb % ($dbcount/1000) -eq 0){
-                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete ($rb*100/ $dbcount) -ParentID 1
-                    }
+$Output = foreach ($item in $dbresults ){
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database" -ParentID 1
+                    
                     foreach ($rin in $Registry){
                                         
                     if($item.PlatformDeviceId -eq $rin.ID){
@@ -297,7 +287,9 @@ $Output = foreach ($item in $dbresults ){$rb++
                     $clipboard = if($item.ActivityType -in (10)){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.ClipboardPayload|ConvertFrom-Json).content))}
                      
                     # Replace known folder GUID with it's Name
-                    foreach ($i in $known.Keys) {$AppName = $AppName -replace $i, $known[$i]}
+                    foreach ($i in $known.Keys) {
+                                        $AppName = $AppName -replace $i, $known[$i]
+                                        $content = $content -replace $i, $known[$i]}
                     
                     # Fix endtime displaying 1970 date for File/App Open entries (entry is $null)
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
