@@ -139,10 +139,12 @@ ________________________________________________________________________________
    
    * ### **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** ###
      Powershell script that runs a simple SQLite query against one of the local ActivitiesCache.db's available to the user, and adds info for the PlatformID from the registry. Json fields are parsed with Powershell's convertfrom-json.<br>
+     08/19 Updated to decode Win10 1903 Clipboard entries from Base64 to Text<br>
      ![p](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/p1.JPG)
    
    * ### **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** ###
-     Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from a related, user selected NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.
+     Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from the related, user selected, NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.<br>
+08/19 Updated to decode Win10 1903 Clipboard entries from Base64 to Text<br>
  __________________________________________________________________________________________   
    *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
                 * PCs and laptops *(Screen sizes 13” and greater)*<br>
