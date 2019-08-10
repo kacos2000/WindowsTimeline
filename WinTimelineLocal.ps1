@@ -126,7 +126,7 @@ $UserDay = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZ
 			$Bias = -([convert]::ToInt32([Convert]::ToString($UserBias,2),2))
 			$Day = -([convert]::ToInt32([Convert]::ToString($UserDay,2),2)) 
 			$Biasd = $Bias/60
-$RegCount =$DeviceID.count
+$RegCount = $DeviceID.count
 $ra=0
 $rb=0
 
@@ -135,8 +135,10 @@ $Registry = @(foreach ($entry in $DeviceID){$ra++
             
             $entry = $entry -replace ("/","`/")
             $dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
-
-            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete (([double]$ra / $RegCount)*100) -ParentID 1
+            
+            if ($ra % ($RegCount/1000) -eq 0){
+            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete ($ra*100/ $RegCount) -ParentID 1
+            }
                 $ID = $entry
                 try {$Type = (get-itemproperty -path $dpath).DeviceType
                      $Name = (get-itemproperty -path $dpath).DeviceName
@@ -259,11 +261,11 @@ $known = @{
             }          
    
 $Output = foreach ($item in $dbresults ){$rb++
-                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete (([double]$rb / $dbcount)*100) -ParentID 1
-                    $rc=0
-                    foreach ($rin in $Registry){$rc++
-                    
-                    Write-Progress -id 4 -Activity "Creating Output" -Status "with matching Registry entries - $rc of $($Registry.count))" -PercentComplete (([double]$rc / $Registry.count)*100) -ParentID 1
+                    if ($rb % ($dbcount/1000) -eq 0){
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete ($rb*100/ $dbcount) -ParentID 1
+                    }
+                    foreach ($rin in $Registry){
+                                        
                     if($item.PlatformDeviceId -eq $rin.ID){
                     
                     # Get Payload information

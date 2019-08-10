@@ -167,7 +167,10 @@ $Registry = @(foreach ($entry in $DeviceID){$ra++
 
             $entry = $entry -replace ("/","`/")
             $dpath = "HKLM:\Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" + "$($entry)"
-            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete (([double]$ra / $RegCount)*100) -ParentID 1
+            if ($ra % ($RegCount/1000) -eq 0){
+            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete ($ra*100/ $RegCount) -ParentID 1
+            }
+               
                 $ID = $entry
                 try{$Type = (get-itemproperty -path $dpath).DeviceType
                     $Name = (get-itemproperty -path $dpath).DeviceName
@@ -290,11 +293,12 @@ $known =   @{
 
 #Create output   
 $Output = foreach ($item in $dbresults ){$rb++
-                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete (([double]$rb / $dbcount)*100) -ParentID 1
-                    $rc=0
-                    foreach ($rin in $Registry){$rc++
+                    if ($rb % ($dbcount/1000) -eq 0){
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete ($rb*100/ $dbcount) -ParentID 1
+                    }
                     
-                    Write-Progress -id 4 -Activity "Creating Output" -Status "with matching Registry entries - $rc of $($Registry.count))" -PercentComplete (([double]$rc / $Registry.count)*100) -ParentID 1
+                    foreach ($rin in $Registry){
+                    
                     if($item.PlatformDeviceId -eq $rin.ID){
                     
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
