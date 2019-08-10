@@ -55,7 +55,7 @@ Try{write-host "Selected: " (Get-Item $File)|out-null}
 Catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
 
 #Check if DEviceCache has entries
-try{$DeviceID =  (Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object}
+try{$DeviceID =  @((Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object)}
 catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
 
 $db = $File
@@ -132,14 +132,21 @@ $rb=0
 
 
 $Registry = @(foreach ($entry in $DeviceID){$ra++
-            try{$dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry}
-            catch{""}
+            
+            $entry = $entry -replace ("/","`/")
+            $dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
+
             Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete (([double]$ra / $RegCount)*100) -ParentID 1
                 $ID = $entry
-                $Type = (get-itemproperty -path $dpath).DeviceType
-                $Name = (get-itemproperty -path $dpath).DeviceName
-                $Make = (get-itemproperty -path $dpath).DeviceMake
-                $Model= (get-itemproperty -path $dpath).DeviceModel 
+                try {$Type = (get-itemproperty -path $dpath).DeviceType
+                     $Name = (get-itemproperty -path $dpath).DeviceName
+                     $Make = (get-itemproperty -path $dpath).DeviceMake
+                     $Model= (get-itemproperty -path $dpath).DeviceModel}
+                Catch [System.Management.Automation.ItemNotFoundException]
+                {Write-Host -ForegroundColor Yellow "$dpath `n Can not be read or does not match a DeviceID in the database"}
+                catch {Write-Host -ForegroundColor Yellow "$dpath `n Can not be read or does not match a DeviceID in the database"}
+                Finally { $ErrorActionPreference = "Continue" }
+
                 [PSCustomObject]@{
                                 ID =    $ID
                                 Type =  $Type
@@ -304,16 +311,16 @@ $Output = foreach ($item in $dbresults ){$rb++
                                 Group         =    $item.Group
                                 Tag =              $item.Tag
                                 Type =             $type
-                                ActivityType =          if ($item.ActivityType -eq 5){"Open App/File/Page"}
-                                                    elseif ($item.ActivityType -eq 6){"App In Use/Focus"}
-                                                    elseif ($item.ActivityType -eq 10){"Clipboard Text"}
+                                ActivityType =          if ($item.ActivityType -eq 5){"Open App/File/Page (5)"}
+                                                    elseif ($item.ActivityType -eq 6){"App In Use/Focus (6)"}
+                                                    elseif ($item.ActivityType -eq 10){"Clipboard Text (10)"}
                                                     elseif ($item.ActivityType -in (11,12,15)){"System"}
-                                                    elseif ($item.ActivityType -eq 16){"Copy/Paste"}
+                                                    elseif ($item.ActivityType -eq 16){"Copy/Paste (16)"}
                                                     else{$item.ActivityType}
                                 ActivityStatus =   $item.ActivityStatus
                                 IsInUploadQueue =  $item.IsInUploadQueue
                                 CopiedText       = $clipboard
-                                Duration =         [timespan]::fromseconds($Duration)
+                                Duration =         if($Duration -ne ""){[timespan]::fromseconds($Duration)}else{""}
                                 LastModifiedTime = Get-Date($item.LastModifiedTime) -f s
                                 ExpirationTime =   Get-Date($item.ExpirationTime) -f s
                                 StartTime =        Get-Date($item.StartTime) -f s
