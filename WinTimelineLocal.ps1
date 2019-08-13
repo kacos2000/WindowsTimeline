@@ -265,7 +265,9 @@ $Output = foreach ($item in $dbresults ){
                     $displayText = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).displayText}else{""}
                     $description = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).description} else{""}
                     $displayname = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).appDisplayName}else{""}
-                    $content =     if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).contentUri}else{""}
+                    $content =     if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).contentUri}
+                               elseif($item.ActivityType -eq 10){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.Payload|ConvertFrom-Json)."1".content))}
+                               else{""}
                     $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
                     
                     # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
@@ -301,7 +303,7 @@ $Output = foreach ($item in $dbresults ){
                                 DisplayText =      $displayText
                                 Description =      $description
                                 AppActivityId =    $item.AppActivityId
-                                Content =          $content
+                                PayloadContent =   $content
                                 Group         =    $item.Group
                                 Tag =              $item.Tag
                                 Type =             $type
@@ -314,7 +316,8 @@ $Output = foreach ($item in $dbresults ){
                                 ActivityStatus =   $item.ActivityStatus
                                 IsInUploadQueue =  $item.IsInUploadQueue
                                 CopiedText       = $clipboard
-                                Duration =         if($Duration -ne ""){[timespan]::fromseconds($Duration)}else{""}
+                                Duration =         if ($item.ActivityType -eq 6){[timespan]::fromseconds($Duration)}else{""}
+                                CalculatedDuration = if ($item.ActivityType -eq 6){([datetime] $item.endtime - [datetime] $item.StartTime)}else{""}
                                 LastModifiedTime = Get-Date($item.LastModifiedTime) -f s
                                 ExpirationTime =   Get-Date($item.ExpirationTime) -f s
                                 StartTime =        Get-Date($item.StartTime) -f s
