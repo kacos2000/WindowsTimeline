@@ -4,7 +4,7 @@
 ## Windows 10 Timeline ## 
 
 ### NEW (5/2019) ### 
-[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 OS Build 18895.1000) <br>
+[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 *(Build 18970.1005)*) <br>
  
    * **ActivityTypes observed:**
    
@@ -39,7 +39,7 @@ Either import the queries (*.sql file*) to your SQLite program, or *Copy/Paste* 
 Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.org/json1.html).
 
 * ### [Windows timeline database query (WindowsTimeline.sql)](WindowsTimeline.sql) ###
-    Updated to work with Win10  1809 *(Build 17754.1 ~~17744.1003~~ RC5), 1903*<br>
+    Updated to work with Win10  v1903 *(Build 18970.1005)* <br>
     
     *Screenshots of WindowsTimeline.sql*
     ![Preview1](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1.JPG)
@@ -109,7 +109,7 @@ ________________________________________________________________________________
    - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the ~upcoming~ Win10 v1809 & v1903 upgrades.*
    - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     (Journal of Forensic Sciences DOI:10.1111/1556-4029.13875) - *(Win10 1803)*<br>
      __________________________________________________________________________________________
-* ### PowerShell scripts *(Win10 - 1803,1809,1903)* ###
+* ### PowerShell scripts *(Win10 - 1803,1809,1903+)* ###
    
    :shipit: Require SQLite3.exe <br> Note: *The PowerShell scripts are not the fastest way to parse Windows Timeline (~16min for a 10500 entry db)*
    * **[Instructions](http://www.sqlitetutorial.net/download-install-sqlite/)** *(How To Download & Install SQLite)*
