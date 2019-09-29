@@ -58,7 +58,7 @@ catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host "
 $db = $File
 $sw = [Diagnostics.Stopwatch]::StartNew()
 $sw1 = [Diagnostics.Stopwatch]::StartNew()
-$dbresults=@()
+$dbresults=@{}
 $Query = @"
 select 
        ActivityOperation.ETag,
@@ -117,7 +117,7 @@ write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in
 if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 
 #Query HKCU, check results against the Database 
-$Registry = [pscustomobject]@()
+$Registry = [pscustomobject]@{}
 $UserBias = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").ActiveTimeBias
 $UserDay = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").DaylightBias
 			$Bias = -([convert]::ToInt32([Convert]::ToString($UserBias,2),2))
@@ -134,11 +134,13 @@ $Registry = @(foreach ($entry in $DeviceID){
             Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
             
                 $ID = $entry
-                if((test-path -path $dpath) -eq $true){
+                if((test-path -path $dpath) -eq $true)
+                     {
                      $Type = (get-itemproperty -path $dpath).DeviceType
                      $Name = (get-itemproperty -path $dpath).DeviceName
                      $Make = (get-itemproperty -path $dpath).DeviceMake
-                     $Model= (get-itemproperty -path $dpath).DeviceModel}
+                     $Model= (get-itemproperty -path $dpath).DeviceModel
+                     }
                 
                 [PSCustomObject]@{
                                 ID =    $ID
@@ -303,7 +305,7 @@ $Output = foreach ($item in $dbresults ){
                                 DisplayText =      $displayText
                                 Description =      $description
                                 AppActivityId =    $item.AppActivityId
-                                PayloadContent =   $content
+                                PayloadContent =   [uri]::UnescapeDataString($content)
                                 Group         =    $item.Group
                                 Tag =              $item.Tag
                                 Type =             $type

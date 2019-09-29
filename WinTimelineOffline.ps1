@@ -79,7 +79,7 @@ $sw1 = [Diagnostics.Stopwatch]::StartNew()
 
 #Database Query
 $db = $File1
-$dbresults=@()
+$dbresults=@{}
 $Query = @"
 select 
        ActivityOperation.ETag,
@@ -155,7 +155,7 @@ finally{
     }
 
 #Query HKCU, check results against the Database 
-$Registry = [pscustomobject]@()
+$Registry = [pscustomobject]@{}
 $DeviceID = @((Get-ChildItem -Path "HKLM:\Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object)
 $RegCount = $DeviceID.count
 $ra=0
@@ -340,7 +340,7 @@ $Output = foreach ($item in $dbresults ){
                                 DisplayText =      $displayText
                                 Description =      $description
                                 AppActivityId =    $item.AppActivityId
-                                PayloadContent =   $content
+                                PayloadContent =   [uri]::UnescapeDataString($content)
                                 Group         =    $item.Group
                                 Tag =              $item.Tag
                                 Type =             $type
