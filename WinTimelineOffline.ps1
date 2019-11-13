@@ -28,7 +28,6 @@ catch {
 # Show Open File Dialogs 
 Function Get-FileName($initialDirectory, $Title ,$Filter)
 {  
-[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") |Out-Null
 		$OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
 		$OpenFileDialog.Title = $Title
 		$OpenFileDialog.initialDirectory = $initialDirectory
@@ -299,14 +298,15 @@ $Output = foreach ($item in $dbresults ){
                     
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
                     $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
+                    $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
+                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
                     $displayText = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).displayText}else{""}
                     $description = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).description} else{""}
                     $displayname = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).appDisplayName}else{""}
                     $content =     if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).contentUri}
                                elseif($item.ActivityType -eq 10){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.Payload|ConvertFrom-Json)."1".content))}
                                else{""}
-                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
-                    
+                   
                     # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
                     $platform = ($item.Appid|convertfrom-json).platform
                     $AppName  = if($item.ActivityType -in (11,12,15)){($item.Appid|convertfrom-json).application[0]}
@@ -351,6 +351,7 @@ $Output = foreach ($item in $dbresults ){
                                                     elseif ($item.ActivityType -eq 16){"Copy/Paste (16)"}
                                                     else{$item.ActivityType}
                                 ActivityStatus =   $item.ActivityStatus
+                                DevicePlatform  =  $devPlatform
                                 IsInUploadQueue =  $item.IsInUploadQueue
                                 CopiedText       = $clipboard
                                 Duration =         if($Duration -ne ""){[timespan]::fromseconds($Duration)}else{""}
@@ -390,8 +391,14 @@ $T = $sw1.Elapsed
 $Output|Out-GridView -PassThru -Title "Windows Timeline $File1 with Device Information from $File2 - $dbcount entries found in $T "
 
 
-[gc]::Collect()		
-reg unload HKEY_LOCAL_MACHINE\Temp 
+[gc]::Collect()
+try{reg unload HKEY_LOCAL_MACHINE\Temp} 
+catch{
+Write-Warning "There seems to be an issue unloading $($File2)."
+Write-Host "Please open a new Powershell terminal Window, copy/paste" -NoNewline;write-host "reg unload HKEY_LOCAL_MACHINE\Temp" -ForegroundColor Magenta
+Write-Host "close this Powershell terminal and run the above command in the other terminal Window"
+}
+ 
 $after = (Get-FileHash $File2 -Algorithm SHA256).Hash 
 write-host "SHA256 Hash of ($File2) after access = " -f magenta -nonewline;write-host "($after)" -f Yellow
 $result = (compare-object -ReferenceObject $before -DifferenceObject $after -IncludeEqual).SideIndicator 

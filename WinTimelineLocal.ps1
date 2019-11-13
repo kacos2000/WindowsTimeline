@@ -264,14 +264,14 @@ $Output = foreach ($item in $dbresults ){
 
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
                     $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
+                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
+                    $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
                     $displayText = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).displayText}else{""}
                     $description = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).description} else{""}
                     $displayname = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).appDisplayName}else{""}
                     $content =     if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).contentUri}
                                elseif($item.ActivityType -eq 10){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.Payload|ConvertFrom-Json)."1".content))}
                                else{""}
-                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
-                    
                     # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
                     $platform = ($item.Appid|convertfrom-json).platform
                     $AppName  = if($item.ActivityType -in (11,12,15)){($item.Appid|convertfrom-json).application[0]}
@@ -316,6 +316,7 @@ $Output = foreach ($item in $dbresults ){
                                                     elseif ($item.ActivityType -eq 16){"Copy/Paste (16)"}
                                                     else{$item.ActivityType}
                                 ActivityStatus =   $item.ActivityStatus
+                                DevicePlatform  =  $devPlatform
                                 IsInUploadQueue =  $item.IsInUploadQueue
                                 CopiedText       = $clipboard
                                 Duration =         if ($item.ActivityType -eq 6){[timespan]::fromseconds($Duration)}else{""}
