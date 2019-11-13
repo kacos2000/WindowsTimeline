@@ -66,10 +66,17 @@ SELECT -- This the ActivityOperation Table Query
 	case when ActivityOperation.ActivityType not in (10,11,12,15,16) then 
 	json_extract(ActivityOperation.Payload, '$.contenturi') else ''  end as 'Content',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
-	case when ActivityOperation.ActivityType in (10,11,12,15,16) then ActivityOperation.Payload 
-	   when ActivityOperation.ActivityType in (10,11,12,15,16) and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
-	   then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
-	   else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
+	case 
+		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
+		then json_extract(ActivityOperation.Payload,'$.1[0].content') --Base64 encoded
+		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
+	    then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
+		when ActivityOperation.ActivityType = 6 
+		then case 
+			when json_extract(ActivityOperation.Payload,'$.devicePlatform') notnull 
+			then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.devicePlatform')
+			else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone') end
+		else ''	
 	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
 		when 5 then 'Open App/File/Page' 
@@ -110,7 +117,7 @@ SELECT -- This the ActivityOperation Table Query
 	case when ActivityOperation.ActivityType in (10,11,12,15,16) then ''
 	else coalesce(json_extract(ActivityOperation.Payload, '$.activationUri'),json_extract(ActivityOperation.Payload, '$.reportingApp')) end as 'App/Uri',
    ActivityOperation.Priority as 'Priority',	  
-   case when ActivityOperation.ActivityType in (10,11,12,15,16) then ''
+   case when ActivityOperation.ActivityType !=6 then ''
    else time(json_extract(ActivityOperation.Payload, '$.activeDurationSeconds'),'unixepoch') end as 'Active Duration',
    case 
 		when cast((ActivityOperation.EndTime - ActivityOperation.StartTime) as integer) < 0 then '-' 
@@ -221,11 +228,18 @@ select -- This the Activity Table Query
 	case when Activity.ActivityType not in (10,11,12,15,16) then 
 	json_extract(Activity.Payload, '$.contentUri') else ''  end as 'Content',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
- case when Activity.ActivityType in (10,11,12,15,16) then Activity.Payload
-       when json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%'
-	   then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
-	   else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
-	  end as 'Payload/Timezone',
+	case 
+		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
+		then json_extract(Activity.Payload,'$.1[0].content') --Base64 encoded
+		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
+	    then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
+		when Activity.ActivityType = 6
+		then case
+			when json_extract(Activity.Payload,'$.devicePlatform') notnull 
+			then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.devicePlatform')
+			else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone') end
+		else ''	
+	end as 'Payload/Timezone',
 	case Activity.ActivityType 
 		when 5 then 'Open App/File/Page' 
 		when 6 then 'App In Use/Focus' 
@@ -256,7 +270,7 @@ select -- This the Activity Table Query
    case when Activity.ActivityType in (10,11,12,15,16) then ''
    else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) end as 'App/Uri',
    Activity.Priority as 'Priority',	  
-   case when Activity.ActivityType in (10,11,12,15,16) then ''
+   case when Activity.ActivityType !=6 then ''
    else time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch') end as 'Active Duration',
    case 
 		when cast ((Activity.EndTime - Activity.StartTime) as integer) < 0 then '-' 

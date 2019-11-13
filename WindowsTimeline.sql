@@ -83,7 +83,10 @@ SELECT -- This the ActivityOperation Table Query
 		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 		when ActivityOperation.ActivityType = 6 
-		then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone')
+		then case 
+			when json_extract(ActivityOperation.Payload,'$.devicePlatform') notnull 
+			then json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.devicePlatform')
+			else json_extract(ActivityOperation.Payload, '$.type')||' - ' ||json_extract(ActivityOperation.Payload,'$.userTimezone') end
 		else ''	
 	end as 'Payload/Timezone',
 	case 
@@ -257,8 +260,11 @@ select -- This the Activity Table Query
 		then json_extract(Activity.Payload,'$.1[0].content') --Base64 encoded
 		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
-		when Activity.ActivityType = 6 
-		then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone')
+		when Activity.ActivityType = 6
+		then case
+			when json_extract(Activity.Payload,'$.devicePlatform') notnull 
+			then json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.devicePlatform')
+			else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone') end
 		else ''	
 	end as 'Payload/Timezone',
 	 case 
@@ -306,7 +312,7 @@ select -- This the Activity Table Query
 		end as 'App/Uri',
     Activity.Priority as 'Priority',	  
     case 
-		when Activity.ActivityType in (11,12,15) 
+		when Activity.ActivityType != 6 
 		then ''
 		else time(json_extract(Activity.Payload, '$.activeDurationSeconds'),'unixepoch') 
 	end as 'Active Duration',
