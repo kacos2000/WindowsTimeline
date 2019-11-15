@@ -18,14 +18,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 
     ![Preview2](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T1a.JPG)
 
-* ### [Extended windows timeline database query (WindowsTimeline2.sql)](WindowsTimeline2.sql) ###
 
-   *Screenshots of WindowsTimeline2.sql*
-   ![Preview3 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)
-
-
-   ![Preview4 (Timeline2)](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2a.JPG)
-   
 **SQLite Tables processed:**
 
 - Activities,
