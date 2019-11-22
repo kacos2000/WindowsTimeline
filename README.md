@@ -5,14 +5,18 @@
 
 * ### [WindowsTimeline paser)](https://github.com/kacos2000/WindowsTimeline/releases/tag/v1.0.18) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
+    
+    Works with any ActivitiesCache.db *(Windows 1803/1809/1903/1909 ..)*<br>
+        - Decodes Clipboard Text<br>
+        - Matches dB device information with data from the registry *(HKCU or NTuser.dat)*<br>
+        - Shows all the important information from JSON blobs ..<br>
+        - Optionally exports output to "|" delimited .csv in a timestamped folder in the form of "Timeline-dd-MMM-yyyyTHH-mm-ss".<br>
 
     Parses:
-    - Standalone ActivitiesCache.db
-    - CurrentUser's selected ActivitiesCache.db with matching registry (HKCU) device entries
-    - Standalone ActivitiesCache.db with offline NTUser.dat device entries
-    
-    - Optionally exports output to "|" delimited .csv in a timestamped folder in the form of "Timeline-dd-MMM-yyyyTHH-mm-ss".
-
+        - Standalone ActivitiesCache.db<br>
+        - CurrentUser's selected ActivitiesCache.db with matching registry (HKCU) device entries<br>
+        - Standalone ActivitiesCache.db with offline NTUser.dat device entries<br>
+        
     Note1: Requires "[System.Data.SQLite](https://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki)". If not available, it will download and install automatically.<br>
     Note2: Runs on Windows 10 x64 <br>
 
