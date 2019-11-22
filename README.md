@@ -3,6 +3,20 @@
 
 ## Windows 10 Timeline ## 
 
+* ### [WindowsTimeline paser)](https://github.com/kacos2000/WindowsTimeline/releases/tag/v1.0.18) ###
+    ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
+
+    Parses:
+    - Standalone ActivitiesCache.db
+    - CurrentUser's selected ActivitiesCache.db with matching registry (HKCU) device entries
+    - Standalone ActivitiesCache.db with offline NTUser.dat device entries
+    
+    - Optionally exports output to "|" delimited .csv in a timestamped folder in the form of "Timeline-dd-MMM-yyyyTHH-mm-ss".
+
+    Note1: Requires "[System.Data.SQLite](https://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki)". If not available, it will download and install automatically.<br>
+    Note2: Runs on Windows 10 x64 <br>
+
+___________________________________________________________________________________________  
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
 
