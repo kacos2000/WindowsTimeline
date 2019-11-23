@@ -3,7 +3,7 @@
 
 ## Windows 10 Timeline ## 
 
-* ### [WindowsTimeline paser](https://github.com/kacos2000/WindowsTimeline/releases/download/v1.0.20/WindowsTimeline.exe) ###
+* ### [WindowsTimeline paser](https://github.com/kacos2000/WindowsTimeline/releases/download/v1.0.29/WindowsTimeline.exe) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     
     Works with any ActivitiesCache.db *(Windows 1803/1809/1903/1909 ..)*<br>
