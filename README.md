@@ -10,9 +10,9 @@
         - Decodes Clipboard Text<br>
         - Matches dB device information with data from the registry *(HKCU or NTuser.dat)*<br>
         - Shows all the important information from JSON blobs ..<br>
-        - Optionally exports output to "|" delimited .csv in a timestamped folder in the form of "Timeline-dd-MMM-yyyyTHH-mm-ss".<br>
+        - Optionally exports output to "|" delimited .csv in a timestamped folder in the form of "WindowsTimeline_dd-MMM-yyyyTHH-mm-ss".<br>
 
-    Parses:
+    Parses:<br>
         - Standalone ActivitiesCache.db<br>
         - CurrentUser's selected ActivitiesCache.db with matching registry (HKCU) device entries<br>
         - Standalone ActivitiesCache.db with offline NTUser.dat device entries<br>
