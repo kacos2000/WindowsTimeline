@@ -52,8 +52,14 @@ Try{write-host "Selected: " (Get-Item $File)|out-null}
 Catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White; exit}
 
 #Check if DEviceCache has entries
-try{$DeviceID =  @((Get-ChildItem -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object)}
+try{    $reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("CurrentUser", "default")
+		$keys = $reg.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\")
+        $RegCount = $keys.SubKeyCount
+        $DeviceID = $keys.GetSubKeyNames()
+
+}
 catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
+if($RegCount -eq 0){write-host "Sorry, No devices found in HKCU";exit}
 
 $db = $File
 $sw = [Diagnostics.Stopwatch]::StartNew()
@@ -109,38 +115,38 @@ order by Etag desc
 "@ 
 write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, IsInUploadQueue, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
+
+$dbres = @(Invoke-command -scriptblock {sqlite3.exe -readonly $db $query -separator "||"})
+
+$dbresults = @($dbres|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, IsInUploadQueue, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
+
+
 $dbcount = $dbresults.count
 $sw.stop()
 $T0 = $sw1.Elapsed
 write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0  -> $dbcount Entries found."
 if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 
+
+
 #Query HKCU, check results against the Database 
-$Registry = [pscustomobject]@{}
-$UserBias = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").ActiveTimeBias
-$UserDay = (Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\TimeZoneInformation").DaylightBias
-			$Bias = -([convert]::ToInt32([Convert]::ToString($UserBias,2),2))
-			$Day = -([convert]::ToInt32([Convert]::ToString($UserDay,2),2)) 
-			$Biasd = $Bias/60
-$RegCount = $DeviceID.count
+
+$Registry = @{}
 
 $Registry = @(foreach ($entry in $DeviceID){
             
-            $entry = $entry -replace ("/","`/")
-            $dpath = join-path -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -childpath $entry
-            
+
+            $dpath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\"
             
             Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
             
-                $ID = $entry
-                if((test-path -path $dpath) -eq $true)
-                     {
-                     $Type = (get-itemproperty -path $dpath).DeviceType
-                     $Name = (get-itemproperty -path $dpath).DeviceName
-                     $Make = (get-itemproperty -path $dpath).DeviceMake
-                     $Model= (get-itemproperty -path $dpath).DeviceModel
-                     }
+            $ID = $entry
+            $key = $reg.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)")
+
+                $Type = $key.getvalue("DeviceType") 
+                $Name = $key.getvalue("DeviceName")
+                $Make = $key.getvalue("DeviceMake") 
+                $Model= $key.getvalue("DeviceModel") 
                 
                 [PSCustomObject]@{
                                 ID =    $ID
@@ -149,9 +155,16 @@ $Registry = @(foreach ($entry in $DeviceID){
                                 Make =  $Make
                                 Model = $Model
                      }
-            }        
+                $key.Close()
+                $key.Dispose()
+                 }
             )
 
+$reg.close()         
+$reg.Dispose() 
+          
+write-host "`nRegistry Devices: " -f White
+$registry|sort -Property Type|Format-Table
 
 # HKLM: \SOFTWARE\Mozilla\Firefox\TaskBarIDs :
 # 308046B0AF4A39CB is Mozilla Firefox 64bit
@@ -252,13 +265,11 @@ $known = @{
             "18989B1D-99B5-455B-841C-AB7C74E4DDFC" = "Videos";
             "F38BF404-1D43-42F2-9305-67DE0B28FC23" = "Windows"
             }          
+
    
 $Output = foreach ($item in $dbresults ){
-                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database" -ParentID 1
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database entries with NTUser.dat info" -ParentID 1
                     
-                    foreach ($rin in $Registry){
-                                        
-                    if($item.PlatformDeviceId -eq $rin.ID){
                     
                     # Get Payload information
 
@@ -298,6 +309,9 @@ $Output = foreach ($item in $dbresults ){
                     # Fix endtime displaying 1970 date for File/App Open entries (entry is $null)
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
                     
+                    # Check DeviceId against registry
+                    $rid = $Registry | Where-Object { $_.id -eq $item.PlatformDeviceId }
+
                     [PSCustomObject]@{
                                 ETag =             $item.ETag 
                                 App_name =         $AppName
@@ -327,29 +341,30 @@ $Output = foreach ($item in $dbresults ){
                                 EndTime =          $endtime
                                 TimeZone =         $timezone
                                 PlatformDeviceId = $item.PlatformDeviceId 
-                                DeviceType =           if($rin.Type -eq 15){"Windows 10 Laptop"}
-                                                   elseif($rin.Type -eq 1) {"Xbox One"}
-                                                   elseif($rin.Type -eq 6) {"Apple iPhone"}
-                                                   elseif($rin.Type -eq 7) {"Apple iPad"}
-                                                   elseif($rin.Type -eq 8) {"Android device"}
-                                                   elseif($rin.Type -eq 9) {"Windows 10 Desktop"}
-                                                   elseif($rin.Type -eq 9) {"Desktop PC"}
-                                                   elseif($rin.Type -eq 11){"Windows 10 Phone"}
-                                                   elseif($rin.Type -eq 12){"Linux device"}
-                                                   elseif($rin.Type -eq 13){"Windows IoT"}
-                                                   elseif($rin.Type -eq 14){"Surface Hub"}
-                                                     else{$rin.Type} 
+                                DeviceType =       if (!!$rid){
+                                                       if($rid.Type -eq 15){"Windows 10 Laptop"}
+                                                   elseif($rid.Type -eq 1) {"Xbox One"}
+                                                   elseif($rid.Type -eq 6) {"Apple iPhone"}
+                                                   elseif($rid.Type -eq 7) {"Apple iPad"}
+                                                   elseif($rid.Type -eq 8) {"Android device"}
+                                                   elseif($rid.Type -eq 9) {"Windows 10 Desktop"}
+                                                   elseif($rid.Type -eq 9) {"Desktop PC"}
+                                                   elseif($rid.Type -eq 11){"Windows 10 Phone"}
+                                                   elseif($rid.Type -eq 12){"Linux device"}
+                                                   elseif($rid.Type -eq 13){"Windows IoT"}
+                                                   elseif($rid.Type -eq 14){"Surface Hub"}
+                                                     else{$rid.Type}
+                                                  }else{ $null }    
                                                    # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
-                                Name =             $rin.Name
-                                Make =             $rin.Make
-                                Model =            $rin.Model
+                                Name          = if (!!$rid) { $rid.name } else{ $null }
+				                Make          = if (!!$rid) { $rid.make } else{ $null }
+				                Model         = if (!!$rid) { $rid.model }else{ $null }
                                 }
                         }                             
-              }
-}
+
 
 $sw1.stop()           
 $T = $sw1.Elapsed
 
 #Create output - user can copy paste selected items to text file, MS Excel spreadsheet etc.
-$Output|Out-GridView -PassThru -Title "Windows Timeline - ActiveBias= $Biasd - $dbcount entries found in $T"  
+$Output|Out-GridView -PassThru -Title "Windows Timeline - $dbcount entries found in $T"  

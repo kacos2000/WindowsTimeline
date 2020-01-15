@@ -1,6 +1,7 @@
 #Requires -RunAsAdministrator
-
-
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+clear-host
 #Check if SQLite exists
 try{write-host "sqlite3.exe version => "-f Yellow -nonewline; sqlite3.exe -version }
 catch {
@@ -53,7 +54,7 @@ Try{$before = (Get-FileHash $File2 -Algorithm SHA256).Hash}
 Catch{
         Write-Host "(WinTimelineOffline.ps1):" -f Yellow -nonewline; Write-Host " User Cancelled" -f White
 		[gc]::Collect()		
-		reg unload HKEY_LOCAL_MACHINE\Temp 
+		try{reg unload HKEY_LOCAL_MACHINE\Temp }catch{}
 		exit
 } 
 write-host "SHA256 Hash of ($File2) before access = " -f magenta -nonewline;write-host "($before)" -f Yellow
@@ -142,12 +143,27 @@ if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 reg load HKEY_LOCAL_MACHINE\Temp $File2
 $ErrorActionPreference = "Stop"
 
-try{$Key = (Get-ItemProperty -Path "HKLM:\Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\")
-Write-Host -ForegroundColor Green "$File2 loaded OK"}
+try{
+            
+			$reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("LocalMachine", "default")
+			$keys = $reg.OpenSubKey("Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\")
+            Write-Host -ForegroundColor Green "$File2 loaded OK"
+			$RegCount = $keys.SubKeyCount
+			if($RegCount -eq 0){write-host "No Devices found in selected NTUser.dat" -f Red;exit}
+			$DeviceID = $keys.GetSubKeyNames()
+            $keys.Close()
+			$keys.Dispose()            
+
+}
 Catch{
 	Write-Host -ForegroundColor Yellow "The selectd ($File2) does not have the" 
 	Write-Host -ForegroundColor Yellow "'Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache' registry key." 
-	[gc]::Collect()		
+    $keys.close()
+    $keys.dispose()	
+    $reg.close()
+    $reg.dispose()
+    Remove-Variable -Name key,keys,reg,RegCount,DeviceID -ErrorAction SilentlyContinue
+    [gc]::Collect()		
 	reg unload HKEY_LOCAL_MACHINE\Temp 
     exit}
 finally{
@@ -155,36 +171,40 @@ finally{
 
 #Query HKCU, check results against the Database 
 $Registry = [pscustomobject]@{}
-$DeviceID = @((Get-ChildItem -Path "HKLM:\Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" -name)|Select-Object)
-$RegCount = $DeviceID.count
+
 $ra=0
 $rb=0
 
 $Registry = @(foreach ($entry in $DeviceID){
 
-            $entry = $entry -replace ("/","`/")
-            $dpath = "HKLM:\Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\" + "$($entry)"
+                Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
             
-            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
-            
-               
-                $ID = $entry
-                if((test-path -path $dpath) -eq $true){
-                     $Type = (get-itemproperty -path $dpath).DeviceType
-                     $Name = (get-itemproperty -path $dpath).DeviceName
-                     $Make = (get-itemproperty -path $dpath).DeviceMake
-                     $Model= (get-itemproperty -path $dpath).DeviceModel}
+                $key = $reg.OpenSubKey("Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)")
+				
+				$Type  = $key.getvalue("DeviceType")
+				$Name  = $key.getvalue("DeviceName")
+				$Make  = $key.getvalue("DeviceMake")
+				$Model = $key.getvalue("DeviceModel")
 
                 [PSCustomObject]@{
-                                ID    = $ID
+                                ID    = $entry
                                 Type  = $Type
                                 Name  = $Name
                                 Make  = $Make
                                 Model = $Model
                      }
+                $key.Close()
+                $key.dispose()
             }        
             )
+            
+            $reg.Close()
+            $reg.Dispose()
+            Remove-Variable -Name key,keys,reg,RegCount,DeviceID -ErrorAction SilentlyContinue
+            [gc]::Collect()
 
+write-host "`nRegistry Devices: " -f White
+$registry|sort -Property Type|Format-Table          
 
 # Hash table with Known Folder GUIDs s 
 # "https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/known-folder-guids-for-file-dialog-custom-places"
@@ -294,8 +314,6 @@ $Output = foreach ($item in $dbresults ){
                     
                     foreach ($rin in $Registry){
                     
-                    if($item.PlatformDeviceId -eq $rin.ID){
-                    
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
                     $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
                     $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
@@ -333,6 +351,9 @@ $Output = foreach ($item in $dbresults ){
                     # Fix endtime displaying 1970 date for File/App Open entries (entry is $null)
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
                     
+                    # Check DeviceId against registry
+                    $rid = $Registry | Where-Object { $_.id -eq $item.PlatformDeviceId }
+
                     [PSCustomObject]@{
                                 ETag =             $item.ETag 
                                 App_name =         $AppName
@@ -346,6 +367,7 @@ $Output = foreach ($item in $dbresults ){
                                 Type =             $type
                                 ActivityType =          if ($item.ActivityType -eq 5){"Open App/File/Page (5)"}
                                                     elseif ($item.ActivityType -eq 6){"App In Use/Focus (6)"}
+                                                    elseif ($item.ActivityType -eq 2){"Notification (2)"}
                                                     elseif ($item.ActivityType -eq 10){"Clipboard Text (10)"}
                                                     elseif ($item.ActivityType -in (11,12,15)){"System"}
                                                     elseif ($item.ActivityType -eq 16){"Copy/Paste (16)"}
@@ -362,24 +384,26 @@ $Output = foreach ($item in $dbresults ){
                                 EndTime =          $endtime
                                 TimeZone =         $timezone
                                 PlatformDeviceId = $item.PlatformDeviceId 
-                                DeviceType =           if($rin.Type -eq 15){"Windows 10 Laptop"}
-                                                   elseif($rin.Type -eq 1) {"Xbox One"}
-                                                   elseif($rin.Type -eq 6) {"Apple iPhone"}
-                                                   elseif($rin.Type -eq 7) {"Apple iPad"}
-                                                   elseif($rin.Type -eq 8) {"Android device"}
-                                                   elseif($rin.Type -eq 9) {"Windows 10 Desktop"}
-                                                   elseif($rin.Type -eq 9) {"Desktop PC"}
-                                                   elseif($rin.Type -eq 11){"Windows 10 Phone"}
-                                                   elseif($rin.Type -eq 12){"Linux device"}
-                                                   elseif($rin.Type -eq 13){"Windows IoT"}
-                                                   elseif($rin.Type -eq 14){"Surface Hub"}
-                                                     else{$rin.Type} 
+                                DeviceType =       if (!!$rid){
+                                                       if($rid.Type -eq 15){"Windows 10 Laptop"}
+                                                   elseif($rid.Type -eq 1) {"Xbox One"}
+                                                   elseif($rid.Type -eq 6) {"Apple iPhone"}
+                                                   elseif($rid.Type -eq 7) {"Apple iPad"}
+                                                   elseif($rid.Type -eq 8) {"Android device"}
+                                                   elseif($rid.Type -eq 9) {"Windows 10 Desktop"}
+                                                   elseif($rid.Type -eq 9) {"Desktop PC"}
+                                                   elseif($rid.Type -eq 11){"Windows 10 Phone"}
+                                                   elseif($rid.Type -eq 12){"Linux device"}
+                                                   elseif($rid.Type -eq 13){"Windows IoT"}
+                                                   elseif($rid.Type -eq 14){"Surface Hub"}
+                                                     else{$rid.Type}
+                                                  }else{ $null }    
                                                    # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
-                                Name =             $rin.Name
-                                Make =             $rin.Make
-                                Model =            $rin.Model
+                                Name          = if (!!$rid) { $rid.name } else{ $null }
+				                Make          = if (!!$rid) { $rid.make } else{ $null }
+				                Model         = if (!!$rid) { $rid.model }else{ $null }
                                 }
-                        }                             
+                                                   
               }
 }
 
@@ -397,7 +421,7 @@ catch{
 Write-Warning "There seems to be an issue unloading $($File2)."
 Write-Host "Please open a new Powershell terminal Window, copy/paste" -NoNewline;write-host "reg unload HKEY_LOCAL_MACHINE\Temp" -ForegroundColor Magenta
 Write-Host "close this Powershell terminal and run the above command in the other terminal Window"
-}
+exit}
  
 $after = (Get-FileHash $File2 -Algorithm SHA256).Hash 
 write-host "SHA256 Hash of ($File2) after access = " -f magenta -nonewline;write-host "($after)" -f Yellow
