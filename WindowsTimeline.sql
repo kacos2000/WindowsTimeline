@@ -68,14 +68,18 @@ SELECT -- This the ActivityOperation Table Query
 	end as 'File Opened',
 	case 
 		when ActivityOperation.ActivityType in (5,6) 
-		then json_extract(ActivityOperation.Payload, '$.description')||')' 
+		then json_extract(ActivityOperation.Payload, '$.description')
 		else ''  
 	end as 'Full Path',
-	case 
-		when ActivityOperation.ActivityType in (5,6) 
-		then json_extract(ActivityOperation.Payload, '$.contenturi') 
-		else ''  
-	end as 'Content',
+	case when ActivityOperation.Activitytype = 5 and json_extract(ActivityOperation.Payload, '$.contentUri') like '%file://%'  then 
+		replace((case when instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?') > 0
+		then substr(json_extract(ActivityOperation.Payload, '$.contentUri'),1,instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?')) end),'?','') 
+		else (case when ActivityOperation.Activitytype = 5 then json_extract(ActivityOperation.Payload, '$.contentUri') end) end as 'content_url',
+	case when ActivityOperation.Activitytype = 5 and json_extract(ActivityOperation.Payload, '$.contentUri') like '%file://%' then 
+		replace((case when instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?') > 0
+		then substr(json_extract(ActivityOperation.Payload, '$.contentUri'),instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?')) end),'?','') 
+		else (case when ActivityOperation.Activitytype = 10 then json_extract(ActivityOperation.Payload,'$.1') end)
+		end as 'Info',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
 		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
@@ -248,14 +252,18 @@ select -- This the Activity Table Query
 	end as 'File Opened',
 	case 
 			when Activity.ActivityType in (5,6) 
-			then json_extract(Activity.Payload, '$.description')||')' 
+			then json_extract(Activity.Payload, '$.description') 
 			else '' 
 	end as 'Full Path',
-	case 
-			when Activity.ActivityType in (5,6) 
-			then json_extract(Activity.Payload, '$.contentUri') 
-			else ''  
-	end as 'Content',
+	case when Activity.Activitytype = 5 and json_extract(Activity.Payload, '$.contentUri') like '%file://%'  then 
+		replace((case when instr(json_extract(Activity.Payload, '$.contentUri'),'?') > 0
+		then substr(json_extract(Activity.Payload, '$.contentUri'),1,instr(json_extract(Activity.Payload, '$.contentUri'),'?')) end),'?','') 
+		else (case when Activity.Activitytype = 5 then json_extract(Activity.Payload, '$.contentUri') end) end as 'content_url',
+	case when Activity.Activitytype = 5 and json_extract(Activity.Payload, '$.contentUri') like '%file://%' then 
+		replace((case when instr(json_extract(Activity.Payload, '$.contentUri'),'?') > 0
+		then substr(json_extract(Activity.Payload, '$.contentUri'),instr(json_extract(Activity.Payload, '$.contentUri'),'?')) end),'?','') 
+		else (case when Activity.Activitytype = 10 then json_extract(Activity.Payload,'$.1') end)
+		end as 'Info',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
 		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
