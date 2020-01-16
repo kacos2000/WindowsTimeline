@@ -315,7 +315,8 @@ $Output = foreach ($item in $dbresults ){
                     Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database" -ParentID 1
                     $content = $KnownFolderId=$Objectid=$volumeid= $contentdata=$contenturl = $null
                     
-                                       
+                    # Get Payload information
+                    if(![string]::IsNullOrEmpty($item.Payload)){                   
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
                     $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
                     $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
@@ -327,6 +328,8 @@ $Output = foreach ($item in $dbresults ){
                                elseif($item.ActivityType -eq 10){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.Payload|ConvertFrom-Json)."1".content))}
                                else{""}
                     $Notification = if($item.ActivityType -eq 2){$item.Payload}else{}
+                    }
+                    
                     # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
                     $platform = ($item.Appid|convertfrom-json).platform
                     $AppName  = if($item.ActivityType -in (11,12,15)){($item.Appid|convertfrom-json).application[0]}
