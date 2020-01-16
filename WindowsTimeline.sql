@@ -78,7 +78,7 @@ SELECT -- This the ActivityOperation Table Query
 	case when ActivityOperation.Activitytype = 5 and json_extract(ActivityOperation.Payload, '$.contentUri') like '%file://%' then 
 		replace((case when instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?') > 0
 		then substr(json_extract(ActivityOperation.Payload, '$.contentUri'),instr(json_extract(ActivityOperation.Payload, '$.contentUri'),'?')) end),'?','') 
-		else (case when ActivityOperation.Activitytype = 10 then json_extract(ActivityOperation.Payload,'$.1') end)
+		else (case when ActivityOperation.Activitytype = 10 then json_extract(ActivityOperation.Payload,'$.1.content') end)
 		end as 'Info',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
@@ -262,7 +262,7 @@ select -- This the Activity Table Query
 	case when Activity.Activitytype = 5 and json_extract(Activity.Payload, '$.contentUri') like '%file://%' then 
 		replace((case when instr(json_extract(Activity.Payload, '$.contentUri'),'?') > 0
 		then substr(json_extract(Activity.Payload, '$.contentUri'),instr(json_extract(Activity.Payload, '$.contentUri'),'?')) end),'?','') 
-		else (case when Activity.Activitytype = 10 then json_extract(Activity.Payload,'$.1') end)
+		else (case when Activity.Activitytype = 10 then json_extract(Activity.Payload,'$.1.content') end)
 		end as 'Info',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 

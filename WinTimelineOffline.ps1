@@ -158,8 +158,11 @@ try{
 Catch{
 	Write-Host -ForegroundColor Yellow "The selectd ($File2) does not have the" 
 	Write-Host -ForegroundColor Yellow "'Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache' registry key." 
+    if(!!$keys)
+    {
     $keys.close()
-    $keys.dispose()	
+    $keys.dispose()
+    }	
     $reg.close()
     $reg.dispose()
     Remove-Variable -Name key,keys,reg,RegCount,DeviceID -ErrorAction SilentlyContinue
@@ -310,10 +313,9 @@ $known =   @{
 $Output = foreach ($item in $dbresults ){
 
                     Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database" -ParentID 1
+                    $content = $KnownFolderId=$Objectid=$volumeid= $contentdata=$contenturl = $null
                     
-                    
-                    foreach ($rin in $Registry){
-                    
+                                       
                     $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
                     $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
                     $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
@@ -346,13 +348,22 @@ $Output = foreach ($item in $dbresults ){
                     # Replace known folder GUID with it's Name
                     foreach ($i in $known.Keys) {
                                         $AppName = $AppName -replace $i, $known[$i]
-                                        $content = $content -replace $i, $known[$i]}
+                                        }
                     
                     # Fix endtime displaying 1970 date for File/App Open entries (entry is $null)
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
                     
                     # Check DeviceId against registry
                     $rid = $Registry | Where-Object { $_.id -eq $item.PlatformDeviceId }
+
+                     # Get more info from ContentURI
+                    if ($item.ActivityType -eq 5 -and !!$content) {
+                    $contenturl    = if (($content.count -gt 0) -and ($content.split("?")[0] -match "file://")){$content.split("?")[0]}else{$content}
+			        $contentdata   = if (($content.count -gt 0) -and (!!$content.split("?")[1])) { $content.split("?")[1].split("&") }else { $null }
+			        $volumeid      = if (($contentdata.count -gt 0) -and ($contentdata[0] -match "VolumeID")) { $contentdata[0].trimstart("VolumeId={").trimend("}") }else { $null }
+			        $Objectid      = if (($contentdata.count -gt 0) -and ($contentdata[1] -match "ObjectId")) { $contentdata[1].trimstart("ObjectId={").trimend("}") }else { $null }
+			        $KnownFolderId = if (($contentdata.count -gt 0) -and ($contentdata[2] -match "KnownFolderId")) { $contentdata[2].trimstart("KnownFolderId=") }else { $null }
+                    }
 
                     [PSCustomObject]@{
                                 ETag =             $item.ETag 
@@ -361,7 +372,10 @@ $Output = foreach ($item in $dbresults ){
                                 DisplayText =      $displayText
                                 Description =      $description
                                 AppActivityId =    $item.AppActivityId
-                                PayloadContent =   [uri]::UnescapeDataString($content)
+                                Content          = if(![string]::IsNullOrEmpty($contenturl)){[uri]::UnescapeDataString($contenturl)}else{$content}
+				                VolumeID         = if (![string]::IsNullOrEmpty($volumeid)){$volumeid}else{$null}
+				                Objectid         = if (![string]::IsNullOrEmpty($Objectid)) { $Objectid }else{ $null }
+				                KnownFolder      = if (![string]::IsNullOrEmpty($KnownFolderId)) { $KnownFolderId }else{ $null }
                                 Group         =    $item.Group
                                 Tag =              $item.Tag
                                 Type =             $type
@@ -404,8 +418,7 @@ $Output = foreach ($item in $dbresults ){
 				                Make          = if (!!$rid) { $rid.make } else{ $null }
 				                Model         = if (!!$rid) { $rid.model }else{ $null }
                                 }
-                                                   
-              }
+
 }
 
 #Stop Timer2
