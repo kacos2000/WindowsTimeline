@@ -34,7 +34,7 @@
 SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag', --entity tag (unique)
 	case
-	    when ActivityOperation.ActivityType in (11,12,15) 
+	    when ActivityOperation.ActivityType in (2,11,12,15) 
 			then json_extract(ActivityOperation.AppId, '$[0].application')	
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -83,6 +83,7 @@ SELECT -- This the ActivityOperation Table Query
 	end as 'Content', --Full path /url, Volume Id & Object Id from the Payload field
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId', --Full path /url 
 	case 
+		when ActivityOperation.ActivityType = 2 then ActivityOperation.Payload
 		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
 		then json_extract(ActivityOperation.Payload,'$.1[0].content') --Base64 encoded
 		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -95,6 +96,7 @@ SELECT -- This the ActivityOperation Table Query
 		else ''	
 	end as 'Payload/Timezone', --Payload for types 10,11,12,15 (encoded), Payload (FileShellLink) for type 5 and Payload (type & userTimezone) for type 6
 	case  
+		when ActivityOperation.ActivityType = 2 then 'Notification('||ActivityOperation.ActivityType||')' 
 		when ActivityOperation.ActivityType = 5 then 'Open App/File/Page('||ActivityOperation.ActivityType||')' 
 		when ActivityOperation.ActivityType = 6 then 'App In Use/Focus  ('||ActivityOperation.ActivityType||')'  
 		when ActivityOperation.ActivityType = 10 then 'Clipboard ('||ActivityOperation.ActivityType||')'  
@@ -123,7 +125,7 @@ SELECT -- This the ActivityOperation Table Query
 	'' as 'IsLocalOnly',
 	ActivityOperation.OperationOrder as 'Order',
 	case 
-		when ActivityOperation.ActivityType in (11,12,15) 
+		when ActivityOperation.ActivityType in (2,11,12,15) 
 		then ''
 		else coalesce(json_extract(ActivityOperation.Payload, '$.activationUri'),json_extract(ActivityOperation.Payload, '$.reportingApp')) 
 	end as 'App/Uri',
@@ -213,7 +215,7 @@ union
 select -- This the Activity Table Query
    Activity.ETag as 'Etag',
 	case
-	    when Activity.ActivityType in (11,12,15) 
+	    when Activity.ActivityType in (2,11,12,15) 
 			then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -262,6 +264,7 @@ select -- This the Activity Table Query
 	end as 'Content', --Full path /url, Volume Id & Object Id from the Payload field
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId', --Full path /url
 	case 
+		when Activity.ActivityType = 2 then Activity.Payload
 		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
 		then json_extract(Activity.Payload,'$.1[0].content') --Base64 encoded
 		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -274,6 +277,7 @@ select -- This the Activity Table Query
 		else ''	
 	end as 'Payload/Timezone', --Payload for types 10,11,12,15 (encoded), Payload (FileShellLink) for type 5 and Payload (type & userTimezone) for type 6
 	case 
+			when Activity.ActivityType = 2 then 'Notification('||Activity.ActivityType||')' 
 			when Activity.ActivityType = 5 then 'Open App/File/Page('||Activity.ActivityType||')' 
 			when Activity.ActivityType = 6 then 'App In Use/Focus  ('||Activity.ActivityType||')' 
 			when Activity.ActivityType = 10 then 'Clipboard ('||Activity.ActivityType||')' 
@@ -306,7 +310,7 @@ select -- This the Activity Table Query
 	end as 'IsLocalOnly',
    '' as 'Order',  
    case 
-		when Activity.ActivityType in (11,12,15) 
+		when Activity.ActivityType in (2,11,12,15) 
 		then ''
 		else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) 
 		end as 'App/Uri',
@@ -341,7 +345,7 @@ select -- This the Activity Table Query
 		when Activity.ActivityType = 10 
 		then cast((Activity.ExpirationTime - Activity.LastModifiedTime)/3600 as integer)||' hours'
 		else cast((Activity.ExpirationTime - Activity.LastModifiedTime)/86400 as integer)||' days' 
-   end as 'Expires In', --ExpirationTime - LastModifiedTime (in hours for activitytype 10 or days for the rest) 
+   end as 'ExpiresIn', --ExpirationTime - LastModifiedTime (in hours for activitytype 10 or days for the rest) 
     datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'Expiration',
     case 
 		when Activity.Tag notnull

@@ -33,7 +33,7 @@ SELECT -- This the ActivityOperation Table Query
 		else ''
 		end as 'Program Name',
 	case 
-		when ActivityOperation.ActivityType in (11,12,15) then json_extract(ActivityOperation.AppId, '$[0].application')
+		when ActivityOperation.ActivityType in (2,11,12,15) then json_extract(ActivityOperation.AppId, '$[0].application')
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
 			when json_extract(ActivityOperation.AppId, '$[0].application') = 'E7CF176E110C211B'
@@ -59,14 +59,15 @@ SELECT -- This the ActivityOperation Table Query
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
-	case when ActivityOperation.ActivityType not in (10,11,12,15,16) then 
+	case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(ActivityOperation.Payload, '$.displayText') else '' end as 'File Opened',
-	case when ActivityOperation.ActivityType not in (10,11,12,15,16) then 
+	case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(ActivityOperation.Payload, '$.description')||')' else ''  end as 'Full Path',
-	case when ActivityOperation.ActivityType not in (10,11,12,15,16) then 
+	case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(ActivityOperation.Payload, '$.contenturi') else ''  end as 'Content',
 	trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
+		when ActivityOperation.ActivityType = 2 then ActivityOperation.Payload
 		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
 		then json_extract(ActivityOperation.Payload,'$.1[0].content') --Base64 encoded
 		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -79,6 +80,7 @@ SELECT -- This the ActivityOperation Table Query
 		else ''	
 	end as 'Payload/Timezone',
 	case ActivityOperation.ActivityType 
+		when 2 then 'Notification' 
 		when 5 then 'Open App/File/Page' 
 		when 6 then 'App In Use/Focus' 
 		when 10 then 'Clipboard' 
@@ -114,7 +116,7 @@ SELECT -- This the ActivityOperation Table Query
 			then null else 'In Queue' 
 	end as 'UploadQueue',
 	'' as 'IsLocalOnly',
-	case when ActivityOperation.ActivityType in (10,11,12,15,16) then ''
+	case when ActivityOperation.ActivityType in (12,0,11,12,15,16) then ''
 	else coalesce(json_extract(ActivityOperation.Payload, '$.activationUri'),json_extract(ActivityOperation.Payload, '$.reportingApp')) end as 'App/Uri',
    ActivityOperation.Priority as 'Priority',	  
    case when ActivityOperation.ActivityType !=6 then ''
@@ -175,11 +177,11 @@ SELECT -- This the ActivityOperation Table Query
   ActivityOperation.GroupAppActivityId as 'GroupAppActivityId',
   ActivityOperation.GroupItems as 'GroupItems',
   ActivityOperation.EnterpriseId as 'EnterpriseId',
-  case when ActivityOperation.ActivityType not in (10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
-  case when ActivityOperation.ActivityType not in (10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
-  case when ActivityOperation.ActivityType not in (10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.description') end as 'Original Full Path /Url', 
-  case when ActivityOperation.ActivityType not in (10,11,12,15,16) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
-  case when ActivityOperation.ActivityType not in (10,11,12,15,16) then time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') end as 'Orig.Duration'
+  case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.appDisplayName') else ActivityOperation.OriginalPayload end as 'Original Displayed Name',
+  case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.displayText') end as 'Original File/title opened',
+  case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then json_extract(ActivityOperation.OriginalPayload, '$.description') end as 'Original Full Path /Url', 
+  case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then coalesce(json_extract(ActivityOperation.OriginalPayload, '$.activationUri'),json_extract(ActivityOperation.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
+  case when ActivityOperation.ActivityType not in (2,10,11,12,15,16) then time(json_extract(ActivityOperation.OriginalPayload, '$.activeDurationSeconds'),'unixepoch') end as 'Orig.Duration'
 
 from Activity_PackageId
 join ActivityOperation on Activity_PackageId.ActivityId = ActivityOperation.Id  
@@ -197,7 +199,7 @@ select -- This the Activity Table Query
 		else ''
 		end as 'Program Name',
 	case
-	    when Activity.ActivityType in (11,12,15) then json_extract(Activity.AppId, '$[0].application')	
+	    when Activity.ActivityType in (2,11,12,15) then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
 			when json_extract(Activity.AppId, '$[0].application') = 'E7CF176E110C211B'
@@ -221,14 +223,15 @@ select -- This the Activity Table Query
 			'{'||'F38BF404-1D43-42F2-9305-67DE0B28FC23'||'}', '*Windows'),
 			'{'||'D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27'||'}', '*System32') 
 	end as 'Application',
-	case when Activity.ActivityType not in (10,11,12,15,16) then 
+	case when Activity.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(Activity.Payload, '$.displayText') else '' end as 'File Opened',
-	case when Activity.ActivityType not in (10,11,12,15,16) then 
+	case when Activity.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(Activity.Payload, '$.description')||')' else ''  end as 'Full Path',
-	case when Activity.ActivityType not in (10,11,12,15,16) then 
+	case when Activity.ActivityType not in (2,10,11,12,15,16) then 
 	json_extract(Activity.Payload, '$.contentUri') else ''  end as 'Content',
 	trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId',
 	case 
+		when Activity.ActivityType = 2 then Activity.Payload
 		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
 		then json_extract(Activity.Payload,'$.1[0].content') --Base64 encoded
 		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -240,7 +243,8 @@ select -- This the Activity Table Query
 			else json_extract(Activity.Payload, '$.type')||' - ' ||json_extract(Activity.Payload,'$.userTimezone') end
 		else ''	
 	end as 'Payload/Timezone',
-	case Activity.ActivityType 
+	case Activity.ActivityType
+		when 2 then 'Notification'	
 		when 5 then 'Open App/File/Page' 
 		when 6 then 'App In Use/Focus' 
 		when 10 then 'Clipboard' 
@@ -267,7 +271,7 @@ select -- This the Activity Table Query
 		when 1 then 'Yes' 
 		else Activity.IsLocalOnly 
 		end as 'IsLocalOnly',
-   case when Activity.ActivityType in (10,11,12,15,16) then ''
+   case when Activity.ActivityType in (2,10,11,12,15,16) then ''
    else  coalesce(json_extract(Activity.Payload, '$.activationUri'),json_extract(Activity.Payload, '$.reportingApp')) end as 'App/Uri',
    Activity.Priority as 'Priority',	  
    case when Activity.ActivityType !=6 then ''
@@ -323,11 +327,11 @@ select -- This the Activity Table Query
   Activity.GroupAppActivityId as 'GroupAppActivityId',
   Activity.GroupItems as 'GroupItems',
   Activity.EnterpriseId as 'EnterpriseId',
-  case when Activity.ActivityType in (10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
-  case when Activity.ActivityType in (10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',
-  case when Activity.ActivityType in (10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.description') end as 'Original Full Path /Url',
-  case when Activity.ActivityType in (10,11,12,15,16) then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
-  case when Activity.ActivityType in (10,11,12,15,16) then time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) end as 'Orig.Duration'
+  case when Activity.ActivityType not in (2,10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.appDisplayName') else Activity.OriginalPayload end as 'Original Program Name',
+  case when Activity.ActivityType not in (2,10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.displayText') end as 'Original File/title opened',
+  case when Activity.ActivityType not in (2,10,11,12,15,16) then json_extract(Activity.OriginalPayload, '$.description') end as 'Original Full Path /Url',
+  case when Activity.ActivityType not in (2,10,11,12,15,16) then coalesce(json_extract(Activity.OriginalPayload, '$.activationUri'),json_extract(Activity.OriginalPayload, '$.reportingApp')) end as 'Original_App/Uri',
+  case when Activity.ActivityType not in (2,10,11,12,15,16) then time(json_extract(Activity.OriginalPayload, '$.activeDurationSeconds'),'unixepoch' ) end as 'Orig.Duration'
    
 from Activity_PackageId
 join Activity on Activity_PackageId.ActivityId = Activity.Id  
