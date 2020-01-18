@@ -91,6 +91,7 @@ select
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
 		ActivityOperation.'group' as 'Group',
+        ActivityOperation.MatchID,
         'Yes' AS 'IsInUploadQueue',
 	   ActivityOperation.ClipboardPayload,	
        datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModifiedTime',
@@ -114,6 +115,7 @@ select
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
 		Activity.'group' as 'Group',
+       Activity.MatchID,
        'No' AS 'IsInUploadQueue', 
 	   Activity.ClipboardPayload,
        datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime')as 'LastModifiedTime',
@@ -130,7 +132,7 @@ order by Etag desc
 "@ 
 write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, IsInUploadQueue, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
+$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, MatchID, IsInUploadQueue, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
 $dbcount = $dbresults.count
 
 #Stop Timer 1
@@ -380,6 +382,7 @@ $Output = foreach ($item in $dbresults ){
 				                Objectid         = if (![string]::IsNullOrEmpty($Objectid)) { $Objectid }else{ $null }
 				                KnownFolder      = if (![string]::IsNullOrEmpty($KnownFolderId)) { $KnownFolderId }else{ $null }
                                 Group         =    $item.Group
+                                MatchID      =     $item.MatchID
                                 Tag =              $item.Tag
                                 Type =             $type
                                 ActivityType =          if ($item.ActivityType -eq 5){"Open App/File/Page (5)"}
