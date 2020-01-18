@@ -60,7 +60,7 @@ try{    $reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("CurrentUser", "defaul
         $DeviceID = $keys.GetSubKeyNames()
 
 }
-catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
+catch{Write-warning " No DeviceCache entries exist in HKCU"; exit} 
 if($RegCount -eq 0){write-host "Sorry, No devices found in HKCU";exit}
 
 $db = $File
