@@ -30,7 +30,7 @@ SELECT -- This the ActivityOperation Table Query
 	ActivityOperation.ETag as 'Etag',
 	ActivityOperation.OperationOrder as 'Order',
 	case
-	    when ActivityOperation.ActivityType in (2,11,12,15) 
+	    when ActivityOperation.ActivityType in (2,3,11,12,15) 
 			then json_extract(ActivityOperation.AppId, '$[0].application')	
 		when json_extract(ActivityOperation.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -84,7 +84,7 @@ SELECT -- This the ActivityOperation Table Query
 	case 
 		when ActivityOperation.ActivityType = 10 and json_extract(ActivityOperation.Payload,'$') notnull
 		then json_extract(ActivityOperation.Payload,'$.1[0].content') --Base64 encoded
-		when ActivityOperation.ActivityType = 2 then ActivityOperation.Payload
+		when ActivityOperation.ActivityType in (2,3) then ActivityOperation.Payload
 		when ActivityOperation.ActivityType = 5 and json_extract(ActivityOperation.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(ActivityOperation.Payload, '$.shellContentDescription.FileShellLink') 
 		when ActivityOperation.ActivityType = 6 
@@ -96,6 +96,7 @@ SELECT -- This the ActivityOperation Table Query
 	end as 'Payload/Timezone',
 	case 
 		when ActivityOperation.ActivityType = 2 then 'Notification('||ActivityOperation.ActivityType||')'
+		when ActivityOperation.ActivityType = 3 then 'Mobile Backup('||ActivityOperation.ActivityType||')' 
 		when ActivityOperation.ActivityType = 5 then 'Open App/File/Page('||ActivityOperation.ActivityType||')' 
 		when ActivityOperation.ActivityType = 6 then 'App In Use/Focus  ('||ActivityOperation.ActivityType||')'  
 		when ActivityOperation.ActivityType = 10 then 'Clipboard ('||ActivityOperation.ActivityType||')'  
@@ -214,7 +215,7 @@ select -- This the Activity Table Query
    Activity.ETag as 'Etag',
    null as 'Order',  
    case
-	    when Activity.ActivityType in (2,11,12,15) 
+	    when Activity.ActivityType in (2,3,11,12,15) 
 			then json_extract(Activity.AppId, '$[0].application')	
 		when json_extract(Activity.AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -268,7 +269,7 @@ select -- This the Activity Table Query
 	case 
 		when Activity.ActivityType = 10 and json_extract(Activity.Payload,'$') notnull
 		then json_extract(Activity.Payload,'$.1[0].content') --Base64 encoded
-		when Activity.ActivityType = 2 then Activity.Payload
+		when Activity.ActivityType in (2,3) then Activity.Payload
 		when Activity.ActivityType = 5 and json_extract(Activity.Payload, '$.shellContentDescription') like '%FileShellLink%' 
 	    then json_extract(Activity.Payload, '$.shellContentDescription.FileShellLink') 
 		when Activity.ActivityType = 6
@@ -280,6 +281,7 @@ select -- This the Activity Table Query
 	end as 'Payload/Timezone',
 	 case 
 		when Activity.ActivityType = 2 then 'Notification('||Activity.ActivityType||')' 
+		when Activity.ActivityType = 3 then 'Mobile Backup('||Activity.ActivityType||')' 
 		when Activity.ActivityType = 5 then 'Open App/File/Page('||Activity.ActivityType||')' 
 		when Activity.ActivityType = 6 then 'App In Use/Focus  ('||Activity.ActivityType||')'  
 		when Activity.ActivityType = 10 then 'Clipboard ('||Activity.ActivityType||')'  

@@ -82,64 +82,50 @@ $db = $File1
 $dbresults=@{}
 $Query = @"
 select 
-       ActivityOperation.ETag,
-       ActivityOperation.AppId, 
-	   case when ActivityOperation.AppActivityId not like '%-%-%-%-%' then ActivityOperation.AppActivityId
-		else trim(ActivityOperation.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       	ActivityOperation.ActivityType as 'Activity_type',
-	    case ActivityOperation.OperationType 
+       ETag,
+       AppId, 
+	   case when AppActivityId not like '%-%-%-%-%' then AppActivityId
+		else trim(AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
+       ActivityType as 'Activity_type', 
+       case ActivityStatus 
 		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
 		end as 'ActivityStatus',
-		ActivityOperation.'group' as 'Group',
-        ActivityOperation.MatchID,
-        'Yes' AS 'IsInUploadQueue',
-	   ActivityOperation.ClipboardPayload,	
-       datetime(ActivityOperation.LastModifiedTime, 'unixepoch', 'localtime') as 'LastModifiedTime',
-       datetime(ActivityOperation.ExpirationTime, 'unixepoch', 'localtime')as 'ExpirationTime',
-       datetime(ActivityOperation.StartTime, 'unixepoch', 'localtime') as 'StartTime',
-       datetime(ActivityOperation.EndTime, 'unixepoch', 'localtime') as 'EndTime',
-       ActivityOperation.Tag, 
-       ActivityOperation.PlatformDeviceId,
-       ActivityOperation.Payload 
-       
-from   ActivityOperation 
-       left outer join Activity on ActivityOperation.Id = Activity.Id
-union
-select 
-       Activity.ETag,
-       Activity.AppId, 
-	   case when Activity.AppActivityId not like '%-%-%-%-%' then Activity.AppActivityId
-		else trim(Activity.AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\') end as 'AppActivityId',
-       	Activity.ActivityType as 'Activity_type', 
-        case Activity.ActivityStatus 
-		when 1 then 'Active' when 2 then 'Updated' when 3 then 'Deleted' when 4 then 'Ignored' 
-		end as 'ActivityStatus',
-		Activity.'group' as 'Group',
-       Activity.MatchID,
+	   Smartlookup.'group' as 'Group', 
+       MatchID,
        'No' AS 'IsInUploadQueue', 
-	   Activity.ClipboardPayload,
-       datetime(Activity.LastModifiedTime, 'unixepoch', 'localtime')as 'LastModifiedTime',
-       datetime(Activity.ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
-       datetime(Activity.StartTime, 'unixepoch', 'localtime') as 'StartTime',
-       datetime(Activity.EndTime, 'unixepoch', 'localtime') as 'EndTime',
-       Activity.Tag,
-       Activity.PlatformDeviceId,
-       Activity.Payload  
+	   Priority as 'Priority',	
+	   ClipboardPayload,
+       datetime(LastModifiedTime, 'unixepoch', 'localtime')as 'LastModifiedTime',
+       datetime(ExpirationTime, 'unixepoch', 'localtime') as 'ExpirationTime',
+       datetime(StartTime, 'unixepoch', 'localtime') as 'StartTime',
+       datetime(EndTime, 'unixepoch', 'localtime') as 'EndTime',
+	   case 
+		when CreatedInCloud > 0 
+		then datetime(CreatedInCloud, 'unixepoch', 'localtime') 
+		else '' 
+	   end as 'CreatedInCloud',
+	   case 
+		when OriginalLastModifiedOnClient > 0 
+		then datetime(OriginalLastModifiedOnClient, 'unixepoch', 'localtime') 
+		else '' 
+	   end as 'OriginalLastModifiedOnClient',
+       Tag,
+       PlatformDeviceId,
+       Payload  
        
-from   Activity
-where  Activity.Id not in (select ActivityOperation.Id from ActivityOperation)
+from   Smartlookup
 order by Etag desc
 "@ 
-write-progress -id 1 -activity "Running SQLite query (Might take a few minutes if dB is large)" 
+write-progress -id 1 -activity "Running SQLite query" 
 
-$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, MatchID, IsInUploadQueue, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, Tag, PlatformDeviceId, Payload)
+$dbresults = @(sqlite3.exe -readonly $db $query -separator "||"|ConvertFrom-String -Delimiter '\u007C\u007C' -PropertyNames ETag, AppId, AppActivityId, ActivityType, ActivityStatus, Group, MatchID, IsInUploadQueue, Priority, ClipboardPayload, LastModifiedTime, ExpirationTime, StartTime, EndTime, CreatedInCloud, OriginalLastModifiedOnClient, Tag, PlatformDeviceId, Payload)
 $dbcount = $dbresults.count
 
 #Stop Timer 1
 $sw.stop()
 $T0 = $sw1.Elapsed
 write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0 -> $dbcount Entries found." 
-if($dbcount -eq 0){'Sorry - 0 entries found';exit}
+if($dbcount -eq 0){write-warning 'Sorry - 0 entries found';exit}
 
 #Load NTUSER.dat into a Temp subfolder in HKLM
 reg load HKEY_LOCAL_MACHINE\Temp $File2
@@ -148,7 +134,7 @@ $ErrorActionPreference = "Stop"
 try{
             
 			$reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("LocalMachine", "default")
-			$keys = $reg.OpenSubKey("Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\")
+			$keys = $reg.OpenSubKey("Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache")
             Write-Host -ForegroundColor Green "$File2 loaded OK"
 			$RegCount = $keys.SubKeyCount
 			if($RegCount -eq 0){write-host "No Devices found in selected NTUser.dat" -f Red;exit}
@@ -158,7 +144,7 @@ try{
 
 }
 Catch{
-	Write-Host -ForegroundColor Yellow "The selectd ($File2) does not have the" 
+	Write-Host -ForegroundColor Yellow "The selected ($File2) does not have the" 
 	Write-Host -ForegroundColor Yellow "'Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache' registry key." 
     if(!!$keys)
     {
@@ -181,7 +167,7 @@ $ra=0
 $rb=0
 
 $Registry = @(foreach ($entry in $DeviceID){
-
+                if(![string]::IsNullOrEmpty($entry)){
                 Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entries: $($RegCount)" -ParentID 1
             
                 $key = $reg.OpenSubKey("Temp\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)")
@@ -200,7 +186,10 @@ $Registry = @(foreach ($entry in $DeviceID){
                      }
                 $key.Close()
                 $key.dispose()
-            }        
+             
+                }
+                else{continue} 
+             }   
             )
             
             $reg.Close()
@@ -318,28 +307,28 @@ catch{$apps = $null}
 
 #Create output   
 $Output = foreach ($item in $dbresults ){
-
-                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database" -ParentID 1
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database entries with NTUser.dat info" -ParentID 1
                     $content = $KnownFolderId=$Objectid=$volumeid= $contentdata=$contenturl = $null
                     
                     # Get Payload information
-                    if(![string]::IsNullOrEmpty($item.Payload)){                   
-                    $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{""}
-                    $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{""}
-                    $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{""}
-                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{""}
-                    $displayText = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).displayText}else{""}
-                    $description = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).description} else{""}
-                    $displayname = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).appDisplayName}else{""}
+                    if(![string]::IsNullOrEmpty($item.Payload)){
+                    $type =        if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).Type}else{$null}
+                    $Duration =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).activeDurationSeconds}else{$null}
+                    $timezone =    if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).userTimezone}else{$null}
+                    $devPlatform = if($item.ActivityType -eq 6){($item.Payload |ConvertFrom-Json).devicePlatform}else{$null}
+                    $displayText = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).displayText}else{$null}
+                    $description = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).description} else{$null}
+                    $displayname = if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).appDisplayName}else{$null}
                     $content =     if($item.ActivityType -eq 5){($item.Payload |ConvertFrom-Json).contentUri}
                                elseif($item.ActivityType -eq 10){[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(($item.Payload|ConvertFrom-Json)."1".content))}
-                               else{""}
-                    $Notification = if($item.ActivityType -eq 2){$item.Payload}else{}
+                               else{$null}
+                    $Notification = if($item.ActivityType -eq 2){$item.Payload}else{$null}
                     }
                     
                     # Select the platform & application name for x_exe, windows_win32 and Windows_universal entries
                     $platform = ($item.Appid|convertfrom-json).platform
-                    $AppName  = if($item.ActivityType -in (11,12,15)){($item.Appid|convertfrom-json).application[0]}
+                    
+                    $AppName  = if($item.ActivityType -in (2,3,11,12,15)){($item.Appid|convertfrom-json).application[0]}
                                 else {
                                   $(if (($item.Appid|convertfrom-json).platform[0] -eq "x_exe_path"){($item.Appid|convertfrom-json).application[0]}
 		                        elseif (($item.Appid|convertfrom-json).platform[0] -eq "windows_win32"){($item.Appid|convertfrom-json).application[0]}
@@ -352,7 +341,7 @@ $Output = foreach ($item in $dbresults ){
 		                        elseif (($item.Appid|convertfrom-json).platform[2] -eq "windows_universal"){($item.Appid|convertfrom-json).application[2]})
                                 }                               
                     
-                    if($AppName -match "Microsoft.AutoGenerated"){if(!!($apps |where -Property AppId -match "$AppName").Name){$AppName  = ($apps |where -Property AppId -match "$AppName").Name}}
+                    if($AppName -match "Microsoft.AutoGenerated"){if (!!($apps | where -Property AppId -match "$AppName").Name) { $AppName = ($apps | where -Property AppId -match "$AppName").Name }}
                     elseif($AppName -match "PID00"){$AppName  = $AppName  = "$($AppName) ($([Convert]::TouInt64($AppName.TrimStart("*PID"),16)))"}
 
                     # Get Clipboard copied text (Base 64 text decoded)
@@ -360,16 +349,17 @@ $Output = foreach ($item in $dbresults ){
                      
                     # Replace known folder GUID with it's Name
                     foreach ($i in $known.Keys) {
-                                        $AppName = $AppName -replace $i, $known[$i]
-                                        }
+                                                    $AppName = $AppName -replace $i, $known[$i]
+                                                }
                     
+                   
                     # Fix endtime displaying 1970 date for File/App Open entries (entry is $null)
                     $endtime = if ($item.EndTime -eq 'Thursday, January 1, 1970 2:00:00 am' -or $item.EndTime -eq '01 Jan 70 2:00:00 am'){}else{Get-Date($item.EndTime) -f s}
                     
                     # Check DeviceId against registry
                     $rid = $Registry | Where-Object { $_.id -eq $item.PlatformDeviceId }
 
-                     # Get more info from ContentURI
+                    # Get more info from ContentURI
                     if ($item.ActivityType -eq 5 -and !!$content) {
                     $contenturl    = if (($content.count -gt 0) -and ($content.split("?")[0] -match "file://")){$content.split("?")[0]}else{$content}
 			        $contentdata   = if (($content.count -gt 0) -and (!!$content.split("?")[1])) { $content.split("?")[1].split("&") }else { $null }
@@ -377,6 +367,16 @@ $Output = foreach ($item in $dbresults ){
 			        $Objectid      = if (($contentdata.count -gt 0) -and ($contentdata[1] -match "ObjectId")) { $contentdata[1].trimstart("ObjectId={").trimend("}") }else { $null }
 			        $KnownFolderId = if (($contentdata.count -gt 0) -and ($contentdata[2] -match "KnownFolderId")) { $contentdata[2].trimstart("KnownFolderId=") }else { $null }
                     }
+                    
+                    if (($item.ActivityType -eq 3) -and (![string]::IsNullOrEmpty($item.Payload)))
+                    {
+                    $backupType =         ($item.Payload | ConvertFrom-Json).backupType 
+				    $devmodel =           ($item.Payload | ConvertFrom-Json).deviceName
+				    $deviceIdentifier =   ($item.Payload | ConvertFrom-Json).deviceIdentifier
+				    $backupcreationDate = ($item.Payload | ConvertFrom-Json).creationDate
+				    $backupupdatedDate =  ($item.Payload | ConvertFrom-Json).updatedDate
+                    }
+                    else{$backupType=$devmodel=$deviceIdentifier=$backupcreationDate=$backupupdatedDate=$null}
 
                     [PSCustomObject]@{
                                 ETag =             $item.ETag 
@@ -396,6 +396,7 @@ $Output = foreach ($item in $dbresults ){
                                 ActivityType =          if ($item.ActivityType -eq 5){"Open App/File/Page (5)"}
                                                     elseif ($item.ActivityType -eq 6){"App In Use/Focus (6)"}
                                                     elseif ($item.ActivityType -eq 2){"Notification (2)"}
+                                                    elseif ($item.ActivityType -eq 3){"Mobile Device Backup (3)"}
                                                     elseif ($item.ActivityType -eq 10){"Clipboard Text (10)"}
                                                     elseif ($item.ActivityType -in (11,12,15)){"System ($($item.ActivityType))"}
                                                     elseif ($item.ActivityType -eq 16){"Copy/Paste (16)"}
@@ -403,19 +404,23 @@ $Output = foreach ($item in $dbresults ){
                                 ActivityStatus =   $item.ActivityStatus
                                 DevicePlatform  =  $devPlatform
                                 IsInUploadQueue =  $item.IsInUploadQueue
+                                Priority        = $item.Priority
                                 CopiedText       = $clipboard
                                 Notification     = $Notification
-                                Duration =         if($Duration -ne ""){[timespan]::fromseconds($Duration)}else{""}
-                                CalculatedDuration = if ($item.ActivityType -eq 6){([datetime] $item.endtime - [datetime] $item.StartTime)}else{""}
+                                Duration =         if ($item.ActivityType -eq 6){[timespan]::fromseconds($Duration)}else{$null}
+                                CalculatedDuration = if (($item.ActivityType) -eq 6 -and ($item.endtime -ge $item.StartTime )){([datetime] $item.endtime - [datetime] $item.StartTime)}else{$null}
                                 LastModifiedTime = Get-Date($item.LastModifiedTime) -f s
                                 ExpirationTime =   Get-Date($item.ExpirationTime) -f s
-                                StartTime =        Get-Date($item.StartTime) -f s
+                                StartTime =        if(![string]::IsNullOrEmpty($item.StartTime)){Get-Date($item.StartTime) -f s}else{}
                                 EndTime =          $endtime
+                                CreatedInCloud   = if(![string]::IsNullOrEmpty($item.CreatedInCloud)){Get-Date($item.CreatedInCloud) -f s}else{}
+                                OriginalLastModifiedOnClient = if(![string]::IsNullOrEmpty($item.OriginalLastModifiedOnClient)){Get-Date($item.OriginalLastModifiedOnClient) -f s}else{}
                                 TimeZone =         $timezone
                                 PlatformDeviceId = $item.PlatformDeviceId 
                                 DeviceType =       if (!!$rid){
                                                        if($rid.Type -eq 15){"Windows 10 Laptop"}
                                                    elseif($rid.Type -eq 1) {"Xbox One"}
+                                                   elseif($rid.Type -eq 0) {"Windows 10X device"}
                                                    elseif($rid.Type -eq 6) {"Apple iPhone"}
                                                    elseif($rid.Type -eq 7) {"Apple iPad"}
                                                    elseif($rid.Type -eq 8) {"Android device"}
@@ -431,9 +436,13 @@ $Output = foreach ($item in $dbresults ){
                                 Name          = if (!!$rid) { $rid.name } else{ $null }
 				                Make          = if (!!$rid) { $rid.make } else{ $null }
 				                Model         = if (!!$rid) { $rid.model }else{ $null }
+                                DeviceModel   = $devmodel
+				                DeviceID      = $deviceIdentifier
+				                BackupType    = $backupType
+				                BackupCreated = $backupcreationDate
+				                BackupUpdated = $backupupdatedDate
                                 }
-
-}
+                        } 
 
 #Stop Timer2
 $sw1.stop()           

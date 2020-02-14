@@ -26,7 +26,7 @@
 SELECT -- SmartLookup View Query
 	ETag as 'Etag', --entity tag (unique)
 	case
-	    when ActivityType in (2,11,12,15) 
+	    when ActivityType in (2,3,11,12,15) 
 			then json_extract(AppId, '$[0].application')	
 		when json_extract(AppId, '$[0].application') = '308046B0AF4A39CB' 
 			then 'Mozilla Firefox-64bit'
@@ -75,7 +75,7 @@ SELECT -- SmartLookup View Query
 	end as 'Content', --Full path /url, Volume Id & Object Id from the Payload field
 	trim(AppActivityId,'ECB32AF3-1440-4086-94E3-5311F97F89C4\')  as 'AppActivityId', --Full path /url 
 	case 
-		when ActivityType = 2 then Payload
+		when ActivityType in (2,3) then Payload
 		when ActivityType = 10 and json_extract(Payload,'$') notnull
 		then json_extract(Payload,'$.1[0].content') --Base64 encoded
 		when ActivityType = 5 and json_extract(Payload, '$.shellContentDescription') like '%FileShellLink%' 
@@ -89,6 +89,7 @@ SELECT -- SmartLookup View Query
 	end as 'Payload/Timezone', --Payload for types 10,11,12,15 (encoded), Payload (FileShellLink) for type 5 and Payload (type & userTimezone) for type 6
 	case  
 		when ActivityType = 2 then 'Notification('||ActivityType||')' 
+		when ActivityType = 3 then 'Mobile Backup('||ActivityType||')' 
 		when ActivityType = 5 then 'Open App/File/Page('||ActivityType||')' 
 		when ActivityType = 6 then 'App In Use/Focus  ('||ActivityType||')'  
 		when ActivityType = 10 then 'Clipboard ('||ActivityType||')'  
@@ -116,7 +117,7 @@ SELECT -- SmartLookup View Query
 	'Yes' as 'UploadQueue',
 	'' as 'IsLocalOnly',
 	case 
-		when ActivityType in (2,11,12,15) 
+		when ActivityType in (2,3,11,12,15) 
 		then ''
 		else coalesce(json_extract(Payload, '$.activationUri'),json_extract(Payload, '$.reportingApp')) 
 	end as 'App/Uri',
@@ -199,5 +200,6 @@ SELECT -- SmartLookup View Query
 	end as 'OriginalPayload'
 
 from SmartLookup
+order by LastModified desc
 
 
