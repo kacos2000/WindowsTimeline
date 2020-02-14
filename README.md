@@ -54,7 +54,8 @@ ________________________________________________________________________________
  
    * **ActivityTypes observed:**
    
-        - **2**  (Notifications) *{seen only in Win10 v1709}*
+        - **2**  (Notification) *{seen only in Win10 v1709}*
+        - **3**  (Mobile Device Backup) 
         - **5**  (Open Application/File/Webpage)
         - **6**  (Application in Use/Focus)
         - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
@@ -66,7 +67,7 @@ ________________________________________________________________________________
             - Microsoft.Personalization
             - Microsoft.Language
             - Microsoft.Accessibility*
-        - **0,1,3,7,13** *unknown yet*
+        - **0,1,7,13** *unknown yet*
         - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
       
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
@@ -144,6 +145,7 @@ ________________________________________________________________________________
     
     * Note: According to the Connected [Devices Platform specification](https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf) these are the device types. Curiously, type 15 is not in that list:<br>
     
+      - 0.Windows 10X device *(Observed)*
       - 1.Xbox One
       - 6.Apple iPhone
       - 7.Apple iPad 
@@ -153,6 +155,7 @@ ________________________________________________________________________________
       - 12.Linux device
       - 13.Windows IoT
       - 14.Surface Hub 
+      - 14.Windows 10 Laptop *(Observed)*
 
     ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
    
