@@ -329,6 +329,15 @@ $Output = foreach ($item in $dbresults ){
                     }
                     else{$backupType=$devmodel=$deviceIdentifier=$backupcreationDate=$backupupdatedDate=$null}
 
+                    # The ActivityType "3"'s Payload json field :"encryptedBackup" 
+                    # is encoded using RSA v1.5 and AES-HMAC-SHA2 Encryption
+                    # thus ignored. 
+                    #
+                    # "encryptedBackup" -> Base64 decoded -> {"alg":"A128KW","enc":"A128CBC-HS256"}
+                    #
+                    # Ref: https://tools.ietf.org/html/draft-ietf-jose-json-web-encryption-14#section-4.2 
+                    # Ref: https://tools.ietf.org/id/draft-ietf-jose-cookbook-02.html#jwe-rsa15-key
+
                     [PSCustomObject]@{
                                 ETag =             $item.ETag 
                                 App_name =         $AppName
