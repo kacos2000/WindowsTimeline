@@ -1,62 +1,64 @@
+﻿##Requires -RunAsAdministrator
+
+
+#Check if SQLite exists
+try{write-host "sqlite3.exe version => "-f Yellow -nonewline; sqlite3.exe -version }
+catch {
+    write-host "It seems that you do not have sqlite3.exe in the system path"
+    write-host "Please read below`n" -f Yellow
+    write-host "Install SQLite On Windows:`n
+
+        Go to SQLite download page, and download precompiled binaries from Windows section.
+        Instructions: http://www.sqlitetutorial.net/download-install-sqlite/
+        Create a folder C:\sqlite and unzip above two zipped files in this folder which will give you sqlite3.def, sqlite3.dll and sqlite3.exe files.
+        Add C:\sqlite to the system PATH (https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/)" -f White
+
+    exit}
+
+# Requires SQLite3.exe 
+# Instructions (http://www.sqlitetutorial.net/download-install-sqlite/)
+# SQLite3.exe (https://www.sqlite.org/2018/sqlite-tools-win32-x86-3240000.zip) with
+# 32bit Dll (https://www.sqlite.org/2018/sqlite-dll-win32-x86-3240000.zip) or the
+# 64bit Dll (https://www.sqlite.org/2018/sqlite-dll-win64-x64-3240000.zip)
+# Note - After you install the latest SQLite3.exe, check the version from inside powershell
+# by running SQLite3.exe -version (you may have already an older version in your Path)
+
+
 # Device Name and Model of the originating machine can be seen 
 # in the HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
 
-[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
-# Show an Open File Dialog 
-Function Get-FileName
-{  
+# Note:
+# Device Name and Model of the originating machine can be seen 
+# in the HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
 
-  [CmdletBinding()]
-  param
-  (
-    [Object]$initialDirectory
-  )
-Add-Type -AssemblyName System.windows.forms |Out-Null
-		$OpenFileDialog = New-Object -TypeName System.Windows.Forms.OpenFileDialog
+clear-host
+
+# Show an Open File Dialog 
+Function Get-FileName($initialDirectory)
+{  
+[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") |Out-Null
+		$OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
 		$OpenFileDialog.Title = 'Select ActivitiesCache.db database to access'
 		$OpenFileDialog.initialDirectory = $initialDirectory
-		$OpenFileDialog.Filter = 'ActivitiesCache.db (*.db)|ActivitiesCache.db'
+		$OpenFileDialog.Filter = "ActivitiesCache.db (*.db)|ActivitiesCache.db"
 		$OpenFileDialog.ShowDialog() | Out-Null
 		$OpenFileDialog.ShowReadOnly = $true
 		$OpenFileDialog.filename
 		$OpenFileDialog.ShowHelp = $false
 } #end function Get-FileName 
 
-$dBPath =  $env:LOCALAPPDATA+'\ConnectedDevicesPlatform\'
+$dBPath =  $env:LOCALAPPDATA+"\ConnectedDevicesPlatform\"
 $File = Get-FileName -initialDirectory $dBPath
+
+if([string]::IsNullOrEmpty($file)){
+Write-warning "(WinTimelineLocal.ps1):"; Write-Host "User Cancelled" -f White; exit}
+write-host "Selected: " $file
 $F =$File.replace($env:LOCALAPPDATA,'')
 # Run SQLite query of the Selected dB
 # The Query (between " " below)
 # can also be copy/pasted and run on 'DB Browser for SQLite' 
 
-Try{(Get-Item -Path $File).FullName}
-Catch{Write-Verbose -Message '(WindowsTimeline.ps1):'; Write-Verbose -Message ' User Cancelled'; exit}
-$elapsedTime = [system.diagnostics.stopwatch]::StartNew()    
 
-$db = $File
-$sql = 
-"
-		select
-		ActivityOperation.PlatformDeviceId as 'ID'
-		from Activity_PackageId
-		join ActivityOperation on Activity_PackageId.ActivityId = ActivityOperation.Id 
-		where Activity_PackageId.ActivityId = ActivityOperation.Id
-		union
-		select
-		Activity.platformdeviceid as 'ID'
-		from Activity_PackageId
-		join Activity on Activity_PackageId.ActivityId = Activity.Id 
-		where Activity_PackageId.ActivityId = Activity.Id
-		group by platformdeviceid
-"
-1..1000 | %{write-progress -id 1 -activity 'Running SQLite query' -status ('{0}' -f [string]::Format('Time Elapsed: {0:d2}:{1:d2}:{2:d2}', $elapsedTime.Elapsed.hours, $elapsedTime.Elapsed.minutes, $elapsedTime.Elapsed.seconds)) -percentcomplete ($_/100);}
-
-$dbresult = @(sqlite3.exe -readonly $db $sql) 
-$dbcount=$dbresult.count
-$elapsedTime.stop()
-write-progress -id 1 -activity 'Running SQLite query' -status 'Query Finished' 
-
-#Query HKCU, check results against the Database 
 
 #Check if DEviceCache has entries
 try{    $reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("CurrentUser", "default")
@@ -65,63 +67,110 @@ try{    $reg = [Microsoft.Win32.RegistryKey]::OpenBaseKey("CurrentUser", "defaul
         $DeviceID = $keys.GetSubKeyNames()
 
 }
-catch{Write-warning "(WindowsTimeline.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
+catch{Write-warning "(WinTimelineLocal.ps1):" -f Yellow -nonewline; Write-Host " No DeviceCache entries exist in HKCU" -f White; exit} 
 if($RegCount -eq 0){write-host "Sorry, No devices found in HKCU";exit}
-$r=0
 
-$Output = foreach ($entry in $DeviceID){$r++
-	$dpath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\"
+$db = $File
+$sw = [Diagnostics.Stopwatch]::StartNew()
+$sw1 = [Diagnostics.Stopwatch]::StartNew()
+$dbresults=@()
+$Query = @"
+Select
+    Distinct Activity.PlatformDeviceId
+from Activity
+"@ 
+write-progress -id 1 -activity "Running SQLite query" 
 
-	Write-Progress -id 2 -Activity 'Checking dB package IDs against HKCU DeviceCache' -Status ('HKCU Entry {0} of {1})' -f $r, $DeviceID.Count) -PercentComplete (([double]$r / $DeviceID.Count)*100) -ParentID 1
+$dbresults = @(sqlite3.exe -readonly $db $query)
+$dbcount = $dbresults.count
+$sw.stop()
+$T0 = $sw1.Elapsed
+write-progress -id 1 -activity "Running SQLite query" -status "Query Finished in $T0  -> $dbcount Entries found."
+if($dbcount -eq 0){'Sorry - 0 entries found';exit}
 
-    $key = $reg.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)")
+#Query HKCU, check results against the Database 
+$Registry = [pscustomobject]@()
+$RegCount =$DeviceID.count
+$ra=0
+$rb=0
 
 
-                                    $Type = $key.getvalue("DeviceType") 
-                                    $Name = $key.getvalue("DeviceName")
-                                    $Make = $key.getvalue("DeviceMake") 
-                                    $Model= $key.getvalue("DeviceModel")
-                                    
-                                    if ($dbresult -eq $entry){$platformID = 'Exists'}else{$platformID = 'Missing'}
+$Registry = @(foreach ($entry in $DeviceID){$ra++
+            
+            $ID = $entry
+            $key = $reg.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)")
+            #$dpath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\$($entry)"
+            
+            Write-Progress -id 2 -Activity "Getting Entries" -Status "HKCU Entry $ra of $($RegCount))" -PercentComplete (([double]$ra / $RegCount)*100) -ParentID 1
+                                
+                $Type = $key.getvalue("DeviceType") 
+                $Name = $key.getvalue("DeviceName")
+                $Make = $key.getvalue("DeviceMake") 
+                $Model= $key.getvalue("DeviceModel") 
+                
+                [PSCustomObject]@{
+                                ID =    $ID
+                                Type =  $Type
+                                Name =  $Name
+                                Make =  $Make
+                                Model = $Model
+                     }
+                 $key.Close()
+                 $key.Dispose()
+                 }
+            )
 
-									[PSCustomObject]@{
-                                    
-                                    'HKCU DeviceCache ID' = $entry
-                                    Type = $Type
-                                    DeviceType = 
-                                                if($Type -eq 15){'Windows 10 Laptop'}
-                                                elseif($Type -eq 1){'Xbox One'}
-                                                elseif($Type -eq 6){'Apple iPhone'}
-                                                elseif($Type -eq 7){'Apple iPad'}
-                                                elseif($Type -eq 8){'Android device'}
-                                                elseif($Type -eq 9){'Windows 10 Desktop'}
-                                                elseif($Type -eq 9){'Desktop PC'}
-                                                elseif($Type -eq 11){'Windows 10 Phone'}
-                                                elseif($Type -eq 12){'Linux device'}
-                                                elseif($Type -eq 13){'Windows IoT'}
-                                                elseif($Type -eq 14){'Surface Hub'}
-                                                else{$Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
-                                    'Device Name' = $Name
-                                    Make = $Make
-                                    Model = $Model
-                                    'DeviceID in dB' = $platformID
-				    				}
-                $key.Close()
-                $key.Dispose()
+$reg.close() 
+$reg.Dispose() 
+
+write-host "`nRegistry Devices: " -f White
+$registry|sort -Property Type|Format-Table
+   
+$Output = foreach ($item in $dbresults ){$rb++
+                    Write-Progress -id 3 -Activity "Creating Output" -Status "Combining Database - $rb of $($dbcount))" -PercentComplete (([double]$rb / $dbcount)*100) -ParentID 1
+                    $rc=0
+                    foreach ($rin in $Registry){$rc++
+                    
+                    Write-Progress -id 4 -Activity "Creating Output" -Status "with matching Registry entries - $rc of $($Registry.count))" -PercentComplete (([double]$rc / $Registry.count)*100) -ParentID 1
+                    
+                    if($item -eq $rin.ID){
+                            
+                    
+                    [PSCustomObject]@{
+
+                                PlatformDeviceId = $item 
+                                DeviceType =           if($rin.Type -eq 15){"Windows 10 Laptop"}
+                                                   elseif($rin.Type -eq 1){"Xbox One"}
+                                                   elseif($rin.Type -eq 6){"Apple iPhone"}
+                                                   elseif($rin.Type -eq 7){"Apple iPad"}
+                                                   elseif($rin.Type -eq 8){"Android device"}
+                                                   elseif($rin.Type -eq 9){"Windows 10 Desktop"}
+                                                   elseif($rin.Type -eq 9){"Desktop PC"}
+                                                   elseif($rin.Type -eq 11){"Windows 10 Phone"}
+                                                   elseif($rin.Type -eq 12){"Linux device"}
+                                                   elseif($rin.Type -eq 13){"Windows IoT"}
+                                                   elseif($rin.Type -eq 14){"Surface Hub"}
+                                                   else{$rin.Type} # Reference: https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf
+                                Name =             $rin.Name
+                                Make =             $rin.Make
+                                Model =            $rin.Model
+                                }
+                        } 
+                                                   
+              }
 }
-$reg.close()         
-$reg.Dispose()
 
-# Display results           
-$output|sort -property Type|Out-GridView -PassThru -Title "There are ($RegCount) device IDs in the Registry key (HKCU) and $dbcount in : ($F)"
-[gc]::Collect() 
+$sw1.stop()           
+$T = $sw1.Elapsed
 
+#Create output - user can copy paste selected items to text file, MS Excel spreadsheet etc.
+$Output|Out-GridView -PassThru -Title "Windows Timeline Devices - ActiveBias= $Biasd - $dbcount entries found in $T"           
 
 # SIG # Begin signature block
 # MIIfcAYJKoZIhvcNAQcCoIIfYTCCH10CAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCAFgQFHJ4yJ8Srs
-# kU8AjLe2hEfy8piSVtgElKLpRgYCJ6CCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCCZMwDUrvP2jRvd
+# eh36j5XwOVhLpWdkTeGHOl1Qp4H0GKCCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
 # icZQBDANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdHbG9iYWxTaWduIFJvb3Qg
 # Q0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xvYmFsU2ln
 # bjAeFw0xMTA4MDIxMDAwMDBaFw0yOTAzMjkxMDAwMDBaMFsxCzAJBgNVBAYTAkJF
@@ -264,26 +313,26 @@ $output|sort -property Type|Out-GridView -PassThru -Title "There are ($RegCount)
 # R3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9T
 # ZWN0aWdvIExpbWl0ZWQxJDAiBgNVBAMTG1NlY3RpZ28gUlNBIENvZGUgU2lnbmlu
 # ZyBDQQIRALjpohQ9sxfPAIfj9za0FgUwDQYJYIZIAWUDBAIBBQCgTDAZBgkqhkiG
-# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgsFtvKyEapJc4+Hr5
-# Mnj9T9kkeoH9q3NvGVEVvJZk8OUwDQYJKoZIhvcNAQEBBQAEggEAHcdcz4ZsDzbG
-# XWzmAhiCfvlA1u56a9OnTqRqEm9xSXlvIDsRK8SEFJY5DwevzKpHHcs2q3BpDdNg
-# tIEDhQDG+KPISWK63nH0wHFa4WxpdDOTHX4ZJGjMR4/Mpc75NgzaGnKM/O++mngO
-# 1M3ufQ6b/WX2ur2IrYVH318FvMKY8R2XqfRvG8p3OnD2ajU2E/R1wUgjOUg7sMyg
-# mh8WMeK4hp1aGxYfPr1eic5LC9bLA6d/ZDjR/KNZDKjPHcejrAhYuolKxO1RV5+o
-# q6eQ/M77o7pfMhn/vFV1Y+ubP4h8NhxrQ+q9mLH6gG3lJDOOsnb4sy0njze0eXFg
-# mGvqSY+DNqGCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
+# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgud0tVs1DBT7MzBGp
+# pm164XAOKOcw8XEBDf0taVm+k+EwDQYJKoZIhvcNAQEBBQAEggEAY5R9ivjkJsqI
+# X0MWcnhxYArJ5bq/MarFrCkcq9HjeIJQaHg0mwz8vnSKbT5gPhyy+qrNiTeWMCrF
+# y+GlRrtP+MaSp6UT/0TPJx+3yu6F8D+O6h5Sn0CW15faZtWoETGns8PHIJhRekWp
+# X28lctXfXjxG5E0w03rvOx2S5YSDp2Mg+HoGxDZqjutQLgE5EL+1mW51/U0ia7I+
+# x0phX/bJyizMptJmtjZ6SVjbK5GQcHbe3OOylkupKTkmcerqKNG8KaVRn7kQqA2y
+# GcMUZ+5TNvPAzXAIl0Bat2oG7UjeoScJEHX5GZuLtoQ2nxMdY29E3/8JyroUsrTR
+# dij/5k7EfKGCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
 # BAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
 # YWxTaWduIFRpbWVzdGFtcGluZyBDQSAtIFNIQTI1NiAtIEcyAgwkVLh/HhRTrTf6
 # oXgwDQYJYIZIAWUDBAIBBQCgggEMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-# HAYJKoZIhvcNAQkFMQ8XDTIwMDIyMDExNTYyNFowLwYJKoZIhvcNAQkEMSIEIKjZ
-# FpeCdyUKzyEkI5V1L8ty3dZwkPR2h/MUYbr/ynH4MIGgBgsqhkiG9w0BCRACDDGB
+# HAYJKoZIhvcNAQkFMQ8XDTIwMDIyMDExNTYxMVowLwYJKoZIhvcNAQkEMSIEIOA7
+# OsKpx6Fxz4OdYMROmKRVxoEv2LkaLjK0lsf9tJulMIGgBgsqhkiG9w0BCRACDDGB
 # kDCBjTCBijCBhwQUPsdm1dTUcuIbHyFDUhwxt5DZS2gwbzBfpF0wWzELMAkGA1UE
 # BhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExMTAvBgNVBAMTKEdsb2Jh
 # bFNpZ24gVGltZXN0YW1waW5nIENBIC0gU0hBMjU2IC0gRzICDCRUuH8eFFOtN/qh
-# eDANBgkqhkiG9w0BAQEFAASCAQB2H8LwUR/cnnkouBept/SuIYuJsOI8LZF/Ox/s
-# VjOBOGum9bz1x758lLC7pc5Nw5/0UUfhrYNzmg1/rMT0UIy001+v882+JB3Pctz+
-# ngAVdVTiFALbs8aTWAfuQ7BYEUrmMJJc5aNL5nP5dGCSRi5Ss/xedExIKET8WxaY
-# thcYmKbzg42zN5VUqQqiHq0PaU8LUGTS5bbSwvblbMVOcrRDxQqD2vfOUK9SpZ/Y
-# ghDfk54wHmX9ssmkJ8HB7raGCnH9eb9/7N/SKMtIY+JjCZht+6YrOLBi+qFjVAhQ
-# U0blxDQIg7bwm6aFfw2E7zqtTenqZyN8VfrkV3y2kj4v8c6V
+# eDANBgkqhkiG9w0BAQEFAASCAQAqugfYqJgeMkwDT1HONQ8ZBZtvrAVs67KyfB+P
+# J5+j/+0YkSeDBs8UTQMRL2vVfNHs+Mh9II9wGxN0AUgaB5X0aQhpQtF2ApGt114a
+# 3yjRnGxaIyxu1Kx69LgNeanOAhtzR8DSMMicyvqHC0RX9HqT6kF6YkdXRr3vqop7
+# a6WuCgnFW02QMCj0HB/v9om5nmkRlhGxAvhfw0/Y6YejJeFTRVEXCleacqj2+b76
+# i0HSo2iabjxRRGXPUWI+aQX62p+MM7anfoEUXYnI7f85Uk/BB1hpk7xqFJfHsGk5
+# OI5YnWd6ivKfZ+r30GmxEwr6J1BSvmr+yeLLKh4R3VaVCcOx
 # SIG # End signature block
