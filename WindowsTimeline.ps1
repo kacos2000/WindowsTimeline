@@ -1,6 +1,17 @@
 # Device Name and Model of the originating machine can be seen 
 # in the HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache\
-
+clear-host
+# Check Validity of script
+if ((Get-AuthenticodeSignature $MyInvocation.MyCommand.Path).Status -ne "Valid")
+{
+	
+	$check = [System.Windows.Forms.MessageBox]::Show($this, "WARNING:`n$(Split-path $MyInvocation.MyCommand.Path -Leaf) has been modified since it was signed.`nPress 'YES' to Continue or 'No' to Exit", "Warning", 'YESNO', 48)
+	switch ($check)
+	{
+		"YES"{ Continue }
+		"NO"{ Exit }
+	}
+}
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 # Show an Open File Dialog 
 Function Get-FileName
@@ -120,8 +131,8 @@ $output|sort -property Type|Out-GridView -PassThru -Title "There are ($RegCount)
 # SIG # Begin signature block
 # MIIfcAYJKoZIhvcNAQcCoIIfYTCCH10CAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCAFgQFHJ4yJ8Srs
-# kU8AjLe2hEfy8piSVtgElKLpRgYCJ6CCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCDLyll+Mr6JQmTf
+# qT/I41tZO3iwiwD5K9hH51LTaD3IUKCCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
 # icZQBDANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdHbG9iYWxTaWduIFJvb3Qg
 # Q0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xvYmFsU2ln
 # bjAeFw0xMTA4MDIxMDAwMDBaFw0yOTAzMjkxMDAwMDBaMFsxCzAJBgNVBAYTAkJF
@@ -264,26 +275,26 @@ $output|sort -property Type|Out-GridView -PassThru -Title "There are ($RegCount)
 # R3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9T
 # ZWN0aWdvIExpbWl0ZWQxJDAiBgNVBAMTG1NlY3RpZ28gUlNBIENvZGUgU2lnbmlu
 # ZyBDQQIRALjpohQ9sxfPAIfj9za0FgUwDQYJYIZIAWUDBAIBBQCgTDAZBgkqhkiG
-# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgsFtvKyEapJc4+Hr5
-# Mnj9T9kkeoH9q3NvGVEVvJZk8OUwDQYJKoZIhvcNAQEBBQAEggEAHcdcz4ZsDzbG
-# XWzmAhiCfvlA1u56a9OnTqRqEm9xSXlvIDsRK8SEFJY5DwevzKpHHcs2q3BpDdNg
-# tIEDhQDG+KPISWK63nH0wHFa4WxpdDOTHX4ZJGjMR4/Mpc75NgzaGnKM/O++mngO
-# 1M3ufQ6b/WX2ur2IrYVH318FvMKY8R2XqfRvG8p3OnD2ajU2E/R1wUgjOUg7sMyg
-# mh8WMeK4hp1aGxYfPr1eic5LC9bLA6d/ZDjR/KNZDKjPHcejrAhYuolKxO1RV5+o
-# q6eQ/M77o7pfMhn/vFV1Y+ubP4h8NhxrQ+q9mLH6gG3lJDOOsnb4sy0njze0eXFg
-# mGvqSY+DNqGCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
+# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgotm9qiyCVKVxopUY
+# 5Y9NufIiy5VcqIec3tEJ0DTaGaswDQYJKoZIhvcNAQEBBQAEggEAjOdEYuD1aZaG
+# MONZopfA6TcOibGx0nboSmp8b+r+tIQEJ3yysDSmJXkRsm9hq+TU/51a3nM2XqlG
+# FB/JaOOxXJdBxrRfAN+H+pmMkqiUQB/hpew2la1GmACWti1lb9YF8cbS7b/eUEf9
+# IA7+ZOTffvPMMrRyIGwq7Ui9ijWD4leIv+2g331jzpIJcZvtRMzYPhqSWO6UeeNy
+# cL33WeuG6UrBJcZyi3vDKI6etRN45IvTkvMUBgGVI+NACzaNL/ikb0FDEXw5gabN
+# JRjw5llnOv30YHXbfC9oKQk9LP/a/CH/dQx/RSMhKGgqI2SC91/EDCDnGrKHPIxk
+# tRZwdPgY+aGCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
 # BAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
 # YWxTaWduIFRpbWVzdGFtcGluZyBDQSAtIFNIQTI1NiAtIEcyAgwkVLh/HhRTrTf6
 # oXgwDQYJYIZIAWUDBAIBBQCgggEMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-# HAYJKoZIhvcNAQkFMQ8XDTIwMDIyMDExNTYyNFowLwYJKoZIhvcNAQkEMSIEIKjZ
-# FpeCdyUKzyEkI5V1L8ty3dZwkPR2h/MUYbr/ynH4MIGgBgsqhkiG9w0BCRACDDGB
+# HAYJKoZIhvcNAQkFMQ8XDTIwMDMwMTEyNDEzMVowLwYJKoZIhvcNAQkEMSIEIN/H
+# zjq/CIocu9s1+KrC5T9wJVKF2sfQRkHm3t04qKNNMIGgBgsqhkiG9w0BCRACDDGB
 # kDCBjTCBijCBhwQUPsdm1dTUcuIbHyFDUhwxt5DZS2gwbzBfpF0wWzELMAkGA1UE
 # BhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExMTAvBgNVBAMTKEdsb2Jh
 # bFNpZ24gVGltZXN0YW1waW5nIENBIC0gU0hBMjU2IC0gRzICDCRUuH8eFFOtN/qh
-# eDANBgkqhkiG9w0BAQEFAASCAQB2H8LwUR/cnnkouBept/SuIYuJsOI8LZF/Ox/s
-# VjOBOGum9bz1x758lLC7pc5Nw5/0UUfhrYNzmg1/rMT0UIy001+v882+JB3Pctz+
-# ngAVdVTiFALbs8aTWAfuQ7BYEUrmMJJc5aNL5nP5dGCSRi5Ss/xedExIKET8WxaY
-# thcYmKbzg42zN5VUqQqiHq0PaU8LUGTS5bbSwvblbMVOcrRDxQqD2vfOUK9SpZ/Y
-# ghDfk54wHmX9ssmkJ8HB7raGCnH9eb9/7N/SKMtIY+JjCZht+6YrOLBi+qFjVAhQ
-# U0blxDQIg7bwm6aFfw2E7zqtTenqZyN8VfrkV3y2kj4v8c6V
+# eDANBgkqhkiG9w0BAQEFAASCAQBIwolI0izGdCxy1C3ed6v+IsxFg2vEfDRNoc2i
+# zEZ2C6KQZD93vK3dVVhjDHZ1K3DLcGAg8YItmwAwvFAsQUf+GqikTG/y8EfSXX98
+# jBgZ40CDQDHp7ahlXXzHou2ekh77lybwh7f3r6apHL1z+ALeAqqHXdsQ/X5M9SZs
+# fOu2fm3uyRbtBu84Kdv7GYWjEr5h66JT0BlbwpZGcQASVIZTXbID79xDIZ09Apz9
+# 4TYq7NVwabgBXLyD8hFB+iOpxRgx1J1+nzpPKUQ4hiymZSnBMBNSHkdyrda7YMQT
+# rV8cdJmsApRiwPdEgJwSoVdJmvJlwB9BMDCQzqM40NRn8Jg+
 # SIG # End signature block

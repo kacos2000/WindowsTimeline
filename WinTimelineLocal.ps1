@@ -2,6 +2,15 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 clear-host
+# Check Validity of script
+if((Get-AuthenticodeSignature $MyInvocation.MyCommand.Path).Status -ne "Valid"){
+
+$check = [System.Windows.Forms.MessageBox]::Show($this,"WARNING:`n$(Split-path $MyInvocation.MyCommand.Path -Leaf) has been modified since it was signed.`nPress 'YES' to Continue or 'No' to Exit", "Warning",'YESNO',48)
+switch ($check) {
+"YES"{Continue}
+"NO"{Exit}
+    }
+}
 #Check if SQLite exists
 try{write-host "sqlite3.exe version => "-f Yellow -nonewline; sqlite3.exe -version }
 catch {
@@ -423,8 +432,8 @@ $Output|Out-GridView -PassThru -Title "Windows Timeline - $dbcount entries found
 # SIG # Begin signature block
 # MIIfcAYJKoZIhvcNAQcCoIIfYTCCH10CAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCDJzX/8BDFACol7
-# 8vJrsft1NeCg5ME+YCe0JLTzX930i6CCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCCCaLfpfoH8UNvN
+# Ct3xVMnEJsSy6i+0wc7AZDcEDeBs46CCGf4wggQVMIIC/aADAgECAgsEAAAAAAEx
 # icZQBDANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdHbG9iYWxTaWduIFJvb3Qg
 # Q0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xvYmFsU2ln
 # bjAeFw0xMTA4MDIxMDAwMDBaFw0yOTAzMjkxMDAwMDBaMFsxCzAJBgNVBAYTAkJF
@@ -567,26 +576,26 @@ $Output|Out-GridView -PassThru -Title "Windows Timeline - $dbcount entries found
 # R3JlYXRlciBNYW5jaGVzdGVyMRAwDgYDVQQHEwdTYWxmb3JkMRgwFgYDVQQKEw9T
 # ZWN0aWdvIExpbWl0ZWQxJDAiBgNVBAMTG1NlY3RpZ28gUlNBIENvZGUgU2lnbmlu
 # ZyBDQQIRALjpohQ9sxfPAIfj9za0FgUwDQYJYIZIAWUDBAIBBQCgTDAZBgkqhkiG
-# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgNhT0KnE2ZyP2FOvX
-# 2vXyaPuqrLn9HgGOM9JxNrmcobkwDQYJKoZIhvcNAQEBBQAEggEAaDQNotcy3eJL
-# GqkrNoJiyOC/tgmUvu/scQROcAoK8HaUY60BI4HQrtg+JH+s7M0l/MPS44rD/Z1K
-# CjfRyVVcLBjnoff73lYvGYxgFw5H+OtB5cWqoR/0P70hfkXMOPJwr0xTS2tCra38
-# M5Xl9gN8hGjJPPVEmebv6BMUnv0zazRvSWz9UrobfWthEaXJDOINVX0J9aB59ZvO
-# a9iu0MYq5PJswtk8VsAfrxyg60Q5PkHXuqjXOlELky5Y6fxfyBrdKG5d3IgicZYl
-# /Bl02AMEZ/JG2zlGASJKPYcGsJCuObI4BWGe/SiCqaz21/2huLo68wLKS5URerFQ
-# EYoyj6XYr6GCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
+# 9w0BCQMxDAYKKwYBBAGCNwIBBDAvBgkqhkiG9w0BCQQxIgQgRP+H3a0pRa15/QJz
+# 2r/BNOX85zuQl3cEUjZwf1eJNLIwDQYJKoZIhvcNAQEBBQAEggEAvjXPc6zYaZI3
+# tMkeD6jXq0GX37s1mMTodrTLYu3+GuGDm3gmkFlKz05Vo3ULy+jEcmuG9AfDkBrh
+# tDO7lWO1SgDxLb3cecbnm/IT+a+QtePytTkeJTM1yWe4XqPbXrWxuyqqHv0lCj1L
+# CBDii5vawcOL/I1ISh85NLbjUZtwAWGXKH/yTTASl8MNMV1hFbYFgCRJlEva/CSy
+# Y7jBRXp5qUk+6n3a92G99e8u/m+U/FHN7n47caJHkRotKG2QohPXP1U08t5mTHy1
+# MleEQVDoy5Ei8nuuKp063dweF/CYNtwuvTn3H8Sxc8oKR+m9MBlJ47ghC4pCfujV
+# O6slHCKDy6GCArkwggK1BgkqhkiG9w0BCQYxggKmMIICogIBATBrMFsxCzAJBgNV
 # BAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
 # YWxTaWduIFRpbWVzdGFtcGluZyBDQSAtIFNIQTI1NiAtIEcyAgwkVLh/HhRTrTf6
 # oXgwDQYJYIZIAWUDBAIBBQCgggEMMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEw
-# HAYJKoZIhvcNAQkFMQ8XDTIwMDIyMDExNTYzOFowLwYJKoZIhvcNAQkEMSIEILoX
-# +WKfIafvvGEf911h9n374rX0csmNm/a3hBjEFY1pMIGgBgsqhkiG9w0BCRACDDGB
+# HAYJKoZIhvcNAQkFMQ8XDTIwMDMwMTEyMjAwNFowLwYJKoZIhvcNAQkEMSIEIMug
+# ryKRxEzmWgzYSJS/gB6LNgAzPUXBW8x5odkv9zE8MIGgBgsqhkiG9w0BCRACDDGB
 # kDCBjTCBijCBhwQUPsdm1dTUcuIbHyFDUhwxt5DZS2gwbzBfpF0wWzELMAkGA1UE
 # BhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExMTAvBgNVBAMTKEdsb2Jh
 # bFNpZ24gVGltZXN0YW1waW5nIENBIC0gU0hBMjU2IC0gRzICDCRUuH8eFFOtN/qh
-# eDANBgkqhkiG9w0BAQEFAASCAQCDUlPmwc6evVE7h1W0wfxWshGud4EIG3nrL9cL
-# BBs6+r9BRwl4UK8mPxcKGT8g8hM8TjDGGk9c7mJsYM2BdAmCdj55Kj5z1oHgFupf
-# EtJPWT4BRHHJs3dXQFaKQZ4A2A0mbFrchs1pIQPdmI6b/yDyQzkWmo6+47JtibDG
-# 9crfFgB61ZfDn0FMRiUlGDjUu9Piremsw5vXlewGWHRgJuQ9j7jsYYFa2cn+qqhH
-# ExKawO3mjuzKN9ZHoOWiLz9DmJ2UiYdrNfhvZcHbahIkQLwoTMFIEVIW8yKb2TUC
-# lwSdF2yvLo2z7QLWFLHInnHyHo7l9CzfXTlVEHBJM+xXnpnQ
+# eDANBgkqhkiG9w0BAQEFAASCAQCwB+eZE4wez2LD7GO5nHMmUSgshrQzu0kZi3Z6
+# nMYo4M0btO9BSm4/i3qgbk3H4lhADnq1GSHayXoSWy3lcb1In6UzMAMcdNFqgM6+
+# SkTFrQUNnmjM1DPskj9KhJT87zpmEROEAGXq6MaZGIWQC1aG4XChFbUycOalBFLH
+# Z8smGSjKvv4kpze3E2QUDRTwSLvPB+7paY6ozUDfVZMcBN5cKJTwvi97mM2MB7it
+# X9qOujjEYMCKPbHmB3gZNdXbMh8hamh9j539wyoWBndZ/B/Qk3iFiQCs11XSesHC
+# qu2DBgHZHBFYBanE4Z6NZuneUtLKdhgA00w7+rtYIys4BGwI
 # SIG # End signature block
