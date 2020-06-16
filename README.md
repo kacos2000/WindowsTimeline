@@ -54,7 +54,7 @@ ________________________________________________________________________________
  
    * **ActivityTypes observed:**
    
-        - **2**  (Notification) *{seen only in Win10 v1709}*
+        - **2**  (Notification) 
         - **3**  (Mobile Device Backup) 
         - **5**  (Open Application/File/Webpage)
         - **6**  (Application in Use/Focus)
@@ -67,7 +67,7 @@ ________________________________________________________________________________
             - Microsoft.Personalization
             - Microsoft.Language
             - Microsoft.Accessibility*
-        - **0,1,7,13** *unknown yet*
+        - **0,1,4,7,8,9,13** *unknown yet*
         - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
       
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
