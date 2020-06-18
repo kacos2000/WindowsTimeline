@@ -44,9 +44,11 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 - ActivityOperation
 
 ___________________________________________________________________________________________  
+    Related content:
 
    [![Windows 10 Activity Timeline: An Investigator's Gold Mine](http://img.youtube.com/vi/-vsXFrOZOtc/0.jpg)](http://www.youtube.com/watch?v=-vsXFrOZOtc "BlackBag Webinar")<br>  
-   A presentation of Windows Timeline from [BlackBag](https://www.blackbagtech.com/).
+      
+   [![Adaptive Cards for Timeline, Bots, and Beyond](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/ac-001.JPG)](https://channel9.msdn.com/events/Windows/Windows-Developer-Day-Fall-Creators-Update/WinDev003?term=timeline&lang-en=true)
 ___________________________________________________________________________________________  
 
 #### NEW (5/2019) #### 
