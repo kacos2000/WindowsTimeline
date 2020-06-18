@@ -44,7 +44,7 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 - ActivityOperation
 
 ___________________________________________________________________________________________  
-    Related content:
+    **Related content:**
 
    * [![Windows 10 Activity Timeline: An Investigator's Gold Mine](http://img.youtube.com/vi/-vsXFrOZOtc/0.jpg)](http://www.youtube.com/watch?v=-vsXFrOZOtc "BlackBag Webinar")<br>  
       
@@ -55,7 +55,7 @@ ________________________________________________________________________________
    * [Build cross-device apps, powered by Project Rome](https://github.com/microsoft/project-rome/blob/master/cross-device_app_configuration.md)
 ___________________________________________________________________________________________  
 
-#### NEW (5/2019) #### 
+#### (5/2019) #### 
 [**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 *(Build 19023.1)*) <br>
  
    * **ActivityTypes observed:**
@@ -77,7 +77,7 @@ ________________________________________________________________________________
         - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
       
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
-        - March 2019 Update (v1903 18875)<br>
+        - March 2019 Update (v1903 18875) .. <br>
         - October 2018 Update (v1809 - 17763)<br>
         - April 2018 Update (v1803 - 17134)<br>
         
