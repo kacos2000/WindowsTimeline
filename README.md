@@ -50,7 +50,9 @@ ________________________________________________________________________________
       
    * [![Adaptive Cards for Timeline, Bots, and Beyond](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/ac-001.JPG)](https://channel9.msdn.com/events/Windows/Windows-Developer-Day-Fall-Creators-Update/WinDev003?term=timeline&lang-en=true)
    
-   * [![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/t1.JPG)![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T3.JPG)](https://docs.microsoft.com/en-us/adaptive-cards/getting-started/windows)
+   * [![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/t1.JPG)](https://docs.microsoft.com/en-us/adaptive-cards/getting-started/windows)
+   
+   * [Build cross-device apps, powered by Project Rome](https://github.com/microsoft/project-rome/blob/master/cross-device_app_configuration.md)
 ___________________________________________________________________________________________  
 
 #### NEW (5/2019) #### 
