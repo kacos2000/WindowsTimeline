@@ -50,7 +50,7 @@ ________________________________________________________________________________
       
    * [![Adaptive Cards for Timeline, Bots, and Beyond](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/ac-001.JPG)](https://channel9.msdn.com/events/Windows/Windows-Developer-Day-Fall-Creators-Update/WinDev003?term=timeline&lang-en=true)
    
-   * [Adaptive Cards for Windows Developers](https://docs.microsoft.com/en-us/adaptive-cards/getting-started/windows)
+   * [![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/t1.JPG)![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T2.JPG)![](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T3.JPG)](https://docs.microsoft.com/en-us/adaptive-cards/getting-started/windows)
 ___________________________________________________________________________________________  
 
 #### NEW (5/2019) #### 
