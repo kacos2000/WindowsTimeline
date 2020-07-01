@@ -20,6 +20,39 @@
     Note1: Requires "[System.Data.SQLite](https://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki)". If not available, it will download and install automatically.<br>
     Note2: Runs on Windows 10 x64 <br>
 
+   * **ActivityTypes observed:**
+   
+        - **2**  (Notification) 
+        - **3**  (Mobile Device Backup) 
+        - **5**  (Open Application/File/Webpage)
+        - **6**  (Application in Use/Focus)
+        - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
+        - **11,12,15** Windows System operations such as:
+            - Microsoft.Credentials.Vault
+            - Microsoft.Credentials.WiFi
+            - Microsoft.Default
+            - Microsoft.Credentials
+            - Microsoft.Personalization
+            - Microsoft.Language
+            - Microsoft.Accessibility*
+        - **0,1,4,7,8,9,13** *unknown yet*
+        - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
+        
+    * **Device Types:** <br>
+    (According to the Connected [Devices Platform specification](https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf) & observation)* <br>
+    
+      - 0.Windows 10X *(dual screen)* device *(Observed)*
+      - 1.Xbox One
+      - 6.Apple iPhone
+      - 7.Apple iPad 
+      - 8.Android device
+      - 9.Windows 10 Desktop
+      - 11.Windows 10 Phone 
+      - 12.Linux device
+      - 13.Windows IoT
+      - 14.Surface Hub 
+      - 15.Windows 10 Laptop PC *(Observed)*
+      - 16.Windows 10 Tablet PC *(Observed)*         
 ___________________________________________________________________________________________  
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
@@ -57,25 +90,7 @@ ________________________________________________________________________________
 
 #### (5/2019) #### 
 [**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 *(Build 19023.1)*) <br>
- 
-   * **ActivityTypes observed:**
-   
-        - **2**  (Notification) 
-        - **3**  (Mobile Device Backup) 
-        - **5**  (Open Application/File/Webpage)
-        - **6**  (Application in Use/Focus)
-        - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
-        - **11,12,15** Windows System operations such as:
-            - Microsoft.Credentials.Vault
-            - Microsoft.Credentials.WiFi
-            - Microsoft.Default
-            - Microsoft.Credentials
-            - Microsoft.Personalization
-            - Microsoft.Language
-            - Microsoft.Accessibility*
-        - **0,1,4,7,8,9,13** *unknown yet*
-        - **16** (Copy/Paste Operation - Copy or Paste is shown in the Group field of the db)
-      
+     
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
         - March 2019 Update (v1903 18875) .. <br>
         - October 2018 Update (v1809 - 17763)<br>
@@ -85,7 +100,7 @@ ________________________________________________________________________________
         - [Win10 YourPhone app](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)
         - [Win10 Notifications](https://github.com/kacos2000/Win10/blob/master/Notifications/readme.md).
         
-        
+ 
 ___________________________________________________________________________________________  
 
 
@@ -149,20 +164,6 @@ ________________________________________________________________________________
   * ### **[WindowsTimeline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WindowsTimeline.ps1)** ### 
     Powershell script to check the Platform DeviceID values in the database against the HKCU DeviceCache entries in the registry. ~~It appears that Type 8 entries are Smartphones, type 9 Full Sized PCs and type 15 Laptops)~~. <br>*Note that Platform Device IDs representing a specific device change over time*. 
     
-    * Note: According to the Connected [Devices Platform specification](https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf) these are the device types. Curiously, type 15 is not in that list:<br>
-    
-      - 0.Windows 10X device *(Observed)*
-      - 1.Xbox One
-      - 6.Apple iPhone
-      - 7.Apple iPad 
-      - 8.Android device
-      - 9.Windows 10 Desktop
-      - 11.Windows 10 Phone 
-      - 12.Linux device
-      - 13.Windows IoT
-      - 14.Surface Hub 
-      - 14.Windows 10 Laptop *(Observed)*
-
     ![.ps1 results](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/WT.JPG) 
    
    * ### **[WinTimelineLocal.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineLocal.ps1)** ###
