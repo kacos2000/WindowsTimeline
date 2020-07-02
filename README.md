@@ -77,7 +77,8 @@ Your software needs to support the SQLIte [JSON1 extension](https://www.sqlite.o
 - ActivityOperation
 
 ___________________________________________________________________________________________  
-    **Related content:**
+   
+   **Related content:**
 
    * [![Windows 10 Activity Timeline: An Investigator's Gold Mine](http://img.youtube.com/vi/-vsXFrOZOtc/0.jpg)](http://www.youtube.com/watch?v=-vsXFrOZOtc "BlackBag Webinar")<br>  
       
