@@ -53,7 +53,16 @@
       - 14.Surface Hub 
       - 15.Windows 10 Laptop PC *(Observed)*
       - 16.Windows 10 Tablet PC *(Observed)*         
-___________________________________________________________________________________________  
+
+__________________________________________________________________________________________   
+   *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
+                * PCs and laptops *(Screen sizes 13” and greater)*<br>
+                * Tablets and 2-in-1s *(Screen sizes: 7” to 13.3” for tablet, 13.3" and greater for 2-in-1)*<br>
+                * Xbox and TV *(Screen sizes: 24" and up)*<br>
+                * Phones and phablets *(Screen sizes: 4'' to 5'' for phone, 5.5'' to 7'' for phablet)*<br>
+                * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
+                * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
+ __________________________________________________________________________________________
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
 
@@ -175,15 +184,6 @@ ________________________________________________________________________________
    * ### **[WinTimelineOffline.ps1](https://github.com/kacos2000/WindowsTimeline/blob/master/WinTimelineOffline.ps1)** ###
      Powershell script that runs a simple SQLite query against any user selected ActivitiesCache.db, and adds info for the PlatformID from the related, user selected, NTUser.dat file. Json fields are parsed with Powershell's convertfrom-json.<br>
 08/19 Updated to decode Win10 1903 Clipboard entries from Base64 to Text<br>
- __________________________________________________________________________________________   
-   *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
-                * PCs and laptops *(Screen sizes 13” and greater)*<br>
-                * Tablets and 2-in-1s *(Screen sizes: 7” to 13.3” for tablet, 13.3" and greater for 2-in-1)*<br>
-                * Xbox and TV *(Screen sizes: 24" and up)*<br>
-                * Phones and phablets *(Screen sizes: 4'' to 5'' for phone, 5.5'' to 7'' for phablet)*<br>
-                * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
-                * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
- __________________________________________________________________________________________
  
 **Related Windows Apps**
 - [Connected Devices](https://www.microsoft.com/en-us/p/connected-devices/9nblggh4tssg?activetab=pivot%3aoverviewtab)
@@ -193,5 +193,5 @@ ________________________________________________________________________________
 - **[x]** Powershell - check DeviceIDs in both registry & database completed.
 - **[x]** Powershell - decode Base64 Clipboard Text entries.
 - **[x]** Win10 [Notifications Database](https://github.com/kacos2000/Win10/blob/master/Notifications/readme.md).
-- **[ ]** ~~Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values (e.g. *FileShellLink, PlatformDeviceID, ‘AppActivityId and PackageIDHash*)~~
+- **[ ]** ~~Decoding of [QuickXOR](https://github.com/microsoftgraph/microsoft-graph-docs/blob/master/api-reference/v1.0/resources/hashes.md) field values~~
 
