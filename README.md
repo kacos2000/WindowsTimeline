@@ -23,7 +23,7 @@
    * **ActivityTypes observed:**
    
         - **2**  (Notification) 
-        - **3**  (Mobile Device Backup) 
+        - **3**  (Mobile Device Backup ?/azure authentication) 
         - **5**  (Open Application/File/Webpage)
         - **6**  (Application in Use/Focus)
         - **10** (Clipboard Text - for a duration of 43200 seconds or 12 hours exactly)
