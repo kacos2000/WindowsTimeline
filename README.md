@@ -6,7 +6,7 @@
 * ### [WindowsTimeline parser](https://github.com/kacos2000/WindowsTimeline/releases/download/v.2.0.70.0/WindowsTimeline.exe) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     
-    Works with any ActivitiesCache.db *(Windows 1803/1809/1903/1909 ..)*<br>
+    Works with any ActivitiesCache.db *(Windows 1709/1803/1809/1903/1909/2004 ..)*<br>
         - Decodes Clipboard Text<br>
         - Matches dB device information with data from the registry *(HKCU or NTuser.dat)*<br>
         - Shows all the important information from JSON blobs ..<br>
