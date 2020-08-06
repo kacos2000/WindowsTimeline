@@ -3,10 +3,10 @@
 
 ## Windows 10 Timeline ## 
 
-* ### [WindowsTimeline parser](https://github.com/kacos2000/WindowsTimeline/releases/download/v.2.0.73.0/WindowsTimeline.exe) ###
+* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.2.0.73.0/WindowsTimeline.exe) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/notif2.JPG)<br>
-    
+ 
     Works with any ActivitiesCache.db *(Windows 1709/1803/1809/1903/1909/2004 ..)*<br>
         - Decodes Clipboard Text<br>
         - Matches dB device information with data from the registry *(HKCU or NTuser.dat)*<br>
@@ -55,6 +55,17 @@
       - 15.Windows 10 Laptop PC *(Observed)*
       - 16.Windows 10 Tablet PC *(Observed)*         
 
+ * ### [WindowsTimeline Clipboard Text *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.1.0.2.0/ClipboardTextEntries.exe) ### 
+    ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
+    
+        * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.<br>
+        * Displays offset of entry in the file & decoded text<br>
+        * Allows Copy of a selection or all of the results<br>
+        * Allows export to "|" separated CSV<br>
+
+         Example:
+                - WindowsTimeline.exe: 15 clipboard text entries (SQLite query)
+                - ClipboardTextEntries.exe: 224 from the db & 19 from the db-wal
 __________________________________________________________________________________________   
    *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
                 * PCs and laptops *(Screen sizes 13” and greater)*<br>
