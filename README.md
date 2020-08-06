@@ -58,15 +58,16 @@
  * ### [WindowsTimeline Clipboard Text *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.1.0.2.0/ClipboardTextEntries.exe) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
     
-        * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.
-        * Displays offset of entry in the file & decoded text
-        * Allows Copy of a selection or all of the results
-        * Allows export to "|" separated CSV
+    * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.
+    * Displays offset of entry in the file & decoded text
+    * Allows Copy of a selection or all of the results
+    * Allows export to "|" separated CSV
 
-         Example:
-                - WindowsTimeline.exe: 15 clipboard text entries (SQLite query)
-                - ClipboardTextEntries.exe: 224 from the db & 19 from the db-wal
-__________________________________________________________________________________________   
+     Example:<br>
+        - WindowsTimeline.exe: 15 clipboard text entries (SQLite query)<br>
+        - ClipboardTextEntries.exe: 224 from the db & 19 from the db-wal<br>
+
+_________________________________________________________________________________________   
    *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
                 * PCs and laptops *(Screen sizes 13” and greater)*<br>
                 * Tablets and 2-in-1s *(Screen sizes: 7” to 13.3” for tablet, 13.3" and greater for 2-in-1)*<br>
