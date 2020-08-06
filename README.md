@@ -58,10 +58,10 @@
  * ### [WindowsTimeline Clipboard Text *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.1.0.2.0/ClipboardTextEntries.exe) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
     
-        * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.<br>
-        * Displays offset of entry in the file & decoded text<br>
-        * Allows Copy of a selection or all of the results<br>
-        * Allows export to "|" separated CSV<br>
+        * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.
+        * Displays offset of entry in the file & decoded text
+        * Allows Copy of a selection or all of the results
+        * Allows export to "|" separated CSV
 
          Example:
                 - WindowsTimeline.exe: 15 clipboard text entries (SQLite query)
