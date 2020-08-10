@@ -3,7 +3,7 @@
 
 ## Windows 10 Timeline ## 
 
-* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.2.0.75.0/WindowsTimeline.exe) ###
+* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v.2.0.75.0) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/notif2.JPG)<br>
  
@@ -55,7 +55,7 @@
       - 15.Windows 10 Laptop PC *(Observed)*
       - 16.Windows 10 Tablet PC *(Observed)*         
 
- * ### [WindowsTimeline Clipboard Text Carver *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/download/v.1.0.4.0/ClipboardTextEntries.exe) ### 
+ * ### [WindowsTimeline Clipboard Text Carver *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v1.0.4.0) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
     
     * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.
