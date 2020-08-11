@@ -1,0 +1,387 @@
+﻿"IANA_name","Win_name","Daylight_Start","Daylight_End","Offset"
+"Europe/Berlin","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Lusaka","(UTC+02:00) Harare, Pretoria",,,
+"America/Cayenne","(UTC-03:00) Cayenne, Fortaleza",,,
+"Australia/Eucla","(UTC+08:45) Eucla",,,
+"Europe/Malta","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Sarajevo","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","System.Object[]","System.Object[]","System.Object[]"
+"America/Boise","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/St_Johns","(UTC-03:30) Newfoundland","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Fiji","(UTC+12:00) Fiji","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Kuala_Lumpur","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"America/New_York","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Lima","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Matamoros","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Tunis","(UTC+01:00) West Central Africa",,,
+"Europe/Brussels","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Samara","(UTC+04:00) Izhevsk, Samara","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Dublin","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Curacao","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Asia/Dubai","(UTC+04:00) Abu Dhabi, Muscat",,,
+"America/Maceio","(UTC-03:00) Cayenne, Fortaleza",,,
+"Asia/Samarkand","(UTC+05:00) Ashgabat, Tashkent",,,
+"Atlantic/Canary","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Martinique","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Winnipeg","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Gaborone","(UTC+02:00) Harare, Pretoria",,,
+"Asia/Aqtobe","(UTC+05:00) Ashgabat, Tashkent",,,
+"America/Chihuahua","(UTC-07:00) Chihuahua, La Paz, Mazatlan","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Jayapura","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"America/Caracas","(UTC-04:00) Caracas","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Rome","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Colombo","(UTC+05:30) Sri Jayawardenepura",,,
+"Asia/Bahrain","(UTC+03:00) Kuwait, Riyadh",,,
+"America/St_Lucia","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Goose_Bay","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Menominee","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Baku","(UTC+04:00) Baku","01 Jan 01 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Baghdad","(UTC+03:00) Baghdad","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Riyadh","(UTC+03:00) Kuwait, Riyadh",,,
+"Africa/Kinshasa","(UTC+01:00) West Central Africa",,,
+"Asia/Dhaka","(UTC+06:00) Dhaka","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Africa/Mogadishu","(UTC+03:00) Nairobi",,,
+"Europe/Vienna","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Indian/Mauritius","(UTC+04:00) Port Louis","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Enderbury","(UTC+13:00) Coordinated Universal Time+13",,,
+"America/Sitka","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Nauru","(UTC+12:00) Coordinated Universal Time+12",,,
+"Africa/Windhoek","(UTC+02:00) Windhoek","01 Jan 01 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Recife","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Thule","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Omsk","(UTC+06:00) Omsk","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Norfolk","(UTC+11:00) Norfolk Island","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Mariehamn","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Madeira","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Shanghai","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Europe/Isle_of_Man","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Cayman","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Vancouver","(UTC-08:00) Pacific Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Scoresbysund","(UTC-01:00) Azores","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Indian/Christmas","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Aden","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Manila","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Australia/Perth","(UTC+08:00) Perth","System.Object[]","System.Object[]","System.Object[]"
+"America/Puerto_Rico","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Pacific/Guadalcanal","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Europe/Zagreb","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","System.Object[]","System.Object[]","System.Object[]"
+"America/Moncton","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Aruba","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Asia/Tehran","(UTC+03:30) Tehran","System.Object[]","System.Object[]","System.Object[]"
+"America/El_Salvador","(UTC-06:00) Central America",,,
+"America/Guyana","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Europe/Warsaw","(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Zaporozhye","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Belize","(UTC-06:00) Central America",,,
+"Atlantic/Azores","(UTC-01:00) Azores","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Khartoum","(UTC+02:00) Khartoum","System.Object[]","System.Object[]","System.Object[]"
+"Indian/Antananarivo","(UTC+03:00) Nairobi",,,
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Honolulu","(UTC-10:00) Hawaii",,,
+"America/Dawson_Creek","(UTC-07:00) Arizona",,,
+"America/Los_Angeles","(UTC-08:00) Pacific Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Bamako","(UTC+00:00) Monrovia, Reykjavik",,,
+"America/Argentina/Cordoba","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Rarotonga","(UTC-10:00) Hawaii",,,
+"America/Halifax","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Port_of_Spain","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Pacific/Niue","(UTC-11:00) Coordinated Universal Time-11",,,
+"America/Blanc-Sablon","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Arctic/Longyearbyen","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Kampala","(UTC+03:00) Nairobi",,,
+"America/Glace_Bay","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Djibouti","(UTC+03:00) Nairobi",,,
+"Asia/Macau","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Asia/Yangon","(UTC+06:30) Yangon (Rangoon)",,,
+"America/Eirunepe","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","System.Object[]","System.Object[]","System.Object[]"
+"America/Port-au-Prince","(UTC-05:00) Haiti","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Lome","(UTC+00:00) Monrovia, Reykjavik",,,
+"Indian/Mayotte","(UTC+03:00) Nairobi",,,
+"Africa/Ndjamena","(UTC+01:00) West Central Africa",,,
+"America/Toronto","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Kolkata","(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi",,,
+"Australia/Brisbane","(UTC+10:00) Brisbane",,,
+"America/Rankin_Inlet","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Ouagadougou","(UTC+00:00) Monrovia, Reykjavik",,,
+"Asia/Taipei","(UTC+08:00) Taipei",,,
+"Australia/Broken_Hill","(UTC+09:30) Adelaide","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Istanbul","(UTC+03:00) Istanbul","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Choibalsan","(UTC+08:00) Ulaanbaatar","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Maseru","(UTC+02:00) Harare, Pretoria",,,
+"America/Campo_Grande","(UTC-04:00) Cuiaba","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Thimphu","(UTC+06:00) Dhaka","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Mexico_City","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Argentina/Mendoza","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"America/Havana","(UTC-05:00) Havana","System.Object[]","System.Object[]","System.Object[]"
+"America/Guayaquil","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"Europe/Minsk","(UTC+03:00) Minsk","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Porto-Novo","(UTC+01:00) West Central Africa",,,
+"Atlantic/St_Helena","(UTC+00:00) Monrovia, Reykjavik",,,
+"America/Creston","(UTC-07:00) Arizona",,,
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Malabo","(UTC+01:00) West Central Africa",,,
+"Europe/Volgograd","(UTC+04:00) Volgograd","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Amsterdam","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Inuvik","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Ojinaga","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Indian/Maldives","(UTC+05:00) Ashgabat, Tashkent",,,
+"Europe/Paris","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Grenada","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Cuiaba","(UTC-04:00) Cuiaba","System.Object[]","System.Object[]","System.Object[]"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","System.Object[]","System.Object[]","System.Object[]"
+"America/Lower_Princes","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Jamaica","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"Africa/Bujumbura","(UTC+02:00) Harare, Pretoria",,,
+"America/La_Paz","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Asia/Anadyr","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Guam","(UTC+10:00) Guam, Port Moresby",,,
+"Australia/Melbourne","(UTC+10:00) Canberra, Melbourne, Sydney","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Tallinn","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Gibraltar","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Phoenix","(UTC-07:00) Arizona",,,
+"Atlantic/Stanley","(UTC-03:00) Cayenne, Fortaleza",,,
+"Pacific/Pago_Pago","(UTC-11:00) Coordinated Universal Time-11",,,
+"America/Thunder_Bay","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Majuro","(UTC+12:00) Coordinated Universal Time+12",,,
+"Africa/Algiers","(UTC+01:00) West Central Africa",,,
+"America/Fort_Nelson","(UTC-07:00) Arizona",,,
+"Europe/Monaco","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Freetown","(UTC+00:00) Monrovia, Reykjavik",,,
+"Asia/Atyrau","(UTC+05:00) Ashgabat, Tashkent",,,
+"Indian/Mahe","(UTC+04:00) Port Louis","System.Object[]","System.Object[]","System.Object[]"
+"America/Guadeloupe","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Asia/Qyzylorda","(UTC+05:00) Qyzylorda","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/Catamarca","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"America/Miquelon","(UTC-03:00) Saint Pierre and Miquelon","System.Object[]","System.Object[]","System.Object[]"
+"America/Kralendijk","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Indian/Reunion","(UTC+04:00) Port Louis","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Aqtau","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Magadan","(UTC+11:00) Magadan","System.Object[]","System.Object[]","System.Object[]"
+"America/Barbados","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Africa/Libreville","(UTC+01:00) West Central Africa",,,
+"Indian/Comoro","(UTC+03:00) Nairobi",,,
+"America/Paramaribo","(UTC-03:00) Cayenne, Fortaleza",,,
+"Asia/Singapore","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"America/Argentina/Ushuaia","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Kamchatka","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","System.Object[]","System.Object[]","System.Object[]"
+"America/Metlakatla","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Hong_Kong","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Europe/Bucharest","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Dili","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Asia/Muscat","(UTC+04:00) Abu Dhabi, Muscat",,,
+"Europe/Tirane","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Manaus","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Asia/Amman","(UTC+02:00) Amman","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Auckland","(UTC+12:00) Auckland, Wellington","System.Object[]","System.Object[]","System.Object[]"
+"America/Santiago","(UTC-04:00) Santiago","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Bishkek","(UTC+06:00) Astana",,,
+"America/Hermosillo","(UTC-07:00) Arizona",,,
+"America/Tortola","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Indian/Chagos","(UTC+06:00) Astana",,,
+"Africa/Bangui","(UTC+01:00) West Central Africa",,,
+"America/Kentucky/Louisville","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Monrovia","(UTC+00:00) Monrovia, Reykjavik",,,
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Kiritimati","(UTC+14:00) Kiritimati Island",,,
+"Pacific/Apia","(UTC+13:00) Samoa","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","System.Object[]","System.Object[]","System.Object[]"
+"Australia/Lord_Howe","(UTC+10:30) Lord Howe Island","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Oral","(UTC+05:00) Ashgabat, Tashkent",,,
+"Australia/Lindeman","(UTC+10:00) Brisbane",,,
+"Asia/Ho_Chi_Minh","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"America/Montserrat","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Tijuana","(UTC-08:00) Baja California","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Kiev","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","System.Object[]","System.Object[]","System.Object[]"
+"Etc/GMT-8","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Africa/Sao_Tome","(UTC+00:00) Sao Tome","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Kuching","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Europe/Copenhagen","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Phnom_Penh","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Australia/Sydney","(UTC+10:00) Canberra, Melbourne, Sydney","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Madrid","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Tongatapu","(UTC+13:00) Nuku'alofa","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Almaty","(UTC+06:00) Astana",,,
+"America/Argentina/Buenos_Aires","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/Rio_Gallegos","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Saratov","(UTC+04:00) Saratov","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Hovd","(UTC+07:00) Hovd","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Port_Moresby","(UTC+10:00) Guam, Port Moresby",,,
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Luxembourg","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Porto_Velho","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Araguaina","(UTC-03:00) Araguaina","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Sofia","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Helsinki","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Vilnius","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Prague","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Karachi","(UTC+05:00) Islamabad, Karachi","System.Object[]","System.Object[]","System.Object[]"
+"Indian/Cocos","(UTC+06:30) Yangon (Rangoon)",,,
+"Pacific/Kosrae","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Palau","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"America/Merida","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Boa_Vista","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Africa/Brazzaville","(UTC+01:00) West Central Africa",,,
+"Asia/Seoul","(UTC+09:00) Seoul",,,
+"America/Cancun","(UTC-05:00) Chetumal","System.Object[]","System.Object[]","System.Object[]"
+"Australia/Adelaide","(UTC+09:30) Adelaide","System.Object[]","System.Object[]","System.Object[]"
+"America/Belem","(UTC-03:00) Cayenne, Fortaleza",,,
+"Atlantic/Faroe","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Kabul","(UTC+04:30) Kabul",,,
+"America/Indiana/Indianapolis","(UTC-05:00) Indiana (East)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Dar_es_Salaam","(UTC+03:00) Nairobi",,,
+"Asia/Pyongyang","(UTC+09:00) Pyongyang","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Belgrade","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Pangnirtung","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Guernsey","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Kuwait","(UTC+03:00) Kuwait, Riyadh",,,
+"Africa/Conakry","(UTC+00:00) Monrovia, Reykjavik",,,
+"America/St_Vincent","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Sao_Paulo","(UTC-03:00) Brasilia","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Maputo","(UTC+02:00) Harare, Pretoria",,,
+"Europe/Podgorica","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Harare","(UTC+02:00) Harare, Pretoria",,,
+"America/St_Barthelemy","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Europe/London","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Tokyo","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Pacific/Saipan","(UTC+10:00) Guam, Port Moresby",,,
+"America/Nassau","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Edmonton","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/San_Luis","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"America/St_Kitts","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Juneau","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"America/Tegucigalpa","(UTC-06:00) Central America",,,
+"Europe/Bratislava","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Bogota","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"Asia/Tashkent","(UTC+05:00) Ashgabat, Tashkent",,,
+"America/Rio_Branco","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Argentina/Tucuman","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Gambier","(UTC-09:00) Coordinated Universal Time-09",,,
+"Pacific/Wallis","(UTC+12:00) Coordinated Universal Time+12",,,
+"Asia/Chita","(UTC+09:00) Chita","System.Object[]","System.Object[]","System.Object[]"
+"America/Nome","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"America/Antigua","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Africa/Tripoli","(UTC+02:00) Tripoli","System.Object[]","System.Object[]","System.Object[]"
+"America/Fortaleza","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Iqaluit","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Australia/Darwin","(UTC+09:30) Darwin",,,
+"America/Resolute","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/San_Juan","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"America/Montevideo","(UTC-03:00) Montevideo","System.Object[]","System.Object[]","System.Object[]"
+"America/Detroit","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Noumea","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Europe/Athens","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Kwajalein","(UTC+12:00) Coordinated Universal Time+12",,,
+"Asia/Pontianak","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Juba","(UTC+03:00) Nairobi",,,
+"Europe/Oslo","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Cape_Verde","(UTC-01:00) Cabo Verde Is.",,,
+"Europe/Lisbon","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Bahia_Banderas","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Indiana/Vincennes","(UTC-05:00) Eastern Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Bangkok","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"America/St_Thomas","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Africa/Kigali","(UTC+02:00) Harare, Pretoria",,,
+"America/Panama","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Anguilla","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Africa/Blantyre","(UTC+02:00) Harare, Pretoria",,,
+"Europe/Stockholm","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Skopje","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Bougainville","(UTC+11:00) Bougainville Island","System.Object[]","System.Object[]","System.Object[]"
+"America/Guatemala","(UTC-06:00) Central America",,,
+"America/Chicago","(UTC-06:00) Central Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Douala","(UTC+01:00) West Central Africa",,,
+"Asia/Kathmandu","(UTC+05:45) Kathmandu",,,
+"Pacific/Tarawa","(UTC+12:00) Coordinated Universal Time+12",,,
+"Asia/Vientiane","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Pacific/Galapagos","(UTC-06:00) Central America",,,
+"Africa/Bissau","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Addis_Ababa","(UTC+03:00) Nairobi",,,
+"America/Godthab","(UTC-03:00) Greenland","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Jakarta","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Europe/Ljubljana","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Accra","(UTC+00:00) Monrovia, Reykjavik",,,
+"America/Santarem","(UTC-03:00) Cayenne, Fortaleza",,,
+"Europe/Riga","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Nairobi","(UTC+03:00) Nairobi",,,
+"Asia/Yerevan","(UTC+04:00) Yerevan","01 Jan 01 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Ulaanbaatar","(UTC+08:00) Ulaanbaatar","System.Object[]","System.Object[]","System.Object[]"
+"America/Dominica","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Costa_Rica","(UTC-06:00) Central America",,,
+"America/Bahia","(UTC-03:00) Salvador","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Jersey","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Argentina/La_Rioja","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Dushanbe","(UTC+05:00) Ashgabat, Tashkent",,,
+"Pacific/Efate","(UTC+11:00) Solomon Is., New Caledonia",,,
+"America/Monterrey","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Funafuti","(UTC+12:00) Coordinated Universal Time+12",,,
+"America/Yakutat","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/Salta","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Wake","(UTC+12:00) Coordinated Universal Time+12",,,
+"Asia/Makassar","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Tomsk","(UTC+07:00) Tomsk","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","System.Object[]","System.Object[]","System.Object[]"
+"America/Adak","(UTC-10:00) Aleutian Islands","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Qostanay","(UTC+06:00) Astana",,,
+"Africa/Niamey","(UTC+01:00) West Central Africa",,,
+"America/Asuncion","(UTC-04:00) Asuncion","System.Object[]","System.Object[]","System.Object[]"
+"America/Cambridge_Bay","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Regina","(UTC-06:00) Saskatchewan",,,
+"America/Santo_Domingo","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"Europe/Chisinau","(UTC+02:00) Chisinau","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Mazatlan","(UTC-07:00) Chihuahua, La Paz, Mazatlan","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Tbilisi","(UTC+04:00) Tbilisi",,,
+"Atlantic/Reykjavik","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Johannesburg","(UTC+02:00) Harare, Pretoria",,,
+"Asia/Qatar","(UTC+03:00) Kuwait, Riyadh",,,
+"America/Yellowknife","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Midway","(UTC-11:00) Coordinated Universal Time-11",,,
+"Europe/Andorra","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Budapest","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Whitehorse","(UTC-08:00) Pacific Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Zurich","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Atikokan","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"Pacific/Marquesas","(UTC-09:30) Marquesas Islands",,,
+"Asia/Khandyga","(UTC+09:00) Yakutsk","System.Object[]","System.Object[]","System.Object[]"
+"Atlantic/Bermuda","(UTC-04:00) Atlantic Time (Canada)","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","System.Object[]","System.Object[]","System.Object[]"
+"America/Denver","(UTC-07:00) Mountain Time (US & Canada)","System.Object[]","System.Object[]","System.Object[]"
+"America/Argentina/Jujuy","(UTC-03:00) City of Buenos Aires","System.Object[]","System.Object[]","System.Object[]"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","System.Object[]","System.Object[]","System.Object[]"
+"Pacific/Chuuk","(UTC+10:00) Guam, Port Moresby",,,
+"Africa/Luanda","(UTC+01:00) West Central Africa",,,
+"Africa/Dakar","(UTC+00:00) Monrovia, Reykjavik",,,
+"Asia/Beirut","(UTC+02:00) Beirut","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Ashgabat","(UTC+05:00) Ashgabat, Tashkent",,,
+"Australia/Hobart","(UTC+10:00) Hobart","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Lubumbashi","(UTC+02:00) Harare, Pretoria",,,
+"Asia/Famagusta","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Anchorage","(UTC-09:00) Alaska","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Banjul","(UTC+00:00) Monrovia, Reykjavik",,,
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Abidjan","(UTC+00:00) Monrovia, Reykjavik",,,
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","System.Object[]","System.Object[]","System.Object[]"
+"Africa/Lagos","(UTC+01:00) West Central Africa",,,
+"Africa/Nouakchott","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Asmara","(UTC+03:00) Nairobi",,,
+"America/Noronha","(UTC-02:00) Coordinated Universal Time-02",,,
+"Asia/Nicosia","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Tahiti","(UTC-10:00) Hawaii",,,
+"America/Managua","(UTC-06:00) Central America",,,
+"Africa/Mbabane","(UTC+02:00) Harare, Pretoria",,,
+"Australia/Currie","(UTC+10:00) Hobart","System.Object[]","System.Object[]","System.Object[]"
+"Asia/Brunei","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Pacific/Pohnpei","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Chatham","(UTC+12:45) Chatham Islands","System.Object[]","System.Object[]","System.Object[]"
