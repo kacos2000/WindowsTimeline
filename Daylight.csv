@@ -1,0 +1,867 @@
+﻿"IANA_name","Win_name","Daylight_Start","Daylight_End","Offset"
+"Africa/Abidjan","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Accra","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Addis_Ababa","(UTC+03:00) Nairobi",,,
+"Africa/Algiers","(UTC+01:00) West Central Africa",,,
+"Africa/Asmara","(UTC+03:00) Nairobi",,,
+"Africa/Bamako","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Bangui","(UTC+01:00) West Central Africa",,,
+"Africa/Banjul","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Bissau","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Blantyre","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Brazzaville","(UTC+01:00) West Central Africa",,,
+"Africa/Bujumbura","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 01 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Africa/Cairo","(UTC+02:00) Cairo","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Africa/Casablanca","(UTC+01:00) Casablanca","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Africa/Conakry","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Dakar","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Dar_es_Salaam","(UTC+03:00) Nairobi",,,
+"Africa/Djibouti","(UTC+03:00) Nairobi",,,
+"Africa/Douala","(UTC+01:00) West Central Africa",,,
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Africa/El_Aaiun","(UTC+01:00) Casablanca","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Africa/Freetown","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Gaborone","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Harare","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Johannesburg","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Juba","(UTC+03:00) Nairobi",,,
+"Africa/Kampala","(UTC+03:00) Nairobi",,,
+"Africa/Khartoum","(UTC+02:00) Khartoum","01 Jan 01 12:00:00 am","31 Dec 16 12:00:00 am","00:00:00"
+"Africa/Khartoum","(UTC+02:00) Khartoum","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Africa/Kigali","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Kinshasa","(UTC+01:00) West Central Africa",,,
+"Africa/Lagos","(UTC+01:00) West Central Africa",,,
+"Africa/Libreville","(UTC+01:00) West Central Africa",,,
+"Africa/Lome","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Luanda","(UTC+01:00) West Central Africa",,,
+"Africa/Lubumbashi","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Lusaka","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Malabo","(UTC+01:00) West Central Africa",,,
+"Africa/Maputo","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Maseru","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Mbabane","(UTC+02:00) Harare, Pretoria",,,
+"Africa/Mogadishu","(UTC+03:00) Nairobi",,,
+"Africa/Monrovia","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Nairobi","(UTC+03:00) Nairobi",,,
+"Africa/Ndjamena","(UTC+01:00) West Central Africa",,,
+"Africa/Niamey","(UTC+01:00) West Central Africa",,,
+"Africa/Nouakchott","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Ouagadougou","(UTC+00:00) Monrovia, Reykjavik",,,
+"Africa/Porto-Novo","(UTC+01:00) West Central Africa",,,
+"Africa/Sao_Tome","(UTC+00:00) Sao Tome","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Africa/Sao_Tome","(UTC+00:00) Sao Tome","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","-01:00:00"
+"Africa/Tripoli","(UTC+02:00) Tripoli","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Africa/Tripoli","(UTC+02:00) Tripoli","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Africa/Tunis","(UTC+01:00) West Central Africa",,,
+"Africa/Windhoek","(UTC+02:00) Windhoek","01 Jan 01 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Adak","(UTC-10:00) Aleutian Islands","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Adak","(UTC-10:00) Aleutian Islands","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Anchorage","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Anchorage","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Anguilla","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Antigua","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Araguaina","(UTC-03:00) Araguaina","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Araguaina","(UTC-03:00) Araguaina","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Argentina/Buenos_Aires","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Buenos_Aires","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Buenos_Aires","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Catamarca","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Catamarca","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Catamarca","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Cordoba","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Cordoba","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Cordoba","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Jujuy","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Jujuy","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Jujuy","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/La_Rioja","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/La_Rioja","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/La_Rioja","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Mendoza","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Mendoza","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Mendoza","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Rio_Gallegos","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Rio_Gallegos","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Rio_Gallegos","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Salta","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Salta","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Salta","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/San_Juan","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/San_Juan","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/San_Juan","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/San_Luis","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/San_Luis","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/San_Luis","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Tucuman","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Tucuman","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Argentina/Tucuman","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Ushuaia","(UTC-03:00) City of Buenos Aires","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Argentina/Ushuaia","(UTC-03:00) City of Buenos Aires","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Argentina/Ushuaia","(UTC-03:00) City of Buenos Aires","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Aruba","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 01 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Asuncion","(UTC-04:00) Asuncion","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Atikokan","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Bahia","(UTC-03:00) Salvador","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Bahia","(UTC-03:00) Salvador","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Bahia_Banderas","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Barbados","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Belem","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Belize","(UTC-06:00) Central America",,,
+"America/Blanc-Sablon","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Boa_Vista","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Bogota","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Boise","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Boise","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Cambridge_Bay","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Cambridge_Bay","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Campo_Grande","(UTC-04:00) Cuiaba","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Cancun","(UTC-05:00) Chetumal","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Cancun","(UTC-05:00) Chetumal","01 Jan 01 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","00:30:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"America/Caracas","(UTC-04:00) Caracas","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-00:30:00"
+"America/Cayenne","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Cayman","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Chicago","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Chicago","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Chihuahua","(UTC-07:00) Chihuahua, La Paz, Mazatlan","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Costa_Rica","(UTC-06:00) Central America",,,
+"America/Creston","(UTC-07:00) Arizona",,,
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Cuiaba","(UTC-04:00) Cuiaba","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Curacao","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Dawson_Creek","(UTC-07:00) Arizona",,,
+"America/Denver","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Denver","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Detroit","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Detroit","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Dominica","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Edmonton","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Edmonton","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Eirunepe","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/El_Salvador","(UTC-06:00) Central America",,,
+"America/Fort_Nelson","(UTC-07:00) Arizona",,,
+"America/Fortaleza","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Glace_Bay","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Glace_Bay","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Godthab","(UTC-03:00) Greenland","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Goose_Bay","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Goose_Bay","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","00:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 01 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","00:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Grand_Turk","(UTC-05:00) Turks and Caicos","01 Jan 19 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Grenada","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Guadeloupe","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Guatemala","(UTC-06:00) Central America",,,
+"America/Guayaquil","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Guyana","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Halifax","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Halifax","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 13 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 01 12:00:00 am","31 Dec 03 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","00:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 04 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"America/Havana","(UTC-05:00) Havana","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Hermosillo","(UTC-07:00) Arizona",,,
+"America/Indiana/Indianapolis","(UTC-05:00) Indiana (East)","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Indiana/Indianapolis","(UTC-05:00) Indiana (East)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Indiana/Vincennes","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Indiana/Vincennes","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Inuvik","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Inuvik","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Iqaluit","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Iqaluit","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Jamaica","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Juneau","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Juneau","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Kentucky/Louisville","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Kentucky/Louisville","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Kralendijk","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/La_Paz","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Lima","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Los_Angeles","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Los_Angeles","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Lower_Princes","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Maceio","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Managua","(UTC-06:00) Central America",,,
+"America/Manaus","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Martinique","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Matamoros","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Matamoros","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Mazatlan","(UTC-07:00) Chihuahua, La Paz, Mazatlan","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Menominee","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Menominee","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Merida","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Metlakatla","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Metlakatla","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Mexico_City","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Miquelon","(UTC-03:00) Saint Pierre and Miquelon","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Miquelon","(UTC-03:00) Saint Pierre and Miquelon","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Moncton","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Moncton","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Monterrey","(UTC-06:00) Guadalajara, Mexico City, Monterrey","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Montevideo","(UTC-03:00) Montevideo","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Montevideo","(UTC-03:00) Montevideo","01 Jan 01 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Montserrat","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Nassau","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Nassau","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/New_York","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/New_York","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Nome","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Nome","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Noronha","(UTC-02:00) Coordinated Universal Time-02",,,
+"America/Ojinaga","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Ojinaga","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Panama","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Pangnirtung","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Pangnirtung","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Paramaribo","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Phoenix","(UTC-07:00) Arizona",,,
+"America/Port_of_Spain","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Port-au-Prince","(UTC-05:00) Haiti","01 Jan 17 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Porto_Velho","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Puerto_Rico","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Punta_Arenas","(UTC-03:00) Punta Arenas","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Rankin_Inlet","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Rankin_Inlet","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Recife","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Regina","(UTC-06:00) Saskatchewan",,,
+"America/Resolute","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Resolute","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Rio_Branco","(UTC-05:00) Bogota, Lima, Quito, Rio Branco",,,
+"America/Santarem","(UTC-03:00) Cayenne, Fortaleza",,,
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Santiago","(UTC-04:00) Santiago","01 Jan 19 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Santo_Domingo","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/Sao_Paulo","(UTC-03:00) Brasilia","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"America/Scoresbysund","(UTC-01:00) Azores","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Sitka","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Sitka","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/St_Barthelemy","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 12 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/St_Johns","(UTC-03:30) Newfoundland","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"America/St_Kitts","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/St_Lucia","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/St_Thomas","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/St_Vincent","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Tegucigalpa","(UTC-06:00) Central America",,,
+"America/Thule","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Thule","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Thunder_Bay","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Thunder_Bay","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Tijuana","(UTC-08:00) Baja California","01 Jan 10 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Tijuana","(UTC-08:00) Baja California","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"America/Toronto","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Toronto","(UTC-05:00) Eastern Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Tortola","(UTC-04:00) Georgetown, La Paz, Manaus, San Juan",,,
+"America/Vancouver","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Vancouver","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Whitehorse","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Whitehorse","(UTC-08:00) Pacific Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Winnipeg","(UTC-06:00) Central Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Winnipeg","(UTC-06:00) Central Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Yakutat","(UTC-09:00) Alaska","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"America/Yakutat","(UTC-09:00) Alaska","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Yellowknife","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"America/Yellowknife","(UTC-07:00) Mountain Time (US & Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Arctic/Longyearbyen","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Aden","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Almaty","(UTC+06:00) Astana",,,
+"Asia/Amman","(UTC+02:00) Amman","01 Jan 01 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Amman","(UTC+02:00) Amman","01 Jan 14 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Amman","(UTC+02:00) Amman","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Asia/Amman","(UTC+02:00) Amman","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Asia/Anadyr","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Anadyr","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Anadyr","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Aqtau","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Aqtobe","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Ashgabat","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Atyrau","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Baghdad","(UTC+03:00) Baghdad","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"Asia/Baghdad","(UTC+03:00) Baghdad","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"Asia/Baghdad","(UTC+03:00) Baghdad","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Asia/Baghdad","(UTC+03:00) Baghdad","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Asia/Bahrain","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Baku","(UTC+04:00) Baku","01 Jan 01 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Bangkok","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Barnaul","(UTC+07:00) Barnaul, Gorno-Altaysk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Beirut","(UTC+02:00) Beirut","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Bishkek","(UTC+06:00) Astana",,,
+"Asia/Brunei","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","02:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Chita","(UTC+09:00) Chita","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Choibalsan","(UTC+08:00) Ulaanbaatar","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Choibalsan","(UTC+08:00) Ulaanbaatar","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Colombo","(UTC+05:30) Sri Jayawardenepura",,,
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 20 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Damascus","(UTC+02:00) Damascus","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Dhaka","(UTC+06:00) Dhaka","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Dili","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Asia/Dubai","(UTC+04:00) Abu Dhabi, Muscat",,,
+"Asia/Dushanbe","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Famagusta","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Ho_Chi_Minh","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Hong_Kong","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Asia/Hovd","(UTC+07:00) Hovd","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Hovd","(UTC+07:00) Hovd","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Hovd","(UTC+07:00) Hovd","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Irkutsk","(UTC+08:00) Irkutsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Jakarta","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Jayapura","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 21 12:00:00 am","31 Dec 21 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 22 12:00:00 am","31 Dec 22 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 23 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Jerusalem","(UTC+02:00) Jerusalem","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Asia/Kabul","(UTC+04:30) Kabul",,,
+"Asia/Kamchatka","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Kamchatka","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Kamchatka","(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Karachi","(UTC+05:00) Islamabad, Karachi","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Asia/Karachi","(UTC+05:00) Islamabad, Karachi","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Kathmandu","(UTC+05:45) Kathmandu",,,
+"Asia/Khandyga","(UTC+09:00) Yakutsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Khandyga","(UTC+09:00) Yakutsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Khandyga","(UTC+09:00) Yakutsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Khandyga","(UTC+09:00) Yakutsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Khandyga","(UTC+09:00) Yakutsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Kolkata","(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi",,,
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Krasnoyarsk","(UTC+07:00) Krasnoyarsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Kuala_Lumpur","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Kuching","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Kuwait","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Macau","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","02:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Magadan","(UTC+11:00) Magadan","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Makassar","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Manila","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Muscat","(UTC+04:00) Abu Dhabi, Muscat",,,
+"Asia/Nicosia","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Novokuznetsk","(UTC+07:00) Krasnoyarsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Novosibirsk","(UTC+07:00) Novosibirsk","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Omsk","(UTC+06:00) Omsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Omsk","(UTC+06:00) Omsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Omsk","(UTC+06:00) Omsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Omsk","(UTC+06:00) Omsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Omsk","(UTC+06:00) Omsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Oral","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Phnom_Penh","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Pontianak","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Pyongyang","(UTC+09:00) Pyongyang","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","-00:30:00"
+"Asia/Pyongyang","(UTC+09:00) Pyongyang","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","00:00:00"
+"Asia/Pyongyang","(UTC+09:00) Pyongyang","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:30:00"
+"Asia/Pyongyang","(UTC+09:00) Pyongyang","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","00:00:00"
+"Asia/Qatar","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Qostanay","(UTC+06:00) Astana",,,
+"Asia/Qyzylorda","(UTC+05:00) Qyzylorda","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Asia/Qyzylorda","(UTC+05:00) Qyzylorda","01 Jan 01 12:00:00 am","31 Dec 17 12:00:00 am","00:00:00"
+"Asia/Riyadh","(UTC+03:00) Kuwait, Riyadh",,,
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Sakhalin","(UTC+11:00) Sakhalin","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Samarkand","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Seoul","(UTC+09:00) Seoul",,,
+"Asia/Shanghai","(UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi",,,
+"Asia/Singapore","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Srednekolymsk","(UTC+11:00) Chokurdakh","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Taipei","(UTC+08:00) Taipei",,,
+"Asia/Tashkent","(UTC+05:00) Ashgabat, Tashkent",,,
+"Asia/Tbilisi","(UTC+04:00) Tbilisi",,,
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 23 12:00:00 am","31 Dec 23 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 21 12:00:00 am","31 Dec 21 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 24 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 22 12:00:00 am","31 Dec 22 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 01 12:00:00 am","31 Dec 04 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 05 12:00:00 am","31 Dec 05 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Asia/Tehran","(UTC+03:30) Tehran","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Asia/Thimphu","(UTC+06:00) Dhaka","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Asia/Tokyo","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Asia/Tomsk","(UTC+07:00) Tomsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Tomsk","(UTC+07:00) Tomsk","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Asia/Tomsk","(UTC+07:00) Tomsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Tomsk","(UTC+07:00) Tomsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Tomsk","(UTC+07:00) Tomsk","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Asia/Ulaanbaatar","(UTC+08:00) Ulaanbaatar","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Asia/Ulaanbaatar","(UTC+08:00) Ulaanbaatar","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Ust-Nera","(UTC+10:00) Vladivostok","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Vientiane","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Vladivostok","(UTC+10:00) Vladivostok","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Yakutsk","(UTC+09:00) Yakutsk","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Yangon","(UTC+06:30) Yangon (Rangoon)",,,
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Asia/Yekaterinburg","(UTC+05:00) Ekaterinburg","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Asia/Yerevan","(UTC+04:00) Yerevan","01 Jan 01 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Atlantic/Azores","(UTC-01:00) Azores","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Bermuda","(UTC-04:00) Atlantic Time (Canada)","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Atlantic/Bermuda","(UTC-04:00) Atlantic Time (Canada)","01 Jan 07 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Canary","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Cape_Verde","(UTC-01:00) Cabo Verde Is.",,,
+"Atlantic/Faroe","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Madeira","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Atlantic/Reykjavik","(UTC+00:00) Monrovia, Reykjavik",,,
+"Atlantic/St_Helena","(UTC+00:00) Monrovia, Reykjavik",,,
+"Atlantic/Stanley","(UTC-03:00) Cayenne, Fortaleza",,,
+"Australia/Adelaide","(UTC+09:30) Adelaide","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Adelaide","(UTC+09:30) Adelaide","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Australia/Brisbane","(UTC+10:00) Brisbane",,,
+"Australia/Broken_Hill","(UTC+09:30) Adelaide","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Australia/Broken_Hill","(UTC+09:30) Adelaide","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Currie","(UTC+10:00) Hobart","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Currie","(UTC+10:00) Hobart","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Australia/Darwin","(UTC+09:30) Darwin",,,
+"Australia/Eucla","(UTC+08:45) Eucla",,,
+"Australia/Hobart","(UTC+10:00) Hobart","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Hobart","(UTC+10:00) Hobart","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Australia/Lindeman","(UTC+10:00) Brisbane",,,
+"Australia/Lord_Howe","(UTC+10:30) Lord Howe Island","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","00:30:00"
+"Australia/Lord_Howe","(UTC+10:30) Lord Howe Island","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","00:30:00"
+"Australia/Lord_Howe","(UTC+10:30) Lord Howe Island","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","00:30:00"
+"Australia/Lord_Howe","(UTC+10:30) Lord Howe Island","01 Jan 01 12:00:00 am","31 Dec 05 12:00:00 am","00:30:00"
+"Australia/Melbourne","(UTC+10:00) Canberra, Melbourne, Sydney","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Australia/Melbourne","(UTC+10:00) Canberra, Melbourne, Sydney","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Perth","(UTC+08:00) Perth","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Australia/Perth","(UTC+08:00) Perth","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Perth","(UTC+08:00) Perth","01 Jan 06 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Australia/Perth","(UTC+08:00) Perth","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Australia/Sydney","(UTC+10:00) Canberra, Melbourne, Sydney","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Australia/Sydney","(UTC+10:00) Canberra, Melbourne, Sydney","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Etc/GMT-8","(UTC+08:00) Kuala Lumpur, Singapore",,,
+"Europe/Amsterdam","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Andorra","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Europe/Astrakhan","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Athens","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Belgrade","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Berlin","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Bratislava","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Brussels","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Bucharest","(UTC+02:00) Athens, Bucharest","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Budapest","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Chisinau","(UTC+02:00) Chisinau","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Copenhagen","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Dublin","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Gibraltar","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Guernsey","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Helsinki","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Isle_of_Man","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Istanbul","(UTC+03:00) Istanbul","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Europe/Jersey","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Europe/Kaliningrad","(UTC+02:00) Kaliningrad","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Kiev","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Kirov","(UTC+03:00) Moscow, St. Petersburg","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Europe/Lisbon","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Ljubljana","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/London","(UTC+00:00) Dublin, Edinburgh, Lisbon, London","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Luxembourg","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Madrid","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Malta","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Mariehamn","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Minsk","(UTC+03:00) Minsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Minsk","(UTC+03:00) Minsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Monaco","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Moscow","(UTC+03:00) Moscow, St. Petersburg","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Europe/Oslo","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Paris","(UTC+01:00) Brussels, Copenhagen, Madrid, Paris","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Podgorica","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Prague","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Riga","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Rome","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Samara","(UTC+04:00) Izhevsk, Samara","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Samara","(UTC+04:00) Izhevsk, Samara","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Samara","(UTC+04:00) Izhevsk, Samara","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Europe/Sarajevo","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Saratov","(UTC+04:00) Saratov","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Saratov","(UTC+04:00) Saratov","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Saratov","(UTC+04:00) Saratov","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Saratov","(UTC+04:00) Saratov","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Europe/Saratov","(UTC+04:00) Saratov","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Simferopol","(UTC+03:00) Moscow, St. Petersburg","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","00:00:00"
+"Europe/Skopje","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Sofia","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Stockholm","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Tallinn","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Tirane","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","-01:00:00"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Europe/Ulyanovsk","(UTC+04:00) Astrakhan, Ulyanovsk","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Vienna","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Vilnius","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 01 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","00:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","00:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","-01:00:00"
+"Europe/Volgograd","(UTC+04:00) Volgograd","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Europe/Warsaw","(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Zagreb","(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Zaporozhye","(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Europe/Zurich","(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","01 Jan 01 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Indian/Antananarivo","(UTC+03:00) Nairobi",,,
+"Indian/Chagos","(UTC+06:00) Astana",,,
+"Indian/Christmas","(UTC+07:00) Bangkok, Hanoi, Jakarta",,,
+"Indian/Cocos","(UTC+06:30) Yangon (Rangoon)",,,
+"Indian/Comoro","(UTC+03:00) Nairobi",,,
+"Indian/Mahe","(UTC+04:00) Port Louis","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Indian/Mahe","(UTC+04:00) Port Louis","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Indian/Maldives","(UTC+05:00) Ashgabat, Tashkent",,,
+"Indian/Mauritius","(UTC+04:00) Port Louis","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Indian/Mauritius","(UTC+04:00) Port Louis","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Indian/Mayotte","(UTC+03:00) Nairobi",,,
+"Indian/Reunion","(UTC+04:00) Port Louis","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Indian/Reunion","(UTC+04:00) Port Louis","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Pacific/Apia","(UTC+13:00) Samoa","01 Jan 01 12:00:00 am","31 Dec 09 12:00:00 am","00:00:00"
+"Pacific/Apia","(UTC+13:00) Samoa","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Pacific/Apia","(UTC+13:00) Samoa","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Pacific/Apia","(UTC+13:00) Samoa","01 Jan 12 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Auckland","(UTC+12:00) Auckland, Wellington","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Pacific/Auckland","(UTC+12:00) Auckland, Wellington","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Auckland","(UTC+12:00) Auckland, Wellington","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Pacific/Bougainville","(UTC+11:00) Bougainville Island","01 Jan 01 12:00:00 am","31 Dec 13 12:00:00 am","00:00:00"
+"Pacific/Bougainville","(UTC+11:00) Bougainville Island","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Pacific/Chatham","(UTC+12:45) Chatham Islands","01 Jan 01 12:00:00 am","31 Dec 06 12:00:00 am","01:00:00"
+"Pacific/Chatham","(UTC+12:45) Chatham Islands","01 Jan 08 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Chatham","(UTC+12:45) Chatham Islands","01 Jan 07 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Pacific/Chuuk","(UTC+10:00) Guam, Port Moresby",,,
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 01 12:00:00 am","31 Dec 07 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 19 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 08 12:00:00 am","31 Dec 08 12:00:00 am","01:00:00"
+"Pacific/Easter","(UTC-06:00) Easter Island","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Pacific/Efate","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Enderbury","(UTC+13:00) Coordinated Universal Time+13",,,
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 20 12:00:00 am","31 Dec 20 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 18 12:00:00 am","31 Dec 18 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 21 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 14 12:00:00 am","31 Dec 14 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 11 12:00:00 am","31 Dec 11 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 10 12:00:00 am","31 Dec 10 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 09 12:00:00 am","31 Dec 09 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 12 12:00:00 am","31 Dec 12 12:00:00 am","01:00:00"
+"Pacific/Fiji","(UTC+12:00) Fiji","01 Jan 13 12:00:00 am","31 Dec 13 12:00:00 am","01:00:00"
+"Pacific/Funafuti","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Galapagos","(UTC-06:00) Central America",,,
+"Pacific/Gambier","(UTC-09:00) Coordinated Universal Time-09",,,
+"Pacific/Guadalcanal","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Guam","(UTC+10:00) Guam, Port Moresby",,,
+"Pacific/Honolulu","(UTC-10:00) Hawaii",,,
+"Pacific/Kiritimati","(UTC+14:00) Kiritimati Island",,,
+"Pacific/Kosrae","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Kwajalein","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Majuro","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Marquesas","(UTC-09:30) Marquesas Islands",,,
+"Pacific/Midway","(UTC-11:00) Coordinated Universal Time-11",,,
+"Pacific/Nauru","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Niue","(UTC-11:00) Coordinated Universal Time-11",,,
+"Pacific/Norfolk","(UTC+11:00) Norfolk Island","01 Jan 20 12:00:00 am","31 Dec 99 12:00:00 am","01:00:00"
+"Pacific/Norfolk","(UTC+11:00) Norfolk Island","01 Jan 19 12:00:00 am","31 Dec 19 12:00:00 am","01:00:00"
+"Pacific/Norfolk","(UTC+11:00) Norfolk Island","01 Jan 15 12:00:00 am","31 Dec 15 12:00:00 am","00:30:00"
+"Pacific/Norfolk","(UTC+11:00) Norfolk Island","01 Jan 01 12:00:00 am","31 Dec 14 12:00:00 am","00:00:00"
+"Pacific/Noumea","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Pago_Pago","(UTC-11:00) Coordinated Universal Time-11",,,
+"Pacific/Palau","(UTC+09:00) Osaka, Sapporo, Tokyo",,,
+"Pacific/Pohnpei","(UTC+11:00) Solomon Is., New Caledonia",,,
+"Pacific/Port_Moresby","(UTC+10:00) Guam, Port Moresby",,,
+"Pacific/Rarotonga","(UTC-10:00) Hawaii",,,
+"Pacific/Saipan","(UTC+10:00) Guam, Port Moresby",,,
+"Pacific/Tahiti","(UTC-10:00) Hawaii",,,
+"Pacific/Tarawa","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Tongatapu","(UTC+13:00) Nuku'alofa","01 Jan 16 12:00:00 am","31 Dec 16 12:00:00 am","01:00:00"
+"Pacific/Tongatapu","(UTC+13:00) Nuku'alofa","01 Jan 17 12:00:00 am","31 Dec 17 12:00:00 am","01:00:00"
+"Pacific/Wake","(UTC+12:00) Coordinated Universal Time+12",,,
+"Pacific/Wallis","(UTC+12:00) Coordinated Universal Time+12",,,
