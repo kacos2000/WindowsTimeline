@@ -3,11 +3,11 @@
 
 ## Windows 10 Timeline ## 
 
-* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v.2.0.75.0) ###
+* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v.2.0.77.0) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/notif2.JPG)<br>
  
-    Works with any ActivitiesCache.db *(Windows 1709/1803/1809/1903/1909/2004 ..)*<br>
+    Works with any ActivitiesCache.db *(Windows 1703/1709/1803/1809/1903/1909/2004 ..)*<br>
         - Decodes Clipboard Text<br>
         - Matches dB device information with data from the registry *(HKCU or NTuser.dat)*<br>
         - Shows all the important information from JSON blobs ..<br>
