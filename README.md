@@ -3,7 +3,7 @@
 
 ## Windows 10 Timeline ## 
 
-* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v.2.0.78.0) ###
+* ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases/tag/v.2.0.79.0) ###
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/T.JPG)<br>
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/notif2.JPG)<br>
  
