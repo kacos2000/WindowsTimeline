@@ -17,8 +17,8 @@
         - Standalone ActivitiesCache.db<br>
         - CurrentUser's selected ActivitiesCache.db with matching registry (HKCU) device entries<br>
         - Standalone ActivitiesCache.db with offline NTUser.dat device entries<br>
-        
-    Note1: Requires "[System.Data.SQLite](https://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki)". If not available, it will download and install automatically.<br>
+          
+    Note1: Requires "[System.Data.SQLite.dll](https://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki)". <br>*If it's not available, it show prompt to download and install automatically.*<br> *Installation path:* `C:\Program Files\System.Data.SQLite\2010\bin\`<br>
     Note2: Runs on Windows 10 x64 <br>
 
    * **ActivityTypes observed:**
@@ -42,18 +42,18 @@
     * **Device Types:** <br>
     (According to the Connected [Devices Platform specification](https://winprotocoldoc.blob.core.windows.net/productionwindowsarchives/MS-CDP/[MS-CDP].pdf) & observation)* <br>
     
-      - 0.Windows 10X *(dual screen)* device *(Observed)*
-      - 1.Xbox One
+      - 0.Windows 10X *(dual screen)* device *(Observed & Verified)*
+      - 1.Xbox One *(Verified)*
       - 6.Apple iPhone
       - 7.Apple iPad 
-      - 8.Android device
-      - 9.Windows 10 Desktop
+      - 8.Android device *(Verified)*
+      - 9.Windows 10 Desktop *(Verified)*
       - 11.Windows 10 Phone 
       - 12.Linux device
       - 13.Windows IoT
       - 14.Surface Hub 
-      - 15.Windows 10 Laptop PC *(Observed)*
-      - 16.Windows 10 Tablet PC *(Observed)*         
+      - 15.Windows 10 Laptop PC *(Observed & Verified)*
+      - 16.Windows 10 Tablet PC *(Observed & Verified)*         
 
  * ### [WindowsTimeline Clipboard Text Carver *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
@@ -75,7 +75,23 @@ ________________________________________________________________________________
                 * Phones and phablets *(Screen sizes: 4'' to 5'' for phone, 5.5'' to 7'' for phablet)*<br>
                 * Surface Hub devices *(Screen sizes: 55” and 84'')*<br>
                 * Windows IoT devices *(Screen sizes: 3.5'' or smaller, Some devices have no screen)*<br>
+  __________________________________________________________________________________________
+
+* ### Documentation ###
+   
+   - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the ~upcoming~ Win10 v1809 & v1903+ upgrades.* *Updated with Clipboard History info*
+   - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     (Journal of Forensic Sciences DOI:10.1111/1556-4029.13875) - *(Win10 1803)*<br>
+   - [Exploring the Windows Activity Timeline, Part 1: The High Points](https://www.blackbagtech.com/blog/exploring-the-windows-activity-timeline-part-1-the-high-points/)<br>
+   - [Exploring the Windows Activity Timeline, Part 2: Synching Across Devices](https://www.blackbagtech.com/blog/exploring-the-windows-activity-timeline-part-2-synching-across-devices/)<br>
+   - [Exploring the Windows Activity Timeline, Part 3: Clipboard Craziness](https://www.blackbagtech.com/blog/exploring-the-windows-activity-timeline-part-2-clipboard-craziness/?utm_content=134912769&utm_medium=social&utm_source=twitter&hss_channel=tw-209890844)<br>
  __________________________________________________________________________________________
+ 
+ * **Related**
+
+    - [Win10 YourPhone app](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)<br>
+    - [Win10 Notifications](https://github.com/kacos2000/Win10/blob/master/Notifications/readme.md).<br>
+  __________________________________________________________________________________________
+        
 
 **SQLite queries to parse Windows 10 (*[1803+](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client)*) Timeline's ActivitiesCache.db Database**
 
@@ -112,18 +128,13 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________  
 
 #### (5/2019) #### 
-[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view #dfir. (Tested on Win10 pro 1903 *(Build 19023.1)*) <br>
+[**>> Revised query <<**](https://github.com/kacos2000/WindowsTimeline/blob/master/Timeline.sql) for Windows Timeline - works with all versions (1803,1809,1903+) and is based on the smartlookup view. (Tested on Win10 pro 1903 *(Build 19023.1)*) <br>
      
    * **Windows versions (OSBuild*) supporting Timeline:**<br>
         - March 2019 Update (v1903 18875) .. <br>
         - October 2018 Update (v1809 - 17763)<br>
         - April 2018 Update (v1803 - 17134)<br>
         
-   * **Related**
-        - [Win10 YourPhone app](https://github.com/kacos2000/Win10/blob/master/YourPhone/readme.md)
-        - [Win10 Notifications](https://github.com/kacos2000/Win10/blob/master/Notifications/readme.md).
-        
- 
 ___________________________________________________________________________________________  
 
 
@@ -151,7 +162,7 @@ ________________________________________________________________________________
          * [Using Windows 10’s New Clipboard: History and Cloud Sync](https://www.howtogeek.com/351978/using-windows-10s-new-clipboard-history-and-cloud-sync/)<br>
 
 **Tested on:**
-- [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1,
+- [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1+,
 - [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 - and Microsoft Windows 10 version [1803, 1903](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17754.1) and 1903 (19023.1)
@@ -166,12 +177,7 @@ ________________________________________________________________________________
   ![Delimiter Options](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/e2.JPG)
 
   and you will be presented with another window to select Folder and Filename to save the CSV file.
- __________________________________________________________________________________________
 
-* ### Documentation ###
-   
-   - [WindowsTimeline.pdf](WindowsTimeline.pdf) - Documentation for the database and its entries. *Updated with information for the ~upcoming~ Win10 v1809 & v1903 upgrades.*
-   - [A Forensic Exploration of the Microsoft Windows 10 Timeline](https://onlinelibrary.wiley.com/doi/abs/10.1111/1556-4029.13875) -     (Journal of Forensic Sciences DOI:10.1111/1556-4029.13875) - *(Win10 1803)*<br>
      __________________________________________________________________________________________
 * ### PowerShell scripts *(Win10 - 1803,1809,1903+)* ###
    
