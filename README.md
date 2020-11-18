@@ -1,6 +1,6 @@
 <!-- saved from url=(0045) https://kacos2000.github.io/WindowsTimeline/ --> 
 <!-- https://guides.github.com/features/mastering-markdown/ --> 
-
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=69L3MWGCKVMA6)
 ## Windows 10 Timeline ## 
 
 * ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases) ###
