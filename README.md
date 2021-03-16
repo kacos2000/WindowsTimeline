@@ -55,7 +55,7 @@
       - 15.Windows 10 Laptop PC *(Observed & Verified)*
       - 16.Windows 10 Tablet PC *(Observed & Verified)*         
 
- * ### [WindowsTimeline Clipboard Text Carver *(ClipboardTextEntries.exe)*](https://github.com/kacos2000/WindowsTimeline/releases) ### 
+ * ### [Clippy *(previously 'WindowsTimeline Clipboard Text Carver')*](https://github.com/kacos2000/WindowsTimeline/releases) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
     
     * Retrieves current & deleted Clipboard text entries from an ActivitiesCache db or db-wal file.
