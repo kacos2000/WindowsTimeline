@@ -1,6 +1,9 @@
 <!-- saved from url=(0045) https://kacos2000.github.io/WindowsTimeline/ --> 
 <!-- https://guides.github.com/features/mastering-markdown/ --> 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=69L3MWGCKVMA6)
+
+**Note:** *Starting in July 2021, if you have your activity history synced across your devices through your Microsoft account (MSA), you'll no longer have the option to upload new activity in Timeline. You'll still be able to use Timeline and see your activity history (information about recent apps, websites and files) on your local device.  AAD-connected accounts won't be impacted. [source](https://support.microsoft.com/en-us/windows/get-help-with-timeline-febc28db-034c-d2b0-3bbe-79aa0c501039)*<br>
+
 ## Windows 10 Timeline ## 
 
 * ### [WindowsTimeline parser *(WindowsTimeline.exe)*](https://github.com/kacos2000/WindowsTimeline/releases) ###
