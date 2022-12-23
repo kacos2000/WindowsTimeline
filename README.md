@@ -54,8 +54,16 @@
       - 12.Linux device
       - 13.Windows IoT
       - 14.Surface Hub 
-      - 15.Windows 10 Laptop PC *(Observed & Verified)*
-      - 16.Windows 10 Tablet PC *(Observed & Verified)*         
+      - 15.Windows 10 Laptop PC *(Observed & Verified)*1
+      - 16.Windows 10 Tablet PC *(Observed & Verified)* <br><br>
+      *1 *Windows.EDB has the same info but in text form eg:*
+        | Field Name | Field Value|
+        |------------| -----------|
+        |4124-System_ActivityHistory_DeviceMake|	HP|
+        |4125-System_ActivityHistory_DeviceModel|	HP 250 G6 Notebook PC|
+        |4126-System_ActivityHistory_DeviceName|	DESKTOP-HL2LCVA|
+        |4127-System_ActivityHistory_DeviceType|	Laptop|
+
 
  * ### [Clippy *(previously 'WindowsTimeline Clipboard Text Carver')*](https://github.com/kacos2000/WindowsTimeline/releases) ### 
     ![T](https://raw.githubusercontent.com/kacos2000/WindowsTimeline/master/Clips.JPG)<br>  
