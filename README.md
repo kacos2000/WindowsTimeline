@@ -217,6 +217,15 @@ ________________________________________________________________________________
 **Related Windows Apps**
 - [Connected Devices](https://www.microsoft.com/en-us/p/connected-devices/9nblggh4tssg?activetab=pivot%3aoverviewtab)
 
+**Related to Windows Timeline**
+- Windows Search database Windows.EDB<br>
+sample entry:
+
+![image](https://user-images.githubusercontent.com/11378310/209337528-13cecac3-53e9-47bd-a2cd-544484972d43.png)
+
+
+
+
 **Status**
 - **[x]** Queries completed.
 - **[x]** Powershell - check DeviceIDs in both registry & database completed.
