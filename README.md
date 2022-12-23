@@ -221,7 +221,7 @@ ________________________________________________________________________________
 - Windows Search database Windows.EDB<br>
 sample entry:
 
-![image](https://user-images.githubusercontent.com/11378310/209337528-13cecac3-53e9-47bd-a2cd-544484972d43.png)
+   ![image](https://user-images.githubusercontent.com/11378310/209337528-13cecac3-53e9-47bd-a2cd-544484972d43.png)
 
 
 
