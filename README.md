@@ -56,7 +56,9 @@
       - 14.Surface Hub 
       - 15.Windows 10 Laptop PC *(Observed & Verified)*1
       - 16.Windows 10 Tablet PC *(Observed & Verified)* <br><br>
-      *1 *Windows.EDB has the same info but in text form eg:*
+      
+      *[Windows.EDB](https://github.com/kacos2000/WinEDB) has the same info but in text form eg:*
+
         | Field Name | Field Value|
         |------------| -----------|
         |4124-System_ActivityHistory_DeviceMake|	HP|
@@ -75,7 +77,7 @@
 
      Example:<br>
         - WindowsTimeline.exe: 15 clipboard text entries (SQLite query)<br>
-        - ClipboardTextEntries.exe: 224 from the db & 19 from the db-wal<br>
+        - Clippy.exe: 224 from the db & 19 from the db-wal<br>
 
 _________________________________________________________________________________________   
    *  [Devices](https://docs.microsoft.com/en-us/windows/uwp/design/devices/index) that support Universal Windows Platform (UWP)<br>
