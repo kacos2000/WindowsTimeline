@@ -175,7 +175,7 @@ ________________________________________________________________________________
 
 **Tested on:**
 - [DB Browser for SQLite](http://sqlitebrowser.org/) 3.10.1+,
-- [SQLiteStudio](https://sqlitestudio.pl/index.rvt) as well as
+- [SQLiteStudio](https://sqlitestudio.pl/) as well as
 - [SQLite Expert Pro with the JSON1 extension](http://www.sqliteexpert.com/extensions/)
 - and Microsoft Windows 10 version [1803, 1903](https://support.microsoft.com/en-us/help/4099479/windows-10-update-history?ocid=update_setting_client) (OS builds from 17134.48 to 17134.254) and version 1809 (Insider's Build 17754.1) and 1903 (19023.1)
 ___________________________________________________________________________________________
